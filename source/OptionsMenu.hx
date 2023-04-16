@@ -17,14 +17,20 @@ class OptionsMenu extends MusicBeatState
 	var selector:FlxText;
 	var curSelected:Int = 0;
 
-	var controlsStrings:Array<String> = [];
+	var controlsStrings:Array<String> = [
+		"Ghost tap",
+		"Downscroll",
+		"Accuracy"
+	];
+
+	var optionsCheck:FlxText;
+	var optionsDesc:FlxText;
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
 	override function create()
 	{
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		controlsStrings = CoolUtil.coolTextFile(Paths.txt('controls'));
 		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
@@ -32,22 +38,29 @@ class OptionsMenu extends MusicBeatState
 		menuBG.antialiasing = true;
 		add(menuBG);
 
-		/* 
-			grpControls = new FlxTypedGroup<Alphabet>();
-			add(grpControls);
+		grpControls = new FlxTypedGroup<Alphabet>();
+		add(grpControls);
 
-			for (i in 0...controlsStrings.length)
-			{
-				if (controlsStrings[i].indexOf('set') != -1)
-				{
-					var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, controlsStrings[i].substring(3) + ': ' + controlsStrings[i + 1], true, false);
-					controlLabel.isMenuItem = true;
-					controlLabel.targetY = i;
-					grpControls.add(controlLabel);
-				}
-				// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-			}
-		 */
+		for (i in 0...controlsStrings.length)
+		{
+			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, controlsStrings[i], true, false);
+			controlLabel.isMenuItem = true;
+			controlLabel.targetY = i;
+			grpControls.add(controlLabel);
+			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
+		}
+
+		optionsDesc = new FlxText(10, FlxG.height - 44, 0, "", 18);
+		optionsDesc.scrollFactor.set();
+		optionsDesc.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(optionsDesc);
+
+		optionsCheck = new FlxText(10, FlxG.height - 22, 0, "", 18);
+		optionsCheck.scrollFactor.set();
+		optionsCheck.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(optionsCheck);
+
+		changeSelection();
 
 		super.create();
 	}
@@ -56,43 +69,37 @@ class OptionsMenu extends MusicBeatState
 	{
 		super.update(elapsed);
 
-		/* 
-			if (controls.ACCEPT)
-			{
-				changeBinding();
-			}
-
-			if (isSettingControl)
-				waitingInput();
-			else
-			{
-				if (controls.BACK)
-					FlxG.switchState(new MainMenuState());
-				if (controls.UP_P)
-					changeSelection(-1);
-				if (controls.DOWN_P)
-					changeSelection(1);
-			}
-		 */
-	}
-
-	function waitingInput():Void
-	{
-		if (FlxG.keys.getIsDown().length > 0)
+		if (controls.ACCEPT)
 		{
-			PlayerSettings.player1.controls.replaceBinding(Control.LEFT, Keys, FlxG.keys.getIsDown()[0].ID, null);
+			switch(controlsStrings[curSelected])
+			{
+				case "Ghost tap":
+					FlxG.save.data.ghosttap = !FlxG.save.data.ghosttap;
+					optionsCheck.text = FlxG.save.data.ghosttap ? "On" : "Off";
+					FlxG.save.data.ghosttap = FlxG.save.data.ghosttap;
+
+				case "Downscroll":
+					FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
+					optionsCheck.text = FlxG.save.data.downscroll ? "On" : "Off";
+					FlxG.save.data.downscroll = FlxG.save.data.downscroll;
+
+				case "Accuracy":
+					FlxG.save.data.accuracy = !FlxG.save.data.accuracy;
+					optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
+					FlxG.save.data.accuracy = FlxG.save.data.accuracy;
+			}
 		}
-		// PlayerSettings.player1.controls.replaceBinding(Control)
-	}
 
-	var isSettingControl:Bool = false;
-
-	function changeBinding():Void
-	{
-		if (!isSettingControl)
+		if (controls.BACK)
 		{
-			isSettingControl = true;
+			FlxG.save.flush();
+			FlxG.save.bind('jsEngine', 'huy1234th');
+			FlxG.switchState(new MainMenuState());
 		}
+		if (controls.UP_P)
+			changeSelection(-1);
+		if (controls.DOWN_P)
+			changeSelection(1);
 	}
 
 	function changeSelection(change:Int = 0)
@@ -100,6 +107,21 @@ class OptionsMenu extends MusicBeatState
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
 
 		curSelected += change;
+
+		switch(controlsStrings[curSelected])
+		{
+			case "Ghost tap":
+				optionsDesc.text = "Make the game more easier!";
+				optionsCheck.text = FlxG.save.data.ghosttap ? "On" : "Off";
+
+			case "Downscroll":
+				optionsDesc.text = "Change layout from upscroll to downscroll";
+				optionsCheck.text = FlxG.save.data.downscroll ? "On" : "Off";
+
+			case "Accuracy":
+				optionsDesc.text = "Add alot info like Misses and Accuracy";
+				optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
+		}
 
 		if (curSelected < 0)
 			curSelected = grpControls.length - 1;
