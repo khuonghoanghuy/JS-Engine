@@ -114,6 +114,9 @@ class PlayState extends MusicBeatState
 
 	var talking:Bool = true;
 	var songScore:Int = 0;
+	var songMiss:Int = 0;
+	var songAccuracy:Float = 0.00;
+	var songFloatGain:Float = 0.00; // for accuracy too!
 	var scoreTxt:FlxText;
 
 	public static var campaignScore:Int = 0;
@@ -733,8 +736,8 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.BLACK, FlxColor.BLACK);
 		scoreTxt.scrollFactor.set();
 		add(scoreTxt);
 
@@ -1332,6 +1335,13 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
+	function truncateFloat(number:Float, precision:Int): Float {
+		var num = number;
+		num = num * Math.pow(10, precision);
+		num = Math.round( num ) / Math.pow(10, precision);
+		return num;
+	}
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -1364,7 +1374,10 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		scoreTxt.text = "Score:" + songScore;
+		if (FlxG.save.data.accuracy)
+			scoreTxt.text = "Score: " + songScore + " - Misses: " + songMiss + " - Accuracy: " + truncateFloat(songAccuracy, 2) + "%";
+		else
+			scoreTxt.text = "Score: " + songScore;
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -1680,6 +1693,7 @@ class PlayState extends MusicBeatState
 					{
 						health -= 0.0475;
 						vocals.volume = 0;
+						noteMiss(daNote.noteData);
 					}
 
 					daNote.active = false;
@@ -2167,6 +2181,8 @@ class PlayState extends MusicBeatState
 					boyfriend.playAnim('singRIGHTmiss', true);
 			}
 		}
+
+		updateAcc(-1);
 	}
 
 	function badNoteCheck()
@@ -2206,7 +2222,10 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
+				songFloatGain += 1;
 			}
+			else
+				songFloatGain += 1;
 
 			if (note.noteData >= 0)
 				health += 0.023;
@@ -2243,6 +2262,19 @@ class PlayState extends MusicBeatState
 				note.destroy();
 			}
 		}
+
+		updateAcc(1);
+	}
+
+	/**
+		@param number default is 1
+	**/
+	function updateAcc(number:Int)
+	{
+		var gainNumber:Int;
+
+		gainNumber += number;
+		songAccuracy = songFloatGain * gainNumber / 100;
 	}
 
 	var fastCarCanDrive:Bool = true;
