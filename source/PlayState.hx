@@ -139,6 +139,8 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		songAccuracy = 100.0;
+
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
@@ -736,11 +738,6 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scoreTxt.scrollFactor.set();
-		add(scoreTxt);
-
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
 		add(iconP1);
@@ -748,6 +745,11 @@ class PlayState extends MusicBeatState
 		iconP2 = new HealthIcon(SONG.player2, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
+		
+		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scoreTxt.scrollFactor.set();
+		add(scoreTxt);
 
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -1818,16 +1820,24 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'shit';
 			score = 50;
+			songFloatGain += 0.5;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
 			score = 100;
+			songFloatGain += 0.75;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
 			daRating = 'good';
 			score = 200;
+			songFloatGain += 0.9;
+		}
+		if (daRating == "sick")
+		{
+			score += 350;
+			songFloatGain == 1;
 		}
 
 		songScore += score;
@@ -2222,7 +2232,6 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
-				songFloatGain += 1;
 			}
 			else
 				songFloatGain += 1;
@@ -2266,15 +2275,15 @@ class PlayState extends MusicBeatState
 		updateAcc(1);
 	}
 
+	var gainNumber:Float;
+
 	/**
 		@param number default is 1
 	**/
 	function updateAcc(number:Int)
 	{
-		var gainNumber:Int;
-
 		gainNumber += number;
-		songAccuracy = songFloatGain * gainNumber / 100;
+		songAccuracy = songFloatGain / gainNumber * 100;
 	}
 
 	var fastCarCanDrive:Bool = true;
