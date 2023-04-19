@@ -2076,22 +2076,22 @@ class PlayState extends MusicBeatState
 						// NOTES YOU ARE HOLDING
 						case 0:
 							if (left){
-								totalNotesHit += 0.01;
+								// totalNotesHit += 1;
 								goodNoteHit(daNote);
 							}
 						case 1:
 							if (down){
-								totalNotesHit += 0.01;
+								// totalNotesHit += 1;
 								goodNoteHit(daNote);
 							}
 						case 2:
 							if (up){
-								totalNotesHit += 0.01;
+								// totalNotesHit += 1;
 								goodNoteHit(daNote);
 							}
 						case 3:
 							if (right){
-								totalNotesHit += 0.01;
+								// totalNotesHit += 1;
 								goodNoteHit(daNote);
 							}
 					}
@@ -2224,8 +2224,6 @@ class PlayState extends MusicBeatState
 				popUpScore(note.strumTime);
 				combo += 1;
 			}
-			else
-				totalNotesHit += 1;
 
 			health += 0.023;
 
@@ -2238,7 +2236,6 @@ class PlayState extends MusicBeatState
 				case 2:
 					boyfriend.playAnim('singUP', true);
 				case 3:
-					boyfriend.playAnim('singRIGHT', true);
 			}
 
 			playerStrums.forEach(function(spr:FlxSprite)
@@ -2251,6 +2248,7 @@ class PlayState extends MusicBeatState
 
 			note.wasGoodHit = true;
 			vocals.volume = 1;
+			totalNotesHit += 1;
 
 			if (!note.isSustainNote)
 			{
