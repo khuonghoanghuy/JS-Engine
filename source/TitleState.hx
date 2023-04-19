@@ -264,7 +264,10 @@ class TitleState extends MusicBeatState
 		{
 			titleText.animation.play('press');
 
-			FlxG.camera.flash(FlxColor.WHITE, 1);
+			if (FlxG.random.bool(50))
+				FlxG.camera.flash(FlxColor.BLUE, 1);
+			else
+				FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 			transitioning = true;

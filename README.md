@@ -10,3 +10,5 @@ JS Engine is contains some custom:
 + Fixed Icon beat hit!
 
 JS Engine is currently on version `0.0.1Beta1`
+
+JS Engine have some secret you can find them in the game!
