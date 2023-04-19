@@ -2,5 +2,5 @@
 
 JS Engine ChangeLog:
 
-- 0.0.1Beta1:
+- 0.0.1:
 + So Begin

@@ -3,5 +3,5 @@ package;
 class Options
 {
 	public static var masterVolume:Float = 1;
-	public static var ver:String = "0.0.1Beta1";
+	public static var ver:String = "0.0.1";
 }
