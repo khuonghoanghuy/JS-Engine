@@ -117,7 +117,7 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var songMiss:Int = 0;
 	var songAccuracy:Float = 0.00;
-	var songFloatGain:Float = 0.00; // for accuracy too!
+	var songFloatGain:Float = 0;
 	var scoreTxt:FlxText;
 	var ranking:String = "FC";
 
@@ -662,13 +662,8 @@ class PlayState extends MusicBeatState
 				gf.x += 180;
 				gf.y += 300;
 			case 'schoolEvil':
-				// trailArea.scrollFactor.set();
-
 				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
-				// evilTrail.changeValuesEnabled(false, false, false, false);
-				// evilTrail.changeGraphic()
 				add(evilTrail);
-				// evilTrail.scrollFactor.set(1.1, 1.1);
 
 				boyfriend.x += 200;
 				boyfriend.y += 220;
@@ -1842,7 +1837,13 @@ class PlayState extends MusicBeatState
 
 		var daRating:String = "sick";
 
-		if (noteDiff > Conductor.safeZoneOffset * 0.9)
+		if (noteDiff > Conductor.safeZoneOffset * 2)
+		{
+			daRating = 'shit';
+			score = 50;
+			songFloatGain += 1;
+		}
+		else if (noteDiff > Conductor.safeZoneOffset * -2)
 		{
 			daRating = 'shit';
 			score = 50;
@@ -1854,7 +1855,19 @@ class PlayState extends MusicBeatState
 			score = 100;
 			songFloatGain += 1;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
+		else if (noteDiff > Conductor.safeZoneOffset * -1.75)
+		{
+			daRating = 'bad';
+			score = 100;
+			songFloatGain += 1;
+		}
+		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
+		{
+			daRating = 'good';
+			score = 200;
+			songFloatGain += 1;
+		}
+		else if (noteDiff > Conductor.safeZoneOffset * -1.25)
 		{
 			daRating = 'good';
 			score = 200;
@@ -2184,6 +2197,7 @@ class PlayState extends MusicBeatState
 			combo = 0;
 
 			songScore -= 10;
+			songMiss += 1;
 
 			FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
 			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
@@ -2250,6 +2264,10 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
+				songFloatGain += 1;
+			}
+			else
+			{
 				songFloatGain += 1;
 			}
 
