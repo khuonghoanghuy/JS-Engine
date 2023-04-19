@@ -117,9 +117,15 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var songMiss:Int = 0;
 	var songAccuracy:Float = 0.00;
-	var songFloatGain:Float = 0;
+	var totalNotesHit:Float = 0;
+	var totalPlayed:Int = 0;
 	var scoreTxt:FlxText;
 	var ranking:String = "FC";
+
+	private static var shits:Int = 0;
+	private static var bads:Int = 0;
+	private static var goods:Int = 0;
+	private static var sicks:Int = 0;
 
 	public static var campaignScore:Int = 0;
 
@@ -1840,43 +1846,35 @@ class PlayState extends MusicBeatState
 		if (noteDiff > Conductor.safeZoneOffset * 2)
 		{
 			daRating = 'shit';
+			totalNotesHit -= 2;
 			score = 50;
-			songFloatGain += 1;
+			shits++;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * -2)
+		else if (noteDiff < Conductor.safeZoneOffset * -2)
 		{
 			daRating = 'shit';
+			totalNotesHit -= 2;
 			score = 50;
-			songFloatGain += 1;
+			shits++;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
+		else if (noteDiff > Conductor.safeZoneOffset * 0.45)
 		{
 			daRating = 'bad';
 			score = 100;
-			songFloatGain += 1;
-		}
-		else if (noteDiff > Conductor.safeZoneOffset * -1.75)
-		{
-			daRating = 'bad';
-			score = 100;
-			songFloatGain += 1;
+			totalNotesHit += 0.2;
+			bads++;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
 		{
 			daRating = 'good';
+			totalNotesHit += 0.65;
 			score = 200;
-			songFloatGain += 1;
+			goods++;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * -1.25)
+		if (daRating == 'sick')
 		{
-			daRating = 'good';
-			score = 200;
-			songFloatGain += 1;
-		}
-		if (daRating == "sick")
-		{
-			score += 350;
-			songFloatGain += 1;
+			totalNotesHit += 1;
+			sicks++;
 		}
 
 		songScore += score;
@@ -2264,17 +2262,11 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
-				songFloatGain += 1;
 			}
 			else
-			{
-				songFloatGain += 1;
-			}
+				totalNotesHit += 1;
 
-			if (note.noteData >= 0)
-				health += 0.023;
-			else
-				health += 0.004;
+			health += 0.023;
 
 			switch (note.noteData)
 			{
@@ -2310,12 +2302,10 @@ class PlayState extends MusicBeatState
 		updateAcc();
 	}
 
-	var gainNumber:Int = 0;
-
 	function updateAcc()
 	{
-		gainNumber += 1;
-		songAccuracy = songFloatGain / gainNumber * 100;
+		totalPlayed += 1;
+		songAccuracy = totalNotesHit / totalPlayed * 100;
 
 		if (songAccuracy >= 100)
 		{
