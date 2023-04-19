@@ -1820,19 +1820,19 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'shit';
 			score = 50;
-			songFloatGain += 0.5;
+			songFloatGain += 1;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.75)
 		{
 			daRating = 'bad';
 			score = 100;
-			songFloatGain += 0.75;
+			songFloatGain += 1;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.2)
 		{
 			daRating = 'good';
 			score = 200;
-			songFloatGain += 0.9;
+			songFloatGain += 1;
 		}
 		if (daRating == "sick")
 		{
@@ -2192,7 +2192,7 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		updateAcc(-1);
+		updateAcc();
 	}
 
 	function badNoteCheck()
@@ -2232,9 +2232,8 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
-			}
-			else
 				songFloatGain += 1;
+			}
 
 			if (note.noteData >= 0)
 				health += 0.023;
@@ -2272,18 +2271,20 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		updateAcc(1);
+		updateAcc();
 	}
 
-	var gainNumber:Float;
+	var gainNumber:Int = 0;
 
-	/**
-		@param number default is 1
-	**/
-	function updateAcc(number:Int)
+	function updateAcc()
 	{
-		gainNumber += number;
+		gainNumber += 1;
 		songAccuracy = songFloatGain / gainNumber * 100;
+
+		if (songAccuracy >= 100)
+		{
+			songAccuracy = 0;
+		}
 	}
 
 	var fastCarCanDrive:Bool = true;
