@@ -118,6 +118,7 @@ class PlayState extends MusicBeatState
 	var songAccuracy:Float = 0.00;
 	var songFloatGain:Float = 0.00; // for accuracy too!
 	var scoreTxt:FlxText;
+	var ranking:String = "FC";
 
 	public static var campaignScore:Int = 0;
 
@@ -1377,9 +1378,22 @@ class PlayState extends MusicBeatState
 		super.update(elapsed);
 
 		if (FlxG.save.data.accuracy)
-			scoreTxt.text = "Score: " + songScore + " - Misses: " + songMiss + " - Accuracy: " + truncateFloat(songAccuracy, 2) + "%";
+			scoreTxt.text = "Score: " + songScore + " - Misses: " + songMiss + " - Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")";
 		else
 			scoreTxt.text = "Score: " + songScore;
+
+		// ranking by misses
+		switch (songMiss)
+		{
+			case 0:
+				ranking = "FC";
+
+			case 1:
+				ranking = "SBCD";
+
+			case 10:
+				ranking = "Clear";
+		}
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
 		{
@@ -1837,18 +1851,10 @@ class PlayState extends MusicBeatState
 		if (daRating == "sick")
 		{
 			score += 350;
-			songFloatGain == 1;
+			songFloatGain += 1;
 		}
 
 		songScore += score;
-
-		/* if (combo > 60)
-				daRating = 'sick';
-			else if (combo > 12)
-				daRating = 'good'
-			else if (combo > 4)
-				daRating = 'bad';
-		 */
 
 		var pixelShitPart1:String = "";
 		var pixelShitPart2:String = '';
