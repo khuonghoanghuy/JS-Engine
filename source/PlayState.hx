@@ -2175,6 +2175,9 @@ class PlayState extends MusicBeatState
 				case 3:
 					boyfriend.playAnim('singRIGHTmiss', true);
 			}
+
+			totalNotesHit -= 1;
+			totalPlayed -= 1;
 		}
 
 		updateAcc();
@@ -2218,6 +2221,7 @@ class PlayState extends MusicBeatState
 				popUpScore(note.strumTime);
 				combo += 1;
 				totalNotesHit += 1;
+				totalPlayed += 1;
 			}
 
 			health += 0.023;
@@ -2258,7 +2262,6 @@ class PlayState extends MusicBeatState
 
 	function updateAcc()
 	{
-		totalPlayed += 1;
 		songAccuracy = totalNotesHit / totalPlayed * 100;
 
 		if (songAccuracy >= 100)
