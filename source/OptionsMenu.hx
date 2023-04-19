@@ -20,7 +20,8 @@ class OptionsMenu extends MusicBeatState
 	var controlsStrings:Array<String> = [
 		"Ghost tap",
 		"Downscroll",
-		"Accuracy"
+		"Accuracy",
+		"Watermark"
 	];
 
 	var optionsCheck:FlxText;
@@ -87,6 +88,11 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.accuracy = !FlxG.save.data.accuracy;
 					optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
 					FlxG.save.data.accuracy = FlxG.save.data.accuracy;
+
+				case "Watermark":
+					FlxG.save.data.watermark = !FlxG.save.data.watermark;
+					optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
+					FlxG.save.data.watermark = FlxG.save.data.watermark;
 			}
 		}
 
@@ -121,6 +127,10 @@ class OptionsMenu extends MusicBeatState
 			case "Accuracy":
 				optionsDesc.text = "Add alot info like Misses and Accuracy";
 				optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
+
+			case "Watermark":
+				optionsDesc.text = "Display JS Engine Text on the screen";
+				optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
 		}
 
 		if (curSelected < 0)

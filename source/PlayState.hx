@@ -759,6 +759,17 @@ class PlayState extends MusicBeatState
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
+
+		if (FlxG.save.data.watermark)
+		{
+			var versionShit:FlxText = new FlxText(10, FlxG.height - 44, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\nJS Engine v" + Options.ver, 18);
+			versionShit.scrollFactor.set();
+			versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(versionShit);
+
+			versionShit.cameras = [camHUD];
+		}
+
 		doof.cameras = [camHUD];
 
 		// if (SONG.song == 'South')
