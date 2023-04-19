@@ -21,4 +21,4 @@ JS Engine is currently on version `0.0.1`
 
 JS Engine have some secret you can find them in the game!
 
-`I like to commit so there will have alot none add game commit :)`
+`I like to commit so there will have alot nonsense commit was added :)`
