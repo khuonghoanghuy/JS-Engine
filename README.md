@@ -9,4 +9,4 @@ JS Engine is contains some custom:
 + No waitting beat hit!
 + Fixed Icon beat hit!
 
-JS Engine is currently on version `0.0.1`
+JS Engine is currently on version `0.0.1Beta1`
