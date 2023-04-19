@@ -98,6 +98,8 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
 	var talking:Bool = true;
+	var canPress:Bool = true;
+
 	var songScore:Int = 0;
 	var songMiss:Int = 0;
 	var songAccuracy:Float = 0.00;
@@ -901,6 +903,7 @@ class PlayState extends MusicBeatState
 	function startCountdown():Void
 	{
 		inCutscene = false;
+		canPress = false;
 
 		generateStaticArrows(0);
 		generateStaticArrows(1);
@@ -1009,6 +1012,7 @@ class PlayState extends MusicBeatState
 	function startSong():Void
 	{
 		startingSong = false;
+		canPress = true;
 
 		previousFrameTime = FlxG.game.ticks;
 		lastReportedPlayheadPosition = 0;
@@ -1716,7 +1720,14 @@ class PlayState extends MusicBeatState
 		}
 
 		if (!inCutscene)
-			keyShit();
+		{
+			if (canPress && !startingSong)
+			{
+				keyShit();
+			}
+			else
+			{}
+		}
 
 		#if debug
 		if (FlxG.keys.justPressed.ONE)
