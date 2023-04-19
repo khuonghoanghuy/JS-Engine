@@ -2071,6 +2071,8 @@ class PlayState extends MusicBeatState
 			{
 				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 				{
+					totalNotesHit += 1;
+
 					switch (daNote.noteData)
 					{
 						// NOTES YOU ARE HOLDING
@@ -2229,6 +2231,7 @@ class PlayState extends MusicBeatState
 				case 2:
 					boyfriend.playAnim('singUP', true);
 				case 3:
+					boyfriend.playAnim('singRIGHT', true);
 			}
 
 			playerStrums.forEach(function(spr:FlxSprite)
