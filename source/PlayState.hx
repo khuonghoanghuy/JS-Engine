@@ -2050,7 +2050,7 @@ class PlayState extends MusicBeatState
 									if (controlArray[ignoreList[shit]])
 										inIgnoreList = true;
 								}
-								if (!inIgnoreList)
+								if (!inIgnoreList && !FlxG.save.data.ghosttap)
 									badNoteCheck();
 							}
 						}
@@ -2072,7 +2072,7 @@ class PlayState extends MusicBeatState
 					noteCheck(controlArray[daNote.noteData], daNote);
 				}
 			}
-			else
+			else if (!FlxG.save.data.ghosttap)
 			{
 				badNoteCheck();
 			}
@@ -2225,7 +2225,7 @@ class PlayState extends MusicBeatState
 	{
 		if (keyP)
 			goodNoteHit(note);
-		else
+		else if (!FlxG.save.data.ghosttap)
 		{
 			badNoteCheck();
 		}
