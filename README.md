@@ -27,6 +27,6 @@ JS Engine have some secret you can find them in the game!
 
 `Download by release tab`
 
-`To run my engine, that link will` [help you](https://stackoverflow.com/questions/37773256/how-to-run-electron-project)
+`Check the wiki to see how to run them`
 
 `Also, i dont know why but only week 6 song can load more faster than other, so that slow load in other week or week 6 im cant find the sloved!`
