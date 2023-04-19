@@ -594,7 +594,7 @@ class ChartingState extends MusicBeatState
 				FlxG.sound.music.pause();
 				vocals.pause();
 
-				FlxG.sound.music.time -= (FlxG.mouse.wheel * Conductor.stepCrochet * 0.1);
+				FlxG.sound.music.time -= (FlxG.mouse.wheel * Conductor.stepCrochet * 0.4);
 				vocals.time = FlxG.sound.music.time;
 			}
 
