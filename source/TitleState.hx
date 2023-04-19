@@ -132,7 +132,10 @@ class TitleState extends MusicBeatState
 		add(bg);
 
 		logoBl = new FlxSprite(-150, -100);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		if (FlxG.save.data.watermark)
+			logoBl.frames = Paths.getSparrowAtlas('logoBumpin_watermark');
+		else
+			logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		logoBl.antialiasing = true;
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
@@ -328,7 +331,10 @@ class TitleState extends MusicBeatState
 		switch (curBeat)
 		{
 			case 1:
-				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				if (FlxG.save.data.watermark)
+					createCoolText(['ThatPeople']);	
+				else
+					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
 			case 3:
 				addMoreText('present');
@@ -340,7 +346,10 @@ class TitleState extends MusicBeatState
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
 			case 5:
-				createCoolText(['In association', 'with']);
+				if (FlxG.save.data.watermark)
+					createCoolText(['Not association', 'with']);	
+				else
+					createCoolText(['In association', 'with']);
 			case 7:
 				addMoreText('newgrounds');
 				ngSpr.visible = true;
@@ -370,7 +379,10 @@ class TitleState extends MusicBeatState
 				addMoreText('Night');
 			// credTextShit.text += '\nNight';
 			case 15:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+				if (FlxG.save.data.watermark)
+					addMoreText('Funkin JS Engine'); // credTextShit.text += '\nFunkin';
+				else
+					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
 
 			case 16:
 				skipIntro();
