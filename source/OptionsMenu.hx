@@ -21,7 +21,8 @@ class OptionsMenu extends MusicBeatState
 		"Ghost tap",
 		"Downscroll",
 		"Accuracy",
-		"Watermark"
+		"Watermark",
+		"FPS Cap"
 	];
 
 	var optionsCheck:FlxText;
@@ -93,6 +94,11 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.watermark = !FlxG.save.data.watermark;
 					optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
 					FlxG.save.data.watermark = FlxG.save.data.watermark;
+
+				case "FPS Cap":
+					FlxG.save.data.fpsCap = !FlxG.save.data.fpsCap;
+					optionsCheck.text = FlxG.save.data.fpsCap ? "At 75" : "At 60";
+					FlxG.save.data.fpsCap = FlxG.save.data.fpsCap;
 			}
 		}
 
@@ -131,6 +137,10 @@ class OptionsMenu extends MusicBeatState
 			case "Watermark":
 				optionsDesc.text = "Display JS Engine Text on the screen";
 				optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
+
+			case "FPS Cap":
+				optionsDesc.text = "Change FPS Cap, make the game more faster. But not recommended for Low Computer";
+				optionsCheck.text = FlxG.save.data.fpsCap ? "At 75" : "At 60";
 		}
 
 		if (curSelected < 0)

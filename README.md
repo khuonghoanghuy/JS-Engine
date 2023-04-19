@@ -22,3 +22,4 @@ JS Engine is currently on version `0.0.1`
 JS Engine have some secret you can find them in the game!
 
 `I like to commit so there will have alot nonsense commit was added :)`
+`Also, i dont know why but only week 6 song can load more faster than other, so that slow load in other week or week 6 im cant find the sloved!`
