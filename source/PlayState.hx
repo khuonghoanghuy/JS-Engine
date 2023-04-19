@@ -117,7 +117,7 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var songMiss:Int = 0;
 	var songAccuracy:Float = 0.00;
-	var totalNotesHit:Float = 0;
+	var totalNotesHit:Int = 0;
 	var totalPlayed:Int = 0;
 	var scoreTxt:FlxText;
 	var ranking:String = "FC";
@@ -1844,13 +1844,13 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'bad';
 			score = 100;
-			totalNotesHit += 0.2;
+			totalNotesHit += 1;
 			bads++;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
 		{
 			daRating = 'good';
-			totalNotesHit += 0.65;
+			totalNotesHit += 1;
 			score = 200;
 			goods++;
 		}
@@ -2075,25 +2075,17 @@ class PlayState extends MusicBeatState
 					{
 						// NOTES YOU ARE HOLDING
 						case 0:
-							if (left){
-								// totalNotesHit += 1;
+							if (left)
 								goodNoteHit(daNote);
-							}
 						case 1:
-							if (down){
-								// totalNotesHit += 1;
+							if (down)
 								goodNoteHit(daNote);
-							}
 						case 2:
-							if (up){
-								// totalNotesHit += 1;
+							if (up)
 								goodNoteHit(daNote);
-							}
 						case 3:
-							if (right){
-								// totalNotesHit += 1;
+							if (right)
 								goodNoteHit(daNote);
-							}
 					}
 				}
 			});
@@ -2223,6 +2215,7 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
+				totalNotesHit += 1;
 			}
 
 			health += 0.023;
@@ -2248,7 +2241,6 @@ class PlayState extends MusicBeatState
 
 			note.wasGoodHit = true;
 			vocals.volume = 1;
-			totalNotesHit += 1;
 
 			if (!note.isSustainNote)
 			{
@@ -2268,7 +2260,7 @@ class PlayState extends MusicBeatState
 
 		if (songAccuracy >= 100)
 		{
-			songAccuracy = 0;
+			songAccuracy = 100;
 		}
 	}
 
