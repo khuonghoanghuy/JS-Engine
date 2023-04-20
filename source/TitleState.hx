@@ -1,5 +1,6 @@
 package;
 
+import lime.utils.Assets;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -18,7 +19,6 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import openfl.Assets;
 
 using StringTools;
 
@@ -53,13 +53,10 @@ class TitleState extends MusicBeatState
 		FlxG.save.bind('jsEngine', 'huy1234th');
 
 		Highscore.load();
+		FlxG.sound.cacheAll();
 
 		if (FlxG.save.data.weekUnlocked != null)
 		{
-			// FIX LATER!!!
-			// WEEK UNLOCK PROGRESSION!!
-			// StoryMenuState.weekUnlocked = FlxG.save.data.weekUnlocked;
-
 			if (StoryMenuState.weekUnlocked.length < 4)
 				StoryMenuState.weekUnlocked.insert(0, true);
 
