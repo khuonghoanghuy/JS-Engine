@@ -102,7 +102,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollow, null, 0.06);
 
-		var versionShit:FlxText = new FlxText(10, FlxG.height - 44, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\nJS Engine v" + Options.ver, 18);
+		var versionShit:FlxText = new FlxText(10, FlxG.height - 66, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\n\nJS Engine v" + Options.ver, 18);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);

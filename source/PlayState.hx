@@ -735,7 +735,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.watermark)
 		{
-			var versionShit:FlxText = new FlxText(10, FlxG.height - 44, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\nJS Engine v" + Options.ver, 18);
+			var versionShit:FlxText = new FlxText(10, FlxG.height - 66, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\n\nJS Engine v" + Options.ver, 18);
 			versionShit.scrollFactor.set();
 			versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit);
@@ -745,11 +745,7 @@ class PlayState extends MusicBeatState
 
 		doof.cameras = [camHUD];
 
-		// if (SONG.song == 'South')
-		// FlxG.camera.alpha = 0.7;
-		// UI_camera.zoom = 1;
-
-		// cameras = [FlxG.cameras.list[1]];
+		canPress = false;
 		startingSong = true;
 
 		if (isStoryMode)
