@@ -6,8 +6,7 @@
 
 JS Engine is a custom FNF Engine was run on Electron!
 
-[Check the changelog here](https://github.com/khuonghoanghuy/JS-Engine/wiki/Changelog-JS-Engine)
-[Check how to run here](https://github.com/khuonghoanghuy/JS-Engine/wiki/How-to-run-game%3F)
+[Check the Wiki now!](https://github.com/khuonghoanghuy/JS-Engine/wiki)
 
 JS Engine is contains some custom:
 + Options Setting
