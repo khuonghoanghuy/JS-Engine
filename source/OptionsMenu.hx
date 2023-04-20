@@ -23,7 +23,8 @@ class OptionsMenu extends MusicBeatState
 		"Accuracy",
 		"Watermark",
 		"FPS Cap",
-		"Hide GF"
+		"Hide GF",
+		"Only One Stage"
 	];
 
 	var optionsCheck:FlxText;
@@ -105,6 +106,11 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.hidegf = !FlxG.save.data.hidegf;
 					optionsCheck.text = FlxG.save.data.hidegf ? "On" : "Off";
 					FlxG.save.data.hidegf = FlxG.save.data.hidegf;
+
+				case "Only One Stage":
+					FlxG.save.data.oneStage = !FlxG.save.data.oneStage;
+					optionsCheck.text = FlxG.save.data.oneStage ? "On" : "Off";
+					FlxG.save.data.oneStage = FlxG.save.data.oneStage;
 			}
 		}
 
@@ -151,6 +157,10 @@ class OptionsMenu extends MusicBeatState
 			case "Hide GF":
 				optionsDesc.text = "Hide GF when playing a song, that can make the game load more faster";
 				optionsCheck.text = FlxG.save.data.hidegf ? "On" : "Off";
+		
+			case "Only One Stage":
+				optionsDesc.text = "Will be change only load first stage game, maybe can make the game load more faster";
+				optionsCheck.text = FlxG.save.data.oneStage ? "On" : "Off";
 		}
 
 		if (curSelected < 0)
