@@ -18,6 +18,7 @@ class PauseSubState extends MusicBeatSubstate
 		'Restart Song', 
 		'Exit to menu'
 	];
+	
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
