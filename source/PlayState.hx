@@ -2162,16 +2162,33 @@ class PlayState extends MusicBeatState
 				boyfriend.stunned = false;
 			});
 
-			switch (direction)
+			if (!boyfriend.animation.exists("singLEFTmiss") 
+				|| !boyfriend.animation.exists("singDOWNmiss") 
+				|| !boyfriend.animation.exists("singUPmiss") 
+				||!boyfriend.animation.exists("singRIGHTmiss"))
 			{
-				case 0:
-					boyfriend.playAnim('singLEFTmiss', true);
-				case 1:
-					boyfriend.playAnim('singDOWNmiss', true);
-				case 2:
-					boyfriend.playAnim('singUPmiss', true);
-				case 3:
-					boyfriend.playAnim('singRIGHTmiss', true);
+				switch (direction)
+				{
+					default:
+						boyfriend.color = FlxColor.PURPLE;
+						new FlxTimer().start(5 / 60, function(tmr:FlxTimer){
+							boyfriend.color = FlxColor.WHITE;
+						});
+				}
+			}
+			else
+			{
+				switch (direction)
+				{
+					case 0:
+						boyfriend.playAnim('singLEFTmiss', true);
+					case 1:
+						boyfriend.playAnim('singDOWNmiss', true);
+					case 2:
+						boyfriend.playAnim('singUPmiss', true);
+					case 3:
+						boyfriend.playAnim('singRIGHTmiss', true);
+				}
 			}
 
 			if (songAccuracy == 0)
