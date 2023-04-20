@@ -24,7 +24,8 @@ class OptionsMenu extends MusicBeatState
 		"Watermark",
 		"FPS Cap",
 		"Hide GF",
-		"Only One Stage"
+		"Only One Stage",
+		"Quality"
 	];
 
 	var optionsCheck:FlxText;
@@ -111,6 +112,11 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.oneStage = !FlxG.save.data.oneStage;
 					optionsCheck.text = FlxG.save.data.oneStage ? "On" : "Off";
 					FlxG.save.data.oneStage = FlxG.save.data.oneStage;
+
+				case "Quality":
+					FlxG.save.data.quality = !FlxG.save.data.quality;
+					optionsCheck.text = FlxG.save.data.quality ? "Low" : "High";
+					FlxG.save.data.quality = FlxG.save.data.quality;
 			}
 		}
 
@@ -161,6 +167,10 @@ class OptionsMenu extends MusicBeatState
 			case "Only One Stage":
 				optionsDesc.text = "Will be change only load first stage game, maybe can make the game load more faster";
 				optionsCheck.text = FlxG.save.data.oneStage ? "On" : "Off";
+
+			case "Quality":
+				optionsDesc.text = "Hide some PNG on the game, can be make the game load more faster";
+				optionsCheck.text = FlxG.save.data.quality ? "Low" : "High";
 		}
 
 		if (curSelected < 0)
