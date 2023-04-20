@@ -571,6 +571,12 @@ class PlayState extends MusicBeatState
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
 
+		if (FlxG.save.data.hidegf){
+			gf.visible = false;
+		}else{
+			gf.visible = true;
+		}
+
 		dad = new Character(100, 100, SONG.player2);
 
 		var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x, dad.getGraphicMidpoint().y);

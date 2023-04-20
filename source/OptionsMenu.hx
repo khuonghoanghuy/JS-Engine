@@ -22,7 +22,8 @@ class OptionsMenu extends MusicBeatState
 		"Downscroll",
 		"Accuracy",
 		"Watermark",
-		"FPS Cap"
+		"FPS Cap",
+		"Hide GF"
 	];
 
 	var optionsCheck:FlxText;
@@ -99,6 +100,11 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.fpsCap = !FlxG.save.data.fpsCap;
 					optionsCheck.text = FlxG.save.data.fpsCap ? "At 75" : "At 60";
 					FlxG.save.data.fpsCap = FlxG.save.data.fpsCap;
+
+				case "Hide GF":
+					FlxG.save.data.hidegf = !FlxG.save.data.hidegf;
+					optionsCheck.text = FlxG.save.data.hidegf ? "On" : "Off";
+					FlxG.save.data.hidegf = FlxG.save.data.hidegf;
 			}
 		}
 
@@ -141,6 +147,10 @@ class OptionsMenu extends MusicBeatState
 			case "FPS Cap":
 				optionsDesc.text = "Change FPS Cap, make the game more faster. But not recommended for Low Computer";
 				optionsCheck.text = FlxG.save.data.fpsCap ? "At 75" : "At 60";
+
+			case "Hide GF":
+				optionsDesc.text = "Hide GF when playing a song, that can make the game load more faster";
+				optionsCheck.text = FlxG.save.data.hidegf ? "On" : "Off";
 		}
 
 		if (curSelected < 0)
