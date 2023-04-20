@@ -1,6 +1,5 @@
 package;
 
-import lime.utils.Assets;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -19,6 +18,7 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import lime.utils.Assets;
 
 using StringTools;
 
@@ -38,10 +38,6 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
-		#end
-
 		PlayerSettings.init();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
