@@ -7,6 +7,7 @@
 JS Engine is a custom FNF Engine was run on Electron!
 
 [Check the changelog here](https://github.com/khuonghoanghuy/JS-Engine/wiki/Changelog-JS-Engine)
+[Check how to run here](https://github.com/khuonghoanghuy/JS-Engine/wiki/How-to-run-game%3F)
 
 JS Engine is contains some custom:
 + Options Setting
@@ -28,10 +29,6 @@ JS Engine have some secret you can find them in the game!
 `I like to commit so there will have alot nonsense commit was added :)`
 
 `This Engine is working by me!`
-
-`Download by release tab`
-
-`Check the wiki to see how to run them`
 
 `Also, i dont know why but only week 6 song can load more faster than other, so that slow load in other week or week 6 im cant find the sloved!`
 
