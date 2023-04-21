@@ -107,6 +107,7 @@ class PlayState extends MusicBeatState
 	var totalPlayed:Int = 0;
 	var scoreTxt:FlxText;
 	var ranking:String = "FC";
+	var judgenment:FlxText;
 
 	private static var shits:Int = 0;
 	private static var bads:Int = 0;
@@ -813,6 +814,16 @@ class PlayState extends MusicBeatState
 			versionShit.cameras = [camHUD];
 		}
 
+		if (FlxG.save.data.judgenment)
+		{
+			judgenment = new FlxText(40, FlxG.height - 400, 0, "", 12);
+			judgenment.scrollFactor.set();
+			judgenment.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(judgenment);
+
+			judgenment.cameras = [camHUD];
+		}
+
 		doof.cameras = [camHUD];
 
 		canPress = false;
@@ -1434,6 +1445,11 @@ class PlayState extends MusicBeatState
 		else
 			scoreTxt.text = "Score: " + songScore;
 
+		if (FlxG.save.data.judgenment)
+		{
+			judgenment.text = "Sick: " + sicks + "\nGood: " + goods + "\nBad: " + bads + "\nShit: " + shits; 
+		}
+
 		// ranking by misses
 		switch (songMiss)
 		{
@@ -1441,7 +1457,10 @@ class PlayState extends MusicBeatState
 				ranking = "FC";
 
 			case 1:
-				ranking = "SBCD";
+				ranking = "Combo Break!";
+				new FlxTimer().start(2, function(tmr:FlxTimer){
+					ranking = "SBCD";
+				});
 
 			case 10:
 				ranking = "Clear";
