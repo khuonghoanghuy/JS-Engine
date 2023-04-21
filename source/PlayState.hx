@@ -1089,6 +1089,9 @@ class PlayState extends MusicBeatState
 
 	function startSong():Void
 	{
+		if (SONG.song != 'Tutorial')
+			camZooming = true;
+
 		startingSong = false;
 		canPress = true;
 
@@ -1745,9 +1748,6 @@ class PlayState extends MusicBeatState
 
 				if (!daNote.mustPress && daNote.wasGoodHit)
 				{
-					if (SONG.song != 'Tutorial')
-						camZooming = true;
-
 					var altAnim:String = "";
 
 					if (SONG.notes[Math.floor(curStep / 16)] != null)
