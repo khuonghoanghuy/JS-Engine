@@ -50,18 +50,11 @@ class TitleState extends MusicBeatState
 
 		super.create();
 
-		/*Assets.getAsset(AssetPaths.BOYFRIEND__png, IMAGE, true);
-		Assets.getAsset(AssetPaths.BOYFRIEND__xml, TEXT, true);
-		Assets.getAsset(AssetPaths.GF_assets__png, IMAGE, true);
-		Assets.getAsset(AssetPaths.GF_assets__xml, TEXT, true);
-		Assets.getAsset(AssetPaths.DADDY_DEAREST__png, IMAGE, true);
-		Assets.getAsset(AssetPaths.DADDY_DEAREST__xml, TEXT, true);*/
-
 		Assets.loadImage(AssetPaths.BOYFRIEND__png, true);
 		// Assets.loadText(AssetPaths.BOYFRIEND__xml);
 		// Assets.loadImage(AssetPaths.GF_assets__png, true);
 		// Assets.loadText(AssetPaths.GF_assets__xml);
-		// Assets.loadImage(AssetPaths.DADDY_DEAREST__png, true);
+		Assets.loadImage(AssetPaths.DADDY_DEAREST__png, true);
 		// Assets.loadText(AssetPaths.DADDY_DEAREST__xml);
 
 		FlxG.save.bind('jsEngine', 'huy1234th');
