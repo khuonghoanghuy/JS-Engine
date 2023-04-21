@@ -106,7 +106,7 @@ class PlayState extends MusicBeatState
 	var totalNotesHit:Int = 0;
 	var totalPlayed:Int = 0;
 	var scoreTxt:FlxText;
-	var ranking:String = "FC";
+	var ranking:String = "?";
 	var judgenment:FlxText;
 
 	private static var shits:Int = 0;
@@ -135,6 +135,13 @@ class PlayState extends MusicBeatState
 	override public function create()
 	{
 		songAccuracy = 100.0;
+
+		shits = 0;
+		bads = 0;
+		goods = 0;
+		sicks = 0;	
+
+		ranking = "?";
 
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
@@ -816,9 +823,9 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.judgenment)
 		{
-			judgenment = new FlxText(40, FlxG.height - 400, 0, "", 12);
+			judgenment = new FlxText(40, FlxG.height - 400, 0, "", 22);
 			judgenment.scrollFactor.set();
-			judgenment.setFormat("VCR OSD Mono", 20, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			judgenment.setFormat("VCR OSD Mono", 22, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(judgenment);
 
 			judgenment.cameras = [camHUD];
@@ -1458,9 +1465,9 @@ class PlayState extends MusicBeatState
 
 			case 1:
 				ranking = "Combo Break!";
-				new FlxTimer().start(2, function(tmr:FlxTimer){
-					ranking = "SBCD";
-				});
+
+			case 2:
+			 	ranking = "SBCD";
 
 			case 10:
 				ranking = "Clear";
