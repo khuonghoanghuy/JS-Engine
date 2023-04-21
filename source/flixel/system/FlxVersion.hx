@@ -30,6 +30,6 @@ class FlxVersion
 		{
 			sha = "@" + sha.substring(0, 7);
 		}
-		return 'JS Engine';
+		return 'JSE';
 	}
 }
