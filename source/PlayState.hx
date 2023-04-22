@@ -783,8 +783,7 @@ class PlayState extends MusicBeatState
 
 		healthBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
 		healthBarBG.screenCenter(X);
-		if (FlxG.save.data.downscroll)
-		{
+		if (FlxG.save.data.downscroll){
 			healthBarBG.y = 50;
 		}
 		healthBarBG.scrollFactor.set();
@@ -818,8 +817,7 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 
-		if (FlxG.save.data.watermark)
-		{
+		if (FlxG.save.data.watermark){
 			var versionShit:FlxText = new FlxText(10, FlxG.height - 66, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\n\nJS Engine v" + Options.ver, 18);
 			versionShit.scrollFactor.set();
 			versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
@@ -828,8 +826,7 @@ class PlayState extends MusicBeatState
 			versionShit.cameras = [camHUD];
 		}
 
-		if (FlxG.save.data.judgenment)
-		{
+		if (FlxG.save.data.judgenment){
 			judgenment = new FlxText(40, FlxG.height - 400, 0, "", 22);
 			judgenment.scrollFactor.set();
 			judgenment.setFormat("VCR OSD Mono", 22, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
