@@ -344,11 +344,18 @@ class PlayState extends MusicBeatState
 					bgLimo.animation.play('drive');
 					if (FlxG.save.data.quality){
 						bgLimo.visible = false;
+					}else{
+						bgLimo.visible = true;
 					}
 					bgLimo.scrollFactor.set(0.4, 0.4);
 					add(bgLimo);
 	
 					grpLimoDancers = new FlxTypedGroup<BackgroundDancer>();
+					if (FlxG.save.data.quality){
+						grpLimoDancers.visible = false;
+					}else{
+						grpLimoDancers.visible = true;
+					}
 					add(grpLimoDancers);
 	
 					for (i in 0...5)
@@ -1411,7 +1418,8 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
-	function truncateFloat(number:Float, precision:Int): Float {
+	function truncateFloat(number:Float, precision:Int):Float 
+	{
 		var num = number;
 		num = num * Math.pow(10, precision);
 		num = Math.round( num ) / Math.pow(10, precision);
@@ -2492,11 +2500,6 @@ class PlayState extends MusicBeatState
 		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
 		{
 			resyncVocals();
-		}
-
-		if (dad.curCharacter == 'spooky' && curStep % 4 == 2)
-		{
-			// dad.dance();
 		}
 	}
 

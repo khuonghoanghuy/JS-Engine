@@ -269,14 +269,25 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
 				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
+
+				if (!isPlayer)
+				{
+					animation.addByPrefix('singRIGHT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singLEFT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
+				else
+				{
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
 
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
@@ -308,14 +319,25 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
 				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
+
+				if (!isPlayer)
+				{
+					animation.addByPrefix('singRIGHT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singLEFT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
+				else
+				{
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
 
 				addOffset('idle', -5);
 				addOffset("singUP", -29, 27);
@@ -336,13 +358,24 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
 				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
+
+				if (!isPlayer)
+				{
+					animation.addByPrefix('singRIGHT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singLEFT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
+				else
+				{
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
 
 				addOffset('idle', -5);
 				addOffset("singUP", -29, 27);
@@ -360,13 +393,24 @@ class Character extends FlxSprite
 				frames = Paths.getSparrowAtlas('weeb/bfPixel');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
 				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
-				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF RIGHT NOTE', 24, false);
 				animation.addByPrefix('singDOWN', 'BF DOWN NOTE', 24, false);
 				animation.addByPrefix('singUPmiss', 'BF UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
+
+				if (!isPlayer)
+				{
+					animation.addByPrefix('singRIGHT', 'BF LEFT NOTE', 24, false);
+					animation.addByPrefix('singLEFT', 'BF RIGHT NOTE', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF LEFT MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF RIGHT MISS', 24, false);
+				}
+				else
+				{
+					animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF RIGHT NOTE', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
+				}
 
 				addOffset('idle');
 				addOffset("singUP");
@@ -499,14 +543,25 @@ class Character extends FlxSprite
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
-				animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
 				animation.addByPrefix('singDOWN', 'BF NOTE DOWN0', 24, false);
 				animation.addByPrefix('singUPmiss', 'BF NOTE UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
+
+				if (!isPlayer)
+				{
+					animation.addByPrefix('singRIGHT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singLEFT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
+				else
+				{
+					animation.addByPrefix('singLEFT', 'BF NOTE LEFT0', 24, false);
+					animation.addByPrefix('singRIGHT', 'BF NOTE RIGHT0', 24, false);
+					animation.addByPrefix('singLEFTmiss', 'BF NOTE LEFT MISS', 24, false);
+					animation.addByPrefix('singRIGHTmiss', 'BF NOTE RIGHT MISS', 24, false);
+				}
 
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
