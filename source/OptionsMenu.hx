@@ -50,7 +50,8 @@ class OptionsMenu extends MusicBeatState
 		for (i in 0...controlsStrings.length)
 		{
 			var controlLabel:Alphabet = new Alphabet(0, (70 * i) + 30, controlsStrings[i], true, false);
-			controlLabel.isMenuItem = true;
+			// controlLabel.isMenuItem = true;
+			controlLabel.isCenterItem = true;
 			controlLabel.targetY = i;
 			grpControls.add(controlLabel);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
