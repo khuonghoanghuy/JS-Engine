@@ -128,6 +128,11 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
+		if (FlxG.keys.justPressed.C)
+		{
+			FlxG.openURL("https://khuonghoanghuy.github.io/JS-Engine/");
+		}
+
 		if (!selectedSomethin)
 		{
 			if (controls.UP_P)
