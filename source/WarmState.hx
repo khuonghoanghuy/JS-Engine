@@ -12,7 +12,7 @@ class WarmState extends MusicBeatState
     override function create()
     {
         text = new FlxText(0, 0, 0, "", 32);
-        text.screenCenter();
+        // text.screenCenter();
         text.scrollFactor.set();
         text.setFormat(Paths.font("vcr.tff"), 32, FlxColor.WHITE, CENTER);
         add(text);

@@ -1,5 +1,6 @@
 package preloader;
 
+import flixel.FlxSprite;
 import openfl.display.BlendMode;
 import flixel.system.FlxAssets;
 import flixel.system.FlxBasePreloader;
@@ -16,8 +17,7 @@ class JSPreloader extends FlxBasePreloader
 	var _buffer:Sprite;
 	var _bmpBar:Bitmap;
 	var _text:TextField;
-	var _logo:Sprite;
-	var _logoGlow:Sprite;
+	var _sprite:FlxSprite;
 
 	/**
 	 * Initialize your preloader here.
@@ -52,7 +52,7 @@ class JSPreloader extends FlxBasePreloader
 		_buffer.addChild(_bmpBar);
 
 		_text = new TextField();
-		_text.defaultTextFormat = new TextFormat(FlxAssets.FONT_DEFAULT, 8, 0x5f6aff);
+		_text.defaultTextFormat = new TextFormat(FlxAssets.FONT_DEFAULT, 16, 0x5f6aff);
 		_text.embedFonts = true;
 		_text.selectable = false;
 		_text.multiline = false;
@@ -60,13 +60,6 @@ class JSPreloader extends FlxBasePreloader
 		_text.y = _bmpBar.y - 11;
 		_text.width = 200;
 		_buffer.addChild(_text);
-
-		_logo = new Sprite();
-		FlxAssets.drawLogo(_logo.graphics);
-		_logo.scaleX = _logo.scaleY = _height / 8 * 0.04;
-		_logo.x = (_width - _logo.width) / 2;
-		_logo.y = (_height - _logo.height) / 2;
-		_buffer.addChild(_logo);
 
 		var bitmap = new Bitmap(new BitmapData(_width, _height, false, 0xffffff));
 		var i:Int = 0;
