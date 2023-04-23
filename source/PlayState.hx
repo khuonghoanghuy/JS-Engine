@@ -1477,8 +1477,7 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.judgenment)
 		{
 			judgenment.text = 
-				"Max Combo: " + maxCombo +
-				"\nCombo: " + combo + 
+				"Combo: " + combo + 
 				"\nSick: " + sicks + 
 				"\nGood: " + goods + 
 				"\nBad: " + bads + 
