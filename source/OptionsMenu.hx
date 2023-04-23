@@ -1,5 +1,6 @@
 package;
 
+import flixel.addons.transition.FlxTransitionableState;
 import Controls.Control;
 import flash.text.TextField;
 import flixel.FlxG;
@@ -34,6 +35,8 @@ class OptionsMenu extends MusicBeatState
 
 	private var grpControls:FlxTypedGroup<Alphabet>;
 
+	var earseOptions:FlxText;
+
 	override function create()
 	{
 		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
@@ -67,6 +70,11 @@ class OptionsMenu extends MusicBeatState
 		optionsCheck.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(optionsCheck);
 
+		earseOptions = new FlxText(10, 10, 0, "Press R to reset data!", 16);
+		earseOptions.scrollFactor.set();
+		earseOptions.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(earseOptions);
+
 		changeSelection();
 
 		super.create();
@@ -75,6 +83,15 @@ class OptionsMenu extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.R)
+		{
+			FlxG.save.erase();
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+			FlxG.switchState(new BlackState());
+			// FlxG.resetGame();
+		}
 
 		if (controls.ACCEPT)
 		{
