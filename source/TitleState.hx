@@ -1,5 +1,6 @@
 package;
 
+import openfl.display.Sprite;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -19,12 +20,19 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.utils.Assets;
-import flixel.system.FlxAssets;
 
 using StringTools;
 
 @:build(flixel.system.FlxAssets.buildFileReferences("assets", true))
 class AssetPaths {}
+
+/*class Load extends Sprite
+{
+	public function new(name:String)
+	{
+
+	}
+}*/
 
 class TitleState extends MusicBeatState
 {
