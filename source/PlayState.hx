@@ -65,6 +65,7 @@ class PlayState extends MusicBeatState
 	private var gfSpeed:Int = 1;
 	private var health:Float = 1;
 	private var combo:Int = 0;
+	private var maxCombo:Int = 0;
 
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
@@ -98,7 +99,7 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 
 	var talking:Bool = true;
-	var canPress:Bool = true;
+	var canPress:Bool = true; // allow or dont allow when press key
 
 	var songScore:Int = 0;
 	var songMiss:Int = 0;
@@ -818,12 +819,25 @@ class PlayState extends MusicBeatState
 		scoreTxt.cameras = [camHUD];
 
 		if (FlxG.save.data.watermark){
+			var versionShit2:FlxText = new FlxText(10, FlxG.height - 88, 0, "Song: " + SONG.song, 18);
+			versionShit2.scrollFactor.set();
+			versionShit2.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(versionShit2);
+
 			var versionShit:FlxText = new FlxText(10, FlxG.height - 66, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\n\nJS Engine v" + Options.ver, 18);
 			versionShit.scrollFactor.set();
 			versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit);
 
+			versionShit2.cameras = [camHUD];
 			versionShit.cameras = [camHUD];
+		}else{
+			var versionShit2:FlxText = new FlxText(10, FlxG.height - 44, 0, "Song: " + SONG.song, 18);
+			versionShit2.scrollFactor.set();
+			versionShit2.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(versionShit2);
+
+			versionShit2.cameras = [camHUD];
 		}
 
 		if (FlxG.save.data.judgenment){
@@ -1462,14 +1476,26 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.judgenment)
 		{
-			judgenment.text = "Sick: " + sicks + "\nGood: " + goods + "\nBad: " + bads + "\nShit: " + shits; 
+			judgenment.text = 
+				"Max Combo: " + maxCombo +
+				"\nCombo: " + combo + 
+				"\nSick: " + sicks + 
+				"\nGood: " + goods + 
+				"\nBad: " + bads + 
+				"\nShit: " + shits; 
 		}
 
 		// ranking by misses
 		switch (songMiss)
 		{
 			case 0:
-				ranking = "FC";
+				if (sicks <= 1 && goods <= 0 && bads <= 0 && shits <= 0 && songMiss == 0){
+					ranking = "SFC";
+				}else if (sicks <= 0 && goods <= 1 && bads <= 0 && shits <= 0 && songMiss == 0){
+					ranking = "GFC";
+				}else{
+					ranking = "FC";
+				}
 
 			case 1:
 				ranking = "Combo Break!";
@@ -1669,8 +1695,6 @@ class PlayState extends MusicBeatState
 			{
 				case 128, 129, 130:
 					vocals.volume = 0;
-					// FlxG.sound.music.stop();
-					// FlxG.switchState(new PlayState());
 			}
 		}
 		// better streaming of shit
@@ -1956,6 +1980,7 @@ class PlayState extends MusicBeatState
 		if (daRating == 'sick')
 		{
 			totalNotesHit += 1;
+			score = 350;
 			sicks++;
 		}
 
@@ -2345,6 +2370,7 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
+				maxCombo += 1;
 				
 				if (songAccuracy == 100)
 				{

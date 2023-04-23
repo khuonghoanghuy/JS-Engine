@@ -103,7 +103,7 @@ class JSPreloader extends FlxBasePreloader
 	override public function update(Percent:Float):Void
 	{
 		_bmpBar.scaleX = Percent * (_width - 8);
-		_text.text = Std.string(FlxG.VERSION) + " " + Std.int(Percent * 100) + "%";
+		_text.text = Std.string(FlxG.VERSION) + " " + Std.int(Percent * 100) + "%" + " - JSE";
 
 		/*if (Percent < 0.1)
 		{
