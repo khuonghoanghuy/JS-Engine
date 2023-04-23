@@ -40,6 +40,8 @@ class MainMenuState extends MusicBeatState
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
 
+	var changelog:FlxText;
+
 	override function create()
 	{
 		#if desktop
@@ -106,6 +108,11 @@ class MainMenuState extends MusicBeatState
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
+
+		changelog = new FlxText(10, 10, 0, "Press C to see changelog!", 16);
+		changelog.scrollFactor.set();
+		changelog.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		add(changelog);
 
 		changeItem();
 
