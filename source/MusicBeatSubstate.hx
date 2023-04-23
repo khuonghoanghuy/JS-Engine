@@ -69,7 +69,7 @@ class MusicBeatSubstate extends FlxSubState
 		//do literally nothing dumbass
 	}
 
-	public function bool(bool:Bool)
+	public function bool(bool:Bool = false)
     {
         return bool;
     }
