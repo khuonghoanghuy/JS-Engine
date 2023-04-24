@@ -1951,14 +1951,14 @@ class PlayState extends MusicBeatState
 		if (noteDiff > Conductor.safeZoneOffset * 2)
 		{
 			daRating = 'shit';
-			totalNotesHit -= 2;
+			totalNotesHit -= 3;
 			score = 50;
 			shits++;
 		}
 		else if (noteDiff < Conductor.safeZoneOffset * -2)
 		{
 			daRating = 'shit';
-			totalNotesHit -= 2;
+			totalNotesHit -= 3;
 			score = 50;
 			shits++;
 		}
@@ -1966,7 +1966,7 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'bad';
 			score = 100;
-			totalNotesHit += 1;
+			totalNotesHit -= 2;
 			bads++;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
