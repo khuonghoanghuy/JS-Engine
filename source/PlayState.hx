@@ -1433,7 +1433,7 @@ class PlayState extends MusicBeatState
 	{
 		var num = number;
 		num = num * Math.pow(10, precision);
-		num = Math.round( num ) / Math.pow(10, precision);
+		num = Math.round(num) / Math.pow(10, precision);
 		return num;
 	}
 
@@ -1820,7 +1820,14 @@ class PlayState extends MusicBeatState
 					{
 						health -= 0.0475;
 						vocals.volume = 0;
+						bool(false);
 						noteMiss(daNote.noteData);
+					}
+					else
+					{
+						health += 0.023;
+						bool(true);
+						goodNoteHit(daNote);
 					}
 
 					daNote.active = false;
@@ -2129,6 +2136,17 @@ class PlayState extends MusicBeatState
 				if (daNote.canBeHit && daNote.mustPress && !daNote.tooLate && !daNote.wasGoodHit)
 				{
 					// the sorting probably doesn't need to be in here? who cares lol
+					possibleNotes.push(daNote);
+					possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
+
+					ignoreList.push(daNote.noteData);
+				}
+
+				var strumtime:Float;
+				var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
+
+				if (daNote.canBeHit && noteDiff > Conductor.safeZoneOffset * 0)
+				{
 					possibleNotes.push(daNote);
 					possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 
