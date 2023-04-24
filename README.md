@@ -6,6 +6,8 @@
 
 JS Engine is a custom FNF Engine was run on Electron!
 
+Check something here:
+
 - [Check the Wiki now!](https://github.com/khuonghoanghuy/JS-Engine/wiki)
 
 - [Check my website!](https://khuonghoanghuy.github.io/JS-Engine/)
