@@ -25,7 +25,7 @@ JS Engine is contains some custom:
 + No press controls allow until done countdown
 > Unlike other, you cannot press arrow or controls `left, down, up, right` until truly countdown finished
 
-JS Engine is currently on version `0.0.3 (NOT YET!)`
+JS Engine is currently on version `0.0.3`
 
 JS Engine have some secret you can find them in the game!
 
