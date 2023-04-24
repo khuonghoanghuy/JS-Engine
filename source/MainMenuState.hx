@@ -130,7 +130,7 @@ class MainMenuState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.C)
 		{
-			FlxG.openURL("https://khuonghoanghuy.github.io/JS-Engine/");
+			FlxG.openURL("https://khuonghoanghuy.github.io/JS-Engine/changelog_onlyGame.html");
 		}
 
 		if (!selectedSomethin)
