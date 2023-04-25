@@ -21,7 +21,8 @@ class OptionsMenu extends MusicBeatState
 	var controlsStrings:Array<String> = [
 		"Ghost tap",
 		"Downscroll",
-		"Accuracy",
+		"Accuracy Display",
+		"NPS Display",
 		"Watermark",
 		"Judgement Counter",
 		"FPS Cap",
@@ -107,10 +108,15 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.downscroll ? "On" : "Off";
 					FlxG.save.data.downscroll = FlxG.save.data.downscroll;
 
-				case "Accuracy":
+				case "Accuracy Display":
 					FlxG.save.data.accuracy = !FlxG.save.data.accuracy;
 					optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
 					FlxG.save.data.accuracy = FlxG.save.data.accuracy;
+
+				case "NPS Display":
+					FlxG.save.data.nps = !FlxG.save.data.nps;
+					optionsCheck.text = FlxG.save.data.nps ? "On" : "Off";
+					FlxG.save.data.nps = FlxG.save.data.nps;
 
 				case "Watermark":
 					FlxG.save.data.watermark = !FlxG.save.data.watermark;
@@ -150,7 +156,7 @@ class OptionsMenu extends MusicBeatState
 			FlxG.save.bind('jsEngine', 'huy1234th');
 			FlxG.switchState(new MainMenuState());
 		}
-		
+
 		if (controls.UP_P)
 			changeSelection(-1);
 		if (controls.DOWN_P)
@@ -173,9 +179,13 @@ class OptionsMenu extends MusicBeatState
 				optionsDesc.text = "Change layout from upscroll to downscroll";
 				optionsCheck.text = FlxG.save.data.downscroll ? "On" : "Off";
 
-			case "Accuracy":
+			case "Accuracy Display":
 				optionsDesc.text = "Add alot info like Misses and Accuracy";
 				optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
+
+			case "NPS Display":
+				optionsDesc.text = "System work like KPS, so 'NPS' = 'KPS'";
+				optionsCheck.text = FlxG.save.data.nps ? "On" : "Off";
 
 			case "Watermark":
 				optionsDesc.text = "Display JS Engine Text on the screen";

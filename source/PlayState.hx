@@ -1427,6 +1427,11 @@ class PlayState extends MusicBeatState
 		return num;
 	}
 
+	var nps:Int = 0;
+	var npsMax:Int = 0;
+
+	var notesHitArray:Array<Date> = [];
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
@@ -1440,6 +1445,22 @@ class PlayState extends MusicBeatState
 			else
 				iconP1.animation.play('bf-old');
 		}
+
+		// kade engine code
+		var balls = notesHitArray.length - 1;
+		while (balls >= 0)
+		{
+			var cock:Date = notesHitArray[balls];
+			if (cock != null && cock.getTime() + 1000 < Date.now().getTime())
+				notesHitArray.remove(cock);
+			else
+				balls = 0;
+			balls--;
+		}
+
+		nps = notesHitArray.length;
+		if (nps > npsMax)
+			npsMax = nps;
 
 		switch (curStage)
 		{
