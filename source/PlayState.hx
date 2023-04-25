@@ -795,10 +795,24 @@ class PlayState extends MusicBeatState
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
 		
-		scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
-		scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		scoreTxt.scrollFactor.set();
-		add(scoreTxt);
+		if (FlxG.save.data.watermark)
+		{
+			scoreTxt = new FlxText(0, healthBarBG.y + 36, FlxG.width, "", 20);
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			scoreTxt.scrollFactor.set();
+			add(scoreTxt);
+		}
+		else
+		{
+			scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
+			if (FlxG.save.data.accuracy)
+			{
+				scoreTxt.y -= 20;
+			}
+			scoreTxt.scrollFactor.set();
+			add(scoreTxt);
+		}
 
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
@@ -1479,8 +1493,12 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (FlxG.save.data.accuracy)
+		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore + " - Misses: " + songMiss + " - Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")";
+		else if (FlxG.save.data.accuracy && !FlxG.save.data.watermark)
+			scoreTxt.text = "Score: " + songScore + "\nMisses: " + songMiss + "\nAccuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")";
+		else if (!FlxG.save.data.accuracy && FlxG.save.data.watermark)
+			scoreTxt.text = "Score: " + songScore;
 		else
 			scoreTxt.text = "Score: " + songScore;
 

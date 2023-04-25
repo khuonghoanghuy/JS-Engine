@@ -104,10 +104,20 @@ class MainMenuState extends MusicBeatState
 
 		FlxG.camera.follow(camFollow, null, 0.06);
 
-		var versionShit:FlxText = new FlxText(10, FlxG.height - 66, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\n\nJS Engine v" + Options.ver, 18);
-		versionShit.scrollFactor.set();
-		versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(versionShit);
+		if (!FlxG.save.data.watermark)
+		{
+			var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version'), 12);
+			versionShit.scrollFactor.set();
+			versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(versionShit);
+		}
+		else
+		{
+			var versionShit:FlxText = new FlxText(5, FlxG.height - 66, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\n\nJS Engine v" + Options.ver, 18);
+			versionShit.scrollFactor.set();
+			versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(versionShit);
+		}
 
 		changelog = new FlxText(10, 10, 0, "Press C to see changelog!", 16);
 		changelog.scrollFactor.set();

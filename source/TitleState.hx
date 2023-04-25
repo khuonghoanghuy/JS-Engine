@@ -132,11 +132,19 @@ class TitleState extends MusicBeatState
 		Conductor.changeBPM(102);
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		// bg.antialiasing = true;
-		// bg.setGraphicSize(Std.int(bg.width * 0.6));
-		// bg.updateHitbox();
-		add(bg);
+		if (FlxG.save.data.watermark)
+		{
+			var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuBG'));
+			bg.antialiasing = true;
+			bg.screenCenter();
+			bg.updateHitbox();
+			add(bg);
+		}
+		else
+		{
+			var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+			add(bg);
+		}
 
 		logoBl = new FlxSprite(-150, -100);
 		if (FlxG.save.data.watermark)
@@ -159,7 +167,7 @@ class TitleState extends MusicBeatState
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
-		if (!FlxG.save.data.watermark){
+		if (FlxG.save.data.watermark){
 			// add(gfDance);
 		}
 		else{
