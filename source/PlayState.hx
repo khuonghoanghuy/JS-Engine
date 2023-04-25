@@ -2141,17 +2141,6 @@ class PlayState extends MusicBeatState
 
 					ignoreList.push(daNote.noteData);
 				}
-
-				var strumtime:Float;
-				var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
-
-				if (daNote.canBeHit && noteDiff > Conductor.safeZoneOffset * 0)
-				{
-					possibleNotes.push(daNote);
-					possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
-
-					ignoreList.push(daNote.noteData);
-				}
 			});
 
 			if (possibleNotes.length > 0)
@@ -2168,7 +2157,7 @@ class PlayState extends MusicBeatState
 					{
 						for (coolNote in possibleNotes)
 						{
-							if (controlArray[coolNote.noteData])
+							if (controlArray[coolNote.noteData] && bool(false))
 								goodNoteHit(coolNote);
 							else
 							{
@@ -2178,7 +2167,7 @@ class PlayState extends MusicBeatState
 									if (controlArray[ignoreList[shit]])
 										inIgnoreList = true;
 								}
-								if (!inIgnoreList && !FlxG.save.data.ghosttap)
+								if (!inIgnoreList && !FlxG.save.data.ghosttap && bool(false))
 									badNoteCheck();
 							}
 						}
@@ -2345,8 +2334,10 @@ class PlayState extends MusicBeatState
 			{
 				totalNotesHit -= 1;
 			}
-		}
 
+			bool(false);
+		}
+		
 		updateAcc();
 	}
 
@@ -2367,6 +2358,8 @@ class PlayState extends MusicBeatState
 			noteMiss(2);
 		if (rightP)
 			noteMiss(3);
+
+		bool(false);
 	}
 
 	function noteCheck(keyP:Bool, note:Note):Void
@@ -2387,7 +2380,7 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
-				maxCombo += 1;
+				// maxCombo += 1;
 				
 				if (songAccuracy == 100)
 				{
@@ -2397,6 +2390,8 @@ class PlayState extends MusicBeatState
 				{
 					totalNotesHit += 1;
 				}
+
+				bool(true);
 			}
 
 			health += 0.023;
@@ -2429,6 +2424,8 @@ class PlayState extends MusicBeatState
 				note.kill();
 				notes.remove(note, true);
 				note.destroy();
+
+				bool(false);
 			}
 		}
 
