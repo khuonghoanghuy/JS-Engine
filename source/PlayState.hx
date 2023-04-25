@@ -1428,7 +1428,7 @@ class PlayState extends MusicBeatState
 	}
 
 	var nps:Int = 0;
-	var npsMax:Int = 0;
+	var maxNPS:Int = 0;
 
 	var notesHitArray:Array<Date> = [];
 
@@ -1457,10 +1457,9 @@ class PlayState extends MusicBeatState
 				balls = 0;
 			balls--;
 		}
-
 		nps = notesHitArray.length;
-		if (nps > npsMax)
-			npsMax = nps;
+		if (nps > maxNPS)
+			maxNPS = nps;
 
 		switch (curStage)
 		{

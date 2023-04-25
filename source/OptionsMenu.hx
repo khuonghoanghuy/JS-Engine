@@ -22,7 +22,7 @@ class OptionsMenu extends MusicBeatState
 		"Ghost tap",
 		"Downscroll",
 		"Accuracy Display",
-		"NPS Display",
+		// "NPS Display",
 		"Watermark",
 		"Judgement Counter",
 		"FPS Cap",
