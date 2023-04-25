@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxMath;
@@ -117,12 +118,24 @@ class Note extends FlxSprite
 
 		// trace(prevNote);
 
+		/*if (FlxG.save.data.downscroll){
+			flipY = true;
+		}else{
+			flipY = false;
+		}*/
+
 		if (isSustainNote && prevNote != null)
 		{
 			noteScore * 0.2;
 			alpha = 0.6;
 
 			x += width / 2;
+
+			if (FlxG.save.data.downscroll){
+				angle = 180;
+			}else{
+				angle = 0;
+			}
 
 			switch (noteData)
 			{
