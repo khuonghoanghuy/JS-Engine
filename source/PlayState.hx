@@ -1830,13 +1830,13 @@ class PlayState extends MusicBeatState
 					{
 						health -= 0.0475;
 						vocals.volume = 0;
-						bool(false);
+						// bool(false);
 						noteMiss(daNote.noteData);
 					}
 					else
 					{
 						health += 0.023;
-						bool(true);
+						// bool(true);
 						goodNoteHit(daNote);
 					}
 
