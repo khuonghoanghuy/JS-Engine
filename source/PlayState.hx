@@ -2167,7 +2167,7 @@ class PlayState extends MusicBeatState
 					{
 						for (coolNote in possibleNotes)
 						{
-							if (controlArray[coolNote.noteData] && bool(false))
+							if (controlArray[coolNote.noteData] /*&& bool(false)*/)
 								goodNoteHit(coolNote);
 							else
 							{
@@ -2177,7 +2177,7 @@ class PlayState extends MusicBeatState
 									if (controlArray[ignoreList[shit]])
 										inIgnoreList = true;
 								}
-								if (!inIgnoreList && !FlxG.save.data.ghosttap && bool(false))
+								if (!inIgnoreList && !FlxG.save.data.ghosttap/* && bool(false)*/)
 									badNoteCheck();
 							}
 						}
@@ -2345,7 +2345,7 @@ class PlayState extends MusicBeatState
 				totalNotesHit -= 1;
 			}
 
-			bool(false);
+			// bool(false);
 		}
 		
 		updateAcc();
@@ -2369,7 +2369,7 @@ class PlayState extends MusicBeatState
 		if (rightP)
 			noteMiss(3);
 
-		bool(false);
+		// bool(false);
 	}
 
 	function noteCheck(keyP:Bool, note:Note):Void
@@ -2401,7 +2401,7 @@ class PlayState extends MusicBeatState
 					totalNotesHit += 1;
 				}
 
-				bool(true);
+				// bool(true);
 			}
 
 			health += 0.023;
@@ -2435,7 +2435,7 @@ class PlayState extends MusicBeatState
 				notes.remove(note, true);
 				note.destroy();
 
-				bool(false);
+				// bool(false);
 			}
 		}
 

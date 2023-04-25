@@ -83,8 +83,8 @@ class MusicBeatState extends FlxUIState
 		//do literally nothing dumbass
 	}
 
-	public function bool(bool:Bool = false)
+	/*public function bool(bool:Bool = false)
     {
         return bool;
-    }
+    }*/
 }
