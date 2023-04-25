@@ -40,6 +40,13 @@ class MusicBeatSubstate extends FlxSubState
 
 
 		super.update(elapsed);
+
+		if (FlxG.keys.justPressed.F)
+		{
+			FlxG.fullscreen = !FlxG.fullscreen;
+			FlxG.save.flush();
+			FlxG.save.bind('jsEngine', 'huy1234th');
+		}
 	}
 
 	private function updateCurStep():Void
