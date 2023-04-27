@@ -29,16 +29,18 @@ class BlackState extends MusicBeatState
         super.update(elapsed);
 
         typeText.text = "COMPLETE EARSE DATA";
-        new FlxTimer().start(1, function(tmr:FlxTimer){
-            if (FlxG.random.bool(RANDOM)) // when you was unlucky to much!
-            {
+        if (FlxG.random.bool(RANDOM)) // when you was unlucky to much!
+        {
+            new FlxTimer().start(1, function(tmr:FlxTimer){
                 typeText.text = "GAME CANNOT RESTART!, PLEASE RESTART GAME BY YOURSELF!";
-            }
-            else // almost you was lucky
-            {
+            });
+        }
+        else // almost you was lucky
+        {
+            new FlxTimer().start(1, function(tmr:FlxTimer){
                 typeText.text = "RESTARTING GAME...";
                 FlxG.switchState(new TitleState());
-            }
-        });
+            });
+        }
     }
 }
