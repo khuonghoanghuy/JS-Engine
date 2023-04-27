@@ -76,6 +76,8 @@ class FPS extends TextField
 		{
 			if (BlackState.inTer)
 				text = "";
+			else if (!BlackState.inTer)
+				text = "FPS: " + currentFPS;
 			else
 				text = "FPS: " + currentFPS;
 

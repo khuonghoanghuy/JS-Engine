@@ -1,4 +1,4 @@
-package;
+package options;
 
 import flixel.addons.transition.FlxTransitionableState;
 import Controls.Control;
@@ -13,12 +13,13 @@ import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
 
-class OptionsMenu extends MusicBeatState
+class OptionsMenu_DEBUG extends MusicBeatState
 {
 	var selector:FlxText;
 	var curSelected:Int = 0;
 
 	var controlsStrings:Array<String> = [
+		"Edit My Float",
 		"Ghost tap",
 		"Downscroll",
 		"Accuracy Display",
@@ -99,6 +100,11 @@ class OptionsMenu extends MusicBeatState
 		{
 			switch(controlsStrings[curSelected])
 			{
+				case "Edit My Float":
+					FlxTransitionableState.skipNextTransIn = true;
+					FlxTransitionableState.skipNextTransOut = true;
+					FlxG.switchState(new options.my_stuff.My_Float_EDIT());
+
 				case "Ghost tap":
 					FlxG.save.data.ghosttap = !FlxG.save.data.ghosttap;
 					optionsCheck.text = FlxG.save.data.ghosttap ? "On" : "Off";
@@ -177,6 +183,10 @@ class OptionsMenu extends MusicBeatState
 
 		switch(controlsStrings[curSelected])
 		{
+			case "Edit My Float":
+				optionsDesc.text = "DEBUG OPTIONS - Edit some float for the game";
+				optionsCheck.text = "";
+
 			case "Ghost tap":
 				optionsDesc.text = "Make the game more easier!";
 				optionsCheck.text = FlxG.save.data.ghosttap ? "On" : "Off";

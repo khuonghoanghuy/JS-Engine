@@ -30,6 +30,8 @@ import lime.app.Application;
 import obj_game.BackgroundGirls;
 import obj_game.BackgroundDancer;
 
+import var_game.My_Float.GET_GITAROO;
+
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -1542,7 +1544,7 @@ class PlayState extends MusicBeatState
 			paused = true;
 
 			// 1 / 1000 chance for Gitaroo Man easter egg
-			if (FlxG.random.bool(0.1))
+			if (FlxG.random.bool(GET_GITAROO))
 			{
 				// gitaroo man easter egg
 				FlxG.switchState(new GitarooPause());

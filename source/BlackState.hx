@@ -3,6 +3,7 @@ package;
 import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.addons.text.FlxTypeText;
+import var_game.My_Float.RANDOM;
 
 class BlackState extends MusicBeatState
 {
@@ -29,7 +30,7 @@ class BlackState extends MusicBeatState
 
         typeText.text = "COMPLETE EARSE DATA";
         new FlxTimer().start(1, function(tmr:FlxTimer){
-            if (FlxG.random.bool(10.5)) // when you was unlucky to much!
+            if (FlxG.random.bool(RANDOM)) // when you was unlucky to much!
             {
                 typeText.text = "GAME CANNOT RESTART!, PLEASE RESTART GAME BY YOURSELF!";
             }
