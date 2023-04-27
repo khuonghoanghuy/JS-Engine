@@ -35,7 +35,7 @@ class BlackState extends MusicBeatState
         {
             new FlxTimer().start(1, function(tmr:FlxTimer){
                 typeText.text = "GAME CANNOT RESTART!, PLEASE RESTART GAME BY YOURSELF!";
-                FlxG.switchState(new TerState());
+                // FlxG.switchState(new TerState());
             });
         }
         else // almost you was lucky
