@@ -1,4 +1,4 @@
-package;
+package obj_game;
 
 using StringTools;
 

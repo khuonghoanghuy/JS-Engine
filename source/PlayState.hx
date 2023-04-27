@@ -27,8 +27,7 @@ import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 
-import obj_game.BackgroundGirls;
-import obj_game.BackgroundDancer;
+import obj_game.*;
 
 import var_game.My_Float.GET_GITAROO;
 
