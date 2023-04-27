@@ -68,8 +68,14 @@ class PauseSubState extends MusicBeatSubstate
 		for (i in 0...menuItems.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, menuItems[i], true, false);
-			// songText.isMenuItem = true;
-			songText.isCenterItem = true;
+			if (!FlxG.save.data.watermark){
+				songText.isCenterItem = false;
+				songText.isMenuItem = true;
+			}
+			else{
+				songText.isCenterItem = true;
+				songText.isMenuItem = false;
+			}
 			songText.targetY = i;
 			grpMenuShit.add(songText);
 		}

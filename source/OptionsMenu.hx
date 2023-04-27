@@ -28,7 +28,8 @@ class OptionsMenu extends MusicBeatState
 		"FPS Cap",
 		"Hide GF",
 		"Only One Stage",
-		"Quality"
+		"Quality",
+		"Disable Flash Camera"
 	];
 
 	var optionsCheck:FlxText;
@@ -140,13 +141,18 @@ class OptionsMenu extends MusicBeatState
 
 				case "Quality":
 					FlxG.save.data.quality = !FlxG.save.data.quality;
-					optionsCheck.text = FlxG.save.data.quality ? "Low" : "High";
+					optionsCheck.text = FlxG.save.data.quality ? "As Low" : "As High";
 					FlxG.save.data.quality = FlxG.save.data.quality;
 
 				case "Judgement Counter":
 					FlxG.save.data.judgenment = !FlxG.save.data.judgenment;
 					optionsCheck.text = FlxG.save.data.judgenment ? "On" : "Off";
 					FlxG.save.data.judgenment = FlxG.save.data.judgenment;
+
+				case "Disable Flash Camera":
+					FlxG.save.data.flashCamera = !FlxG.save.data.flashCamera;
+					optionsCheck.text = FlxG.save.data.flashCamera ? "On" : "Off";
+					FlxG.save.data.flashCamera = FlxG.save.data.flashCamera;
 			}
 		}
 
@@ -205,11 +211,15 @@ class OptionsMenu extends MusicBeatState
 
 			case "Quality":
 				optionsDesc.text = "Hide some PNG on the game, can make the game load more faster";
-				optionsCheck.text = FlxG.save.data.quality ? "Low" : "High";
+				optionsCheck.text = FlxG.save.data.quality ? "As Low" : "As High";
 
 			case "Judgement Counter":
 				optionsDesc.text = "Display 'Sick', 'Good', 'Bad', 'Shit' on the game";
 				optionsCheck.text = FlxG.save.data.judgenment ? "On" : "Off";
+
+			case "Disable Flash Camera":
+				optionsDesc.text = "Turn off or on the flash camera light on the game";
+				optionsCheck.text = FlxG.save.data.flashCamera ? "On" : "Off";
 		}
 
 		if (curSelected < 0)

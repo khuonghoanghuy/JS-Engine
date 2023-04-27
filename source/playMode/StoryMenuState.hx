@@ -1,4 +1,4 @@
-package;
+package playMode;
 
 #if desktop
 import Discord.DiscordClient;

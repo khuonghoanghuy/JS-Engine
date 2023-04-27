@@ -197,13 +197,15 @@ class MainMenuState extends MusicBeatState
 							{
 								var daChoice:String = optionShit[curSelected];
 
+								FlxG.camera.flash(FlxColor.WHITE, 1);
+
 								switch (daChoice)
 								{
 									case 'story mode':
-										FlxG.switchState(new StoryMenuState());
+										FlxG.switchState(new playMode.StoryMenuState());
 										
 									case 'freeplay':
-										FlxG.switchState(new FreeplayState());
+										FlxG.switchState(new playMode.FreeplayState());
 
 									case 'options':
 										FlxG.switchState(new OptionsMenu());

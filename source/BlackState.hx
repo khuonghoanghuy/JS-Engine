@@ -29,8 +29,15 @@ class BlackState extends MusicBeatState
 
         typeText.text = "COMPLETE EARSE DATA";
         new FlxTimer().start(1, function(tmr:FlxTimer){
-            typeText.text = "RESTARTING GAME...";
-            FlxG.switchState(new TitleState());
+            if (FlxG.random.bool(10.5)) // when you was unlucky to much!
+            {
+                typeText.text = "GAME CANNOT RESTART!, PLEASE RESTART GAME BY YOURSELF!";
+            }
+            else // almost you was lucky
+            {
+                typeText.text = "RESTARTING GAME...";
+                FlxG.switchState(new TitleState());
+            }
         });
     }
 }

@@ -67,16 +67,16 @@ class TitleState extends MusicBeatState
 
 		if (FlxG.save.data.weekUnlocked != null)
 		{
-			if (StoryMenuState.weekUnlocked.length < 4)
-				StoryMenuState.weekUnlocked.insert(0, true);
+			if (playMode.StoryMenuState.weekUnlocked.length < 4)
+				playMode.StoryMenuState.weekUnlocked.insert(0, true);
 
 			// QUICK PATCH OOPS!
-			if (!StoryMenuState.weekUnlocked[0])
-				StoryMenuState.weekUnlocked[0] = true;
+			if (!playMode.StoryMenuState.weekUnlocked[0])
+				playMode.StoryMenuState.weekUnlocked[0] = true;
 		}
 
 		#if FREEPLAY
-		FlxG.switchState(new FreeplayState());
+		FlxG.switchState(new playMode.FreeplayState());
 		#elseif CHARTING
 		FlxG.switchState(new ChartingState());
 		#else

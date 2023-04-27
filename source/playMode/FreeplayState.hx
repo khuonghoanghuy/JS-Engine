@@ -1,4 +1,4 @@
-package;
+package playMode;
 
 #if desktop
 import Discord.DiscordClient;
@@ -81,8 +81,14 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
-			// songText.isMenuItem = true;
-			songText.isCenterItem = true;
+			if (!FlxG.save.data.watermark){
+				songText.isCenterItem = false;
+				songText.isMenuItem = true;
+			}
+			else{
+				songText.isCenterItem = true;
+				songText.isMenuItem = false;
+			}
 			songText.targetY = i;
 			grpSongs.add(songText);
 
@@ -93,7 +99,7 @@ class FreeplayState extends MusicBeatState
 		}
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-		// scoreText.autoSize = false;
+		// scoreText.autoSize = true;
 		scoreText.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
 		// scoreText.alignment = RIGHT;
 

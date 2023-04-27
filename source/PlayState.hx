@@ -27,6 +27,9 @@ import flixel.util.FlxSort;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 
+import obj_game.BackgroundGirls;
+import obj_game.BackgroundDancer;
+
 using StringTools;
 
 class PlayState extends MusicBeatState
@@ -104,7 +107,7 @@ class PlayState extends MusicBeatState
 	var songScore:Int = 0;
 	var songMiss:Int = 0;
 	var songAccuracy:Float = 0.00;
-	var totalNotesHit:Int = 0;
+	var totalNotesHit:Float = 0.00;
 	var totalPlayed:Int = 0;
 	var scoreTxt:FlxText;
 	var ranking:String = "?";
@@ -147,7 +150,6 @@ class PlayState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		// var gameCam:FlxCamera = FlxG.camera;
 		camGame = new FlxCamera();
 		camHUD = new FlxCamera();
 		camHUD.bgColor.alpha = 0;
@@ -220,7 +222,6 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.oneStage)
 		{
-			// curStage = 'stage';
 			defaultCamZoom = 0.9;
 			curStage = 'stage';
 			var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
@@ -808,7 +809,7 @@ class PlayState extends MusicBeatState
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
 			if (FlxG.save.data.accuracy)
 			{
-				scoreTxt.y -= 20;
+				scoreTxt.y -= 15;
 			}
 			scoreTxt.scrollFactor.set();
 			add(scoreTxt);
@@ -1753,8 +1754,6 @@ class PlayState extends MusicBeatState
 
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
-			// FlxG.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
-			
 			#if desktop
 			// Game Over doesn't get his own variable because it's only used here
 			DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconRPC);
@@ -1909,17 +1908,17 @@ class PlayState extends MusicBeatState
 				transIn = FlxTransitionableState.defaultTransIn;
 				transOut = FlxTransitionableState.defaultTransOut;
 
-				FlxG.switchState(new StoryMenuState());
+				FlxG.switchState(new playMode.StoryMenuState());
 
 				// if ()
-				StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
+				playMode.StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, playMode.StoryMenuState.weekUnlocked.length - 1))] = true;
 
 				if (SONG.validScore)
 				{
 					Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 				}
 
-				FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
+				FlxG.save.data.weekUnlocked = playMode.StoryMenuState.weekUnlocked;
 				FlxG.save.flush();
 			}
 			else
@@ -1959,7 +1958,7 @@ class PlayState extends MusicBeatState
 		else
 		{
 			trace('WENT BACK TO FREEPLAY??');
-			FlxG.switchState(new FreeplayState());
+			FlxG.switchState(new playMode.FreeplayState());
 		}
 	}
 
