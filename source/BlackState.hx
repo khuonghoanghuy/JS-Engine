@@ -1,9 +1,11 @@
 package;
 
+import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 import flixel.FlxG;
 import flixel.addons.text.FlxTypeText;
 import var_game.My_Float.RANDOM;
+import flixel.addons.ui.FlxInputText;
 
 class BlackState extends MusicBeatState
 {
@@ -33,6 +35,7 @@ class BlackState extends MusicBeatState
         {
             new FlxTimer().start(1, function(tmr:FlxTimer){
                 typeText.text = "GAME CANNOT RESTART!, PLEASE RESTART GAME BY YOURSELF!";
+                FlxG.switchState(new TerState());
             });
         }
         else // almost you was lucky
@@ -42,5 +45,50 @@ class BlackState extends MusicBeatState
                 FlxG.switchState(new TitleState());
             });
         }
+    }
+}
+
+class TerState extends MusicBeatState
+{
+    var ter:FlxTypeText;
+    var typing:FlxInputText;
+    var inType:FlxText;
+
+    override function create() 
+    {
+        super.create();
+
+        ter = new FlxTypeText(0, 0, 0, "", 16);
+        ter.prefix = "JS ENGINE > ";
+        ter.skipKeys = ["SPACE"];
+        ter.text = inType.text;
+        add(ter);
+    }
+
+    override function update(elapsed:Float)
+    {
+        super.update(elapsed);
+
+        if (FlxG.keys.justPressed.ANY)
+            typing.text = inType.text;
+
+        /*if (controls.ACCEPT)
+        {
+            switch (inType.text)
+            {
+                case "reset":
+                    FlxG.resetGame();
+
+                case "version":
+                    inType.text = Options.ver;
+            }
+        }*/
+
+        if (controls.BACK)
+        {
+            FlxG.switchState(new MainMenuState());
+        }
+
+        ter.update(elapsed);
     }
 }
