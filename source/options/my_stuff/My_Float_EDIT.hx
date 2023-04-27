@@ -101,18 +101,18 @@ class My_Float_EDIT extends MusicBeatState
             switch(controlsStrings[curSelected])
 			{
                 case "Cant restart game":
-                    if (RANDOM == -0.01){
+                    if (RANDOM == -0.1){
                         RANDOM -= 0;
                     }else{
-                        RANDOM -= 0.01;
+                        RANDOM -= 0.1;
                     }
                     optionsCheck.text = "" + RANDOM;
 			
                 case "Get Gitaroo State":
-                    if (GET_GITAROO == -0.01){
+                    if (GET_GITAROO == -0.1){
                         GET_GITAROO -= 0;
                     }else{
-                        GET_GITAROO -= 0.01;
+                        GET_GITAROO -= 0.1;
                     }
                     optionsCheck.text = "" + GET_GITAROO;
             }
@@ -125,7 +125,7 @@ class My_Float_EDIT extends MusicBeatState
                     if (RANDOM == 100){
                         RANDOM += 0;
                     }else{
-                        RANDOM += 0.01;
+                        RANDOM += 0.1;
                     }
                     optionsCheck.text = "" + RANDOM;
 			
@@ -133,7 +133,7 @@ class My_Float_EDIT extends MusicBeatState
                     if (GET_GITAROO == 100){
                         GET_GITAROO += 0;
                     }else{
-                        GET_GITAROO += 0.01;
+                        GET_GITAROO += 0.1;
                     }
                     optionsCheck.text = "" + GET_GITAROO;
             }
