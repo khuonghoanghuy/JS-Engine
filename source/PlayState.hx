@@ -30,6 +30,7 @@ import lime.app.Application;
 import obj_game.*;
 
 import var_game.My_Float.GET_GITAROO;
+import obj_game.HealthIcon;
 
 using StringTools;
 

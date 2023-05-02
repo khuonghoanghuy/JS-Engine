@@ -9,6 +9,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import obj_game.HealthIcon;
 
 using StringTools;
 
