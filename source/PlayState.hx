@@ -1569,8 +1569,36 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.85)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.85)));
+		#if desktop
+		if (FlxG.save.data.directfpsCap)
+		{
+			if (FlxG.keys.justPressed.F10)
+			{
+				if (FlxG.save.data.fpsCap >= 3)
+				{
+					FlxG.save.data.fpsCap -= 3;
+				}
+				else
+				{
+					FlxG.save.data.fpsCap += 1;
+				}
+			}
+		}
+		#end
+
+		var inBeat:Float = 0.85;
+
+		switch (FlxG.save.data.fpsCap)
+		{
+			case 0 | 1:
+				inBeat = 0.85;
+
+			case 2 | 3:
+				inBeat = 0.95;
+		}
+
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, inBeat)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, inBeat)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();

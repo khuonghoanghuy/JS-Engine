@@ -31,6 +31,7 @@ class OptionsMenu extends MusicBeatState
 		"Judgement Counter",
 		#if desktop
 		"FPS Cap",
+		"Direct FPS Cap Key",
 		#end
 		"Hide GF",
 		"Only One Stage",
@@ -190,6 +191,11 @@ class OptionsMenu extends MusicBeatState
 						case 3:
 							optionsCheck.text = "At 140";
 					}
+
+				case "Direct FPS Cap Key":
+					FlxG.save.data.directfpsCap = !FlxG.save.data.directfpsCap;
+					optionsCheck.text = FlxG.save.data.directfpsCap ? "On" : "Off";
+					FlxG.save.data.directfpsCap = FlxG.save.data.directfpsCap;
 				#end
 
 				case "Hide GF":
@@ -301,6 +307,10 @@ class OptionsMenu extends MusicBeatState
 					case 3:
 						optionsCheck.text = "At 140";
 				}
+
+			case "Direct FPS Cap Key":
+				optionsDesc.text = "Allow or Dont Allow direct changing fps cap while playing!";
+				optionsCheck.text = FlxG.save.data.directfpsCap ? "On" : "Off";
 			#end
 
 			case "Hide GF":
