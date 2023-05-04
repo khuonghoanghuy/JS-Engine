@@ -22,6 +22,7 @@ class OptionsMenu extends MusicBeatState
 		"Ghost tap",
 		"Downscroll",
 		"Accuracy Display",
+		"Accuracy Type",
 		"Watermark",
 		"Judgement Counter",
 		"FPS Cap",
@@ -116,10 +117,10 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
 					FlxG.save.data.accuracy = FlxG.save.data.accuracy;
 
-				case "NPS Display":
-					FlxG.save.data.nps = !FlxG.save.data.nps;
-					optionsCheck.text = FlxG.save.data.nps ? "On" : "Off";
-					FlxG.save.data.nps = FlxG.save.data.nps;
+				case "Accuracy Type":
+					FlxG.save.data.accuracyType = !FlxG.save.data.accuracyType;
+					optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
+					FlxG.save.data.accuracyType = FlxG.save.data.accuracyType;
 
 				case "Watermark":
 					FlxG.save.data.watermark = !FlxG.save.data.watermark;
@@ -127,9 +128,30 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.watermark = FlxG.save.data.watermark;
 
 				case "FPS Cap":
-					FlxG.save.data.fpsCap = !FlxG.save.data.fpsCap;
-					optionsCheck.text = FlxG.save.data.fpsCap ? "At 75" : "At 60";
-					FlxG.save.data.fpsCap = FlxG.save.data.fpsCap;
+					if (FlxG.save.data.fpsCap >= 3)
+					{
+						FlxG.save.data.fpsCap -= 3;
+					}
+					else
+					{
+						FlxG.save.data.fpsCap += 1;
+					}
+
+					switch (FlxG.save.data.fpsCap)
+					{
+						case 0:
+							optionsCheck.text = "At 60";
+						
+						case 1:
+							optionsCheck.text = "At 75";
+
+						case 2:
+							optionsCheck.text = "At 120";
+
+						case 3:
+							optionsCheck.text = "At 140";
+					}
+					// FlxG.save.data.fpsCap = FlxG.save.data.fpsCap;
 
 				case "Hide GF":
 					FlxG.save.data.hidegf = !FlxG.save.data.hidegf;
@@ -198,9 +220,16 @@ class OptionsMenu extends MusicBeatState
 				optionsDesc.text = "Add alot info like Misses and Accuracy";
 				optionsCheck.text = FlxG.save.data.accuracy ? "On" : "Off";
 
-			case "NPS Display":
-				optionsDesc.text = "System work like KPS, so 'NPS' = 'KPS'";
-				optionsCheck.text = FlxG.save.data.nps ? "On" : "Off";
+			case "Accuracy Type":
+				if (FlxG.save.data.accuracyType)
+				{
+					optionsDesc.text = "You just press the note";
+				}
+				else
+				{
+					optionsDesc.text = "Have bit harder than the simple one!";
+				}
+				optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
 
 			case "Watermark":
 				optionsDesc.text = "Display JS Engine Text on the screen";
@@ -208,7 +237,20 @@ class OptionsMenu extends MusicBeatState
 
 			case "FPS Cap":
 				optionsDesc.text = "Change FPS Cap, make the game more faster. But not recommended for Low Computer";
-				optionsCheck.text = FlxG.save.data.fpsCap ? "At 75" : "At 60";
+				switch (FlxG.save.data.fpsCap)
+				{
+					case 0:
+						optionsCheck.text = "At 60";
+					
+					case 1:
+						optionsCheck.text = "At 75";
+
+					case 2:
+						optionsCheck.text = "At 120";
+
+					case 3:
+						optionsCheck.text = "At 140";
+				}
 
 			case "Hide GF":
 				optionsDesc.text = "Hide GF when playing a song, that can make the game load more faster";
@@ -232,7 +274,7 @@ class OptionsMenu extends MusicBeatState
 
 			#if desktop
 			case "Allow Writing Info":
-				optionsDesc.text = "Game will write a text file about all your info when you win a song";
+				optionsDesc.text = "Game will write a json file about all your info when you win a song";
 				optionsCheck.text = FlxG.save.data.allowWrite ? "On" : "Off";
 			#end
 		}

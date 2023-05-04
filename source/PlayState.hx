@@ -2001,14 +2001,20 @@ class PlayState extends MusicBeatState
 		if (noteDiff > Conductor.safeZoneOffset * 2)
 		{
 			daRating = 'shit';
-			totalNotesHit -= 3;
+			if (FlxG.save.data.accuracyType)
+				totalNotesHit += 1;
+			else
+				totalNotesHit += 0.1;
 			score = 50;
 			shits++;
 		}
 		else if (noteDiff < Conductor.safeZoneOffset * -2)
 		{
 			daRating = 'shit';
-			totalNotesHit += 0.1;
+			if (FlxG.save.data.accuracyType)
+				totalNotesHit += 1;
+			else
+				totalNotesHit += 0.1;
 			score = 50;
 			shits++;
 		}
@@ -2016,13 +2022,19 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'bad';
 			score = 100;
-			totalNotesHit += 0.5;
+			if (FlxG.save.data.accuracyType)
+				totalNotesHit += 1;
+			else
+				totalNotesHit += 0.1;
 			bads++;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
 		{
 			daRating = 'good';
-			totalNotesHit += 0.75;
+			if (FlxG.save.data.accuracyType)
+				totalNotesHit += 1;
+			else
+				totalNotesHit += 0.1;
 			score = 200;
 			goods++;
 		}
@@ -2244,7 +2256,7 @@ class PlayState extends MusicBeatState
 			{
 				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 				{
-					// totalNotesHit += 1;
+					totalNotesHit += 1;
 
 					switch (daNote.noteData)
 					{
