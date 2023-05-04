@@ -30,10 +30,16 @@ class MusicBeatState extends FlxUIState
 		//everyStep();
 		var oldStep:Int = curStep;
 
-		if (FlxG.save.data.fpsCap)
-			Lib.current.stage.frameRate = 75; // fps cap 75
-		else
-			Lib.current.stage.frameRate = 60; // fps cap 60
+		if (FlxG.save.data.fpsCap) // fps cap 75
+		{
+			FlxG.updateFramerate = 75;
+			FlxG.drawFramerate = 75;
+		}
+		else // fps cap 60
+		{
+			FlxG.updateFramerate = 60;
+			FlxG.drawFramerate = 60;
+		}
 
 		updateCurStep();
 		updateBeat();
