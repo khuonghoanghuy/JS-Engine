@@ -22,14 +22,16 @@ class OptionsMenu extends MusicBeatState
 		"Ghost tap",
 		"Downscroll",
 		"Accuracy Display",
-		// "NPS Display",
 		"Watermark",
 		"Judgement Counter",
 		"FPS Cap",
 		"Hide GF",
 		"Only One Stage",
 		"Quality",
-		"Disable Flash Camera"
+		"Disable Flash Camera",
+		#if desktop
+		"Allow Writing Info"
+		#end
 	];
 
 	var optionsCheck:FlxText;
@@ -153,6 +155,13 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.flashCamera = !FlxG.save.data.flashCamera;
 					optionsCheck.text = FlxG.save.data.flashCamera ? "On" : "Off";
 					FlxG.save.data.flashCamera = FlxG.save.data.flashCamera;
+
+				#if desktop
+				case "Allow Writing Info":
+					FlxG.save.data.allowWrite = !FlxG.save.data.allowWrite;
+					optionsCheck.text = FlxG.save.data.allowWrite ? "On" : "Off";
+					FlxG.save.data.allowWrite = FlxG.save.data.allowWrite;
+				#end
 			}
 		}
 
@@ -220,6 +229,12 @@ class OptionsMenu extends MusicBeatState
 			case "Disable Flash Camera":
 				optionsDesc.text = "Turn off or on the flash camera light on the game";
 				optionsCheck.text = FlxG.save.data.flashCamera ? "On" : "Off";
+
+			#if desktop
+			case "Allow Writing Info":
+				optionsDesc.text = "Game will write a text file about all your info when you win a song";
+				optionsCheck.text = FlxG.save.data.allowWrite ? "On" : "Off";
+			#end
 		}
 
 		if (curSelected < 0)

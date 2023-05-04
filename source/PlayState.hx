@@ -839,9 +839,9 @@ class PlayState extends MusicBeatState
 			versionShit2.cameras = [camHUD];
 			versionShit.cameras = [camHUD];
 		}else{
-			var versionShit2:FlxText = new FlxText(10, FlxG.height - 44, 0, "Song: " + SONG.song, 18);
+			var versionShit2:FlxText = new FlxText(5, FlxG.height - 18, 0, "Song: " + SONG.song, 12);
 			versionShit2.scrollFactor.set();
-			versionShit2.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			versionShit2.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit2);
 
 			versionShit2.cameras = [camHUD];
@@ -1897,6 +1897,20 @@ class PlayState extends MusicBeatState
 			#end
 		}
 
+		#if desktop
+		if (FlxG.save.data.allowWrite)
+		{
+			var info = {
+				song_name:SONG.song, 
+				score:songScore,
+				miss:songMiss, 
+				accuracy:songAccuracy
+			};
+			var content:String = haxe.Json.stringify(info);
+			sys.io.File.saveContent(Paths.txt("info"), content);
+		}
+		#end
+
 		if (isStoryMode)
 		{
 			campaignScore += songScore;
@@ -1994,7 +2008,7 @@ class PlayState extends MusicBeatState
 		else if (noteDiff < Conductor.safeZoneOffset * -2)
 		{
 			daRating = 'shit';
-			totalNotesHit -= 3;
+			totalNotesHit += 0.1;
 			score = 50;
 			shits++;
 		}
@@ -2002,13 +2016,13 @@ class PlayState extends MusicBeatState
 		{
 			daRating = 'bad';
 			score = 100;
-			totalNotesHit -= 2;
+			totalNotesHit += 0.5;
 			bads++;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
 		{
 			daRating = 'good';
-			totalNotesHit += 1;
+			totalNotesHit += 0.75;
 			score = 200;
 			goods++;
 		}
@@ -2610,6 +2624,16 @@ class PlayState extends MusicBeatState
 			FlxG.camera.zoom += 0.015;
 			camHUD.zoom += 0.03;
 		}
+
+		#if desktop
+		if (FlxG.save.data.allowWrite)
+		{
+			var content:String = sys.io.File.getContent(Paths.txt("curBeat"));
+			var write:Array<String> = [''];
+
+			write = CoolUtil.coolTextFile(Paths.txt("curBeat"));
+		}
+		#end
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
 		iconP2.setGraphicSize(Std.int(iconP2.width + 30));

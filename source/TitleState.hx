@@ -52,7 +52,6 @@ class TitleState extends MusicBeatState
 	override public function create():Void
 	{
 		PlayerSettings.init();
-		// bool(false);
 		BlackState.inTer = false;
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
@@ -65,6 +64,15 @@ class TitleState extends MusicBeatState
 
 		Highscore.load();
 		FlxG.sound.cacheAll();
+
+		#if desktop
+		if (FlxG.save.data.allowWrite)
+		{
+			var info = {};
+			var content:String = haxe.Json.stringify(info);
+			sys.io.File.saveContent(Paths.txt("info"), content);
+		}
+		#end
 
 		if (FlxG.save.data.weekUnlocked != null)
 		{
