@@ -2472,7 +2472,7 @@ class PlayState extends MusicBeatState
 			{
 				if (Math.abs(note.noteData) == spr.ID)
 				{
-					if (!botplayShit && FlxG.elapsed % 6 == 0)
+					if (!botplayShit && curBeat % 6 == 0)
 						spr.animation.play('static', true);
 					else
 						spr.animation.play('confirm', true);
