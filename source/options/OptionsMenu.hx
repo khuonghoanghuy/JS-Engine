@@ -120,6 +120,14 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.accuracy = FlxG.save.data.accuracy;
 
 				case "Accuracy Type":
+					if (FlxG.save.data.accuracyType)
+					{
+						optionsDesc.text = "You just press the note";
+					}
+					else
+					{
+						optionsDesc.text = "Have bit harder than the simple one! (Beta stuff, may can be broken!)";
+					}
 					FlxG.save.data.accuracyType = !FlxG.save.data.accuracyType;
 					optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
 					FlxG.save.data.accuracyType = FlxG.save.data.accuracyType;
@@ -231,7 +239,7 @@ class OptionsMenu extends MusicBeatState
 				}
 				else
 				{
-					optionsDesc.text = "Have bit harder than the simple one!";
+					optionsDesc.text = "Have bit harder than the simple one! (Beta stuff, may can be broken!)";
 				}
 				optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
 
