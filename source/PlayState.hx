@@ -1835,6 +1835,17 @@ class PlayState extends MusicBeatState
 					daNote.destroy();
 				}
 
+				if (FlxG.save.data.botplay && daNote.mustPress)
+				{
+					if(daNote.isSustainNote){
+						if(daNote.canBeHit){
+							goodNoteHit(daNote);
+						}
+					}else if(daNote.strumTime <= Conductor.songPosition || (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress)){
+						goodNoteHit(daNote);
+					}
+				}
+
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
 
@@ -1852,12 +1863,13 @@ class PlayState extends MusicBeatState
 						// bool(false);
 						noteMiss(daNote.noteData);
 					}
-					else
-					{
-						health += 0.023;
-						// bool(true);
-						goodNoteHit(daNote);
-					}
+					else {}
+					// else
+					// {
+					// 	health += 0.023;
+					// 	// bool(true);
+					// 	goodNoteHit(daNote);
+					// }
 
 					daNote.active = false;
 					daNote.visible = false;
@@ -2436,8 +2448,53 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	var botplayShit:Bool = false;
+
 	function goodNoteHit(note:Note):Void
 	{
+		if (FlxG.save.data.botplay)
+		{
+			health += 0.023;
+
+			switch (note.noteData)
+			{
+				case 0:
+					boyfriend.playAnim('singLEFT', true);
+				case 1:
+					boyfriend.playAnim('singDOWN', true);
+				case 2:
+					boyfriend.playAnim('singUP', true);
+				case 3:
+					boyfriend.playAnim('singRIGHT', true);
+			}
+
+			playerStrums.forEach(function(spr:FlxSprite)
+			{
+				if (Math.abs(note.noteData) == spr.ID)
+				{
+					if (!botplayShit && FlxG.elapsed % 6 == 0)
+						spr.animation.play('static', true);
+					else
+						spr.animation.play('confirm', true);
+				}
+			});
+
+			botplayShit = true;
+
+			note.wasGoodHit = true;
+			vocals.volume = 1;
+
+			if (!note.isSustainNote)
+			{
+				note.kill();
+				notes.remove(note, true);
+				note.destroy();
+				botplayShit = false;
+			}
+
+			return;
+		}
+
 		if (!note.wasGoodHit)
 		{
 			if (!note.isSustainNote)
@@ -2666,6 +2723,14 @@ class PlayState extends MusicBeatState
 		if (!boyfriend.animation.curAnim.name.startsWith("sing"))
 		{
 			boyfriend.playAnim('idle');
+		}
+
+		if (FlxG.save.data.botplay && curBeat % 8 == 0)
+		{
+			if (!botplayShit)
+			{
+				boyfriend.playAnim('idle');
+			}
 		}
 
 		if (curBeat % 8 == 7 && curSong == 'Bopeebo')

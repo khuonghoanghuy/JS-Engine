@@ -23,6 +23,7 @@ class OptionsMenu extends MusicBeatState
 		"Downscroll",
 		"Accuracy Display",
 		"Accuracy Type",
+		"Botplay",
 		"Watermark",
 		"Judgement Counter",
 		#if desktop
@@ -132,6 +133,11 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
 					FlxG.save.data.accuracyType = FlxG.save.data.accuracyType;
 
+				case "Botplay":
+					FlxG.save.data.botplay = !FlxG.save.data.botplay;
+					optionsCheck.text = FlxG.save.data.botplay ? "On" : "Off";
+					FlxG.save.data.botplay = FlxG.save.data.botplay;
+
 				case "Watermark":
 					FlxG.save.data.watermark = !FlxG.save.data.watermark;
 					optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
@@ -162,7 +168,6 @@ class OptionsMenu extends MusicBeatState
 						case 3:
 							optionsCheck.text = "At 140";
 					}
-					// FlxG.save.data.fpsCap = FlxG.save.data.fpsCap;
 				#end
 
 				case "Hide GF":
@@ -242,6 +247,10 @@ class OptionsMenu extends MusicBeatState
 					optionsDesc.text = "Have bit harder than the simple one! (Beta stuff, may can be broken!)";
 				}
 				optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
+
+			case "Botplay":
+				optionsDesc.text = "Can help you showcase the chart";
+				optionsCheck.text = FlxG.save.data.botplay ? "On" : "Off";
 
 			case "Watermark":
 				optionsDesc.text = "Display JS Engine Text on the screen";
