@@ -2213,7 +2213,18 @@ class PlayState extends MusicBeatState
 						for (coolNote in possibleNotes)
 						{
 							if (controlArray[coolNote.noteData] /*&& bool(false)*/)
+							{
+								if (songAccuracy == 100)
+								{
+									totalNotesHit += 0;
+								}
+								else
+								{
+									totalNotesHit += 1;
+								}
+							
 								goodNoteHit(coolNote);
+							}
 							else
 							{
 								var inIgnoreList:Bool = false;
@@ -2256,8 +2267,6 @@ class PlayState extends MusicBeatState
 			{
 				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 				{
-					totalNotesHit += 1;
-
 					switch (daNote.noteData)
 					{
 						// NOTES YOU ARE HOLDING

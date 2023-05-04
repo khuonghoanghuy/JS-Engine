@@ -25,7 +25,9 @@ class OptionsMenu extends MusicBeatState
 		"Accuracy Type",
 		"Watermark",
 		"Judgement Counter",
+		#if desktop
 		"FPS Cap",
+		#end
 		"Hide GF",
 		"Only One Stage",
 		"Quality",
@@ -127,6 +129,7 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
 					FlxG.save.data.watermark = FlxG.save.data.watermark;
 
+				#if desktop
 				case "FPS Cap":
 					if (FlxG.save.data.fpsCap >= 3)
 					{
@@ -152,6 +155,7 @@ class OptionsMenu extends MusicBeatState
 							optionsCheck.text = "At 140";
 					}
 					// FlxG.save.data.fpsCap = FlxG.save.data.fpsCap;
+				#end
 
 				case "Hide GF":
 					FlxG.save.data.hidegf = !FlxG.save.data.hidegf;
@@ -235,6 +239,7 @@ class OptionsMenu extends MusicBeatState
 				optionsDesc.text = "Display JS Engine Text on the screen";
 				optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
 
+			#if desktop
 			case "FPS Cap":
 				optionsDesc.text = "Change FPS Cap, make the game more faster. But not recommended for Low Computer";
 				switch (FlxG.save.data.fpsCap)
@@ -251,6 +256,7 @@ class OptionsMenu extends MusicBeatState
 					case 3:
 						optionsCheck.text = "At 140";
 				}
+			#end
 
 			case "Hide GF":
 				optionsDesc.text = "Hide GF when playing a song, that can make the game load more faster";

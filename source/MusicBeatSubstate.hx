@@ -27,6 +27,10 @@ class MusicBeatSubstate extends FlxSubState
 		//everyStep();
 		var oldStep:Int = curStep;
 
+		#if html5
+		FlxG.updateFramerate = 60;
+		FlxG.drawFramerate = 60;
+		#else
 		switch (FlxG.save.data.fpsCap)
 		{
 			case 0:
@@ -45,6 +49,7 @@ class MusicBeatSubstate extends FlxSubState
 				FlxG.updateFramerate = 140;
 				FlxG.drawFramerate = 140;
 		}
+		#end
 
 		updateCurStep();
 		curBeat = Math.floor(curStep / 4);
