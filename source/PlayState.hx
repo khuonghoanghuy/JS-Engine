@@ -1907,7 +1907,7 @@ class PlayState extends MusicBeatState
 				accuracy:songAccuracy
 			};
 			var content:String = haxe.Json.stringify(info);
-			sys.io.File.saveContent(Paths.txt("info"), content);
+			sys.io.File.saveContent(Paths.json("info"), content);
 		}
 		#end
 
