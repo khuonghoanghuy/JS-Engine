@@ -1569,23 +1569,6 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		#if desktop
-		if (FlxG.save.data.directfpsCap)
-		{
-			if (FlxG.keys.justPressed.F10)
-			{
-				if (FlxG.save.data.fpsCap >= 3)
-				{
-					FlxG.save.data.fpsCap -= 3;
-				}
-				else
-				{
-					FlxG.save.data.fpsCap += 1;
-				}
-			}
-		}
-		#end
-
 		var inBeat:Float = 0.85;
 
 		switch (FlxG.save.data.fpsCap)

@@ -27,6 +27,23 @@ class MusicBeatSubstate extends FlxSubState
 		//everyStep();
 		var oldStep:Int = curStep;
 
+		#if desktop
+		if (FlxG.save.data.directfpsCap)
+		{
+			if (FlxG.keys.justPressed.F10)
+			{
+				if (FlxG.save.data.fpsCap >= 3)
+				{
+					FlxG.save.data.fpsCap -= 3;
+				}
+				else
+				{
+					FlxG.save.data.fpsCap += 1;
+				}
+			}
+		}
+		#end
+
 		#if html5
 		FlxG.updateFramerate = 60;
 		FlxG.drawFramerate = 60;
