@@ -2225,18 +2225,7 @@ class PlayState extends MusicBeatState
 						for (coolNote in possibleNotes)
 						{
 							if (controlArray[coolNote.noteData] /*&& bool(false)*/)
-							{
-								if (songAccuracy == 100)
-								{
-									totalNotesHit += 0;
-								}
-								else
-								{
-									totalNotesHit += 1;
-								}
-							
 								goodNoteHit(coolNote);
-							}
 							else
 							{
 								var inIgnoreList:Bool = false;
@@ -2279,6 +2268,15 @@ class PlayState extends MusicBeatState
 			{
 				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 				{
+					if (songAccuracy == 100)
+					{
+						totalNotesHit += 0;
+					}
+					else
+					{
+						totalNotesHit += 1;
+					}
+
 					switch (daNote.noteData)
 					{
 						// NOTES YOU ARE HOLDING
@@ -2454,7 +2452,12 @@ class PlayState extends MusicBeatState
 	{
 		if (FlxG.save.data.botplay)
 		{
-			health += 0.023;
+			if (!note.isSustainNote)
+			{
+				popUpScore(note.strumTime);
+				combo += 1;
+				health += 0.023;
+			}
 
 			switch (note.noteData)
 			{
@@ -2501,15 +2504,17 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
-			}
-			else if (songAccuracy == 100)
-			{
-				totalNotesHit += 0;
+				if (songAccuracy == 100)
+				{
+					totalNotesHit += 0;
+				}
+				else
+				{
+					totalNotesHit += 1;
+				}
 			}
 			else
-			{
-				totalNotesHit += 1;
-			}
+				totalNotesHit += 1; 
 
 			health += 0.023;
 

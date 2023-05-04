@@ -19,6 +19,9 @@ class OptionsMenu extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var controlsStrings:Array<String> = [
+		#if debug
+		"Edit My Float",
+		#end
 		"Ghost tap",
 		"Downscroll",
 		"Accuracy Display",
@@ -101,10 +104,29 @@ class OptionsMenu extends MusicBeatState
 			// FlxG.resetGame();
 		}
 
+		switch (controlsStrings[curSelected])
+		{
+			case "Accuracy Type":
+				if (FlxG.save.data.accuracyType)
+				{
+					optionsDesc.text = "You just press the note";
+				}
+				else
+				{
+					optionsDesc.text = "Have bit harder than the simple one! (Beta stuff, may can be broken!)";
+				} 
+		}
+
 		if (controls.ACCEPT)
 		{
 			switch(controlsStrings[curSelected])
 			{
+				#if debug
+				case "Edit My Float":
+					FlxTransitionableState.skipNextTransIn = true;
+					FlxTransitionableState.skipNextTransOut = true;
+					FlxG.switchState(new options.my_stuff.My_Float_EDIT());
+				#end
 				case "Ghost tap":
 					FlxG.save.data.ghosttap = !FlxG.save.data.ghosttap;
 					optionsCheck.text = FlxG.save.data.ghosttap ? "On" : "Off";
@@ -225,6 +247,12 @@ class OptionsMenu extends MusicBeatState
 
 		switch(controlsStrings[curSelected])
 		{
+			#if debug
+			case "Edit My Float":
+				optionsDesc.text = "DEBUG OPTIONS - Edit some float for the game";
+				optionsCheck.text = "This Options has no disable or enable system";
+			#end
+
 			case "Ghost tap":
 				optionsDesc.text = "Make the game more easier!";
 				optionsCheck.text = FlxG.save.data.ghosttap ? "On" : "Off";

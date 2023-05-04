@@ -14,7 +14,12 @@ class WarmState extends MusicBeatState
         if (FlxG.save.data.firstPlay == null)
             FlxG.save.data.firstPlay = true;
 
-        text = new FlxText(0, 0, 0, "!THIS ENGINE IS JUST ON A ALPHA ENGINE!\n\nOn might, this engine is not finish yet!\nCurrent on Development\n!Anything on the Future will be change\nPress Enter key to play", 32);
+        text = new FlxText(0, 0, 0, 
+            "!THIS ENGINE IS JUST ON A ALPHA ENGINE!
+            \n\nOn might, this engine is not finish yet!
+            \nCurrent on Development
+            \n!Anything on the Future will be change!
+            \nPress Enter key to play", 32);
         text.screenCenter();
         text.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
         add(text);

@@ -55,6 +55,9 @@ class FPS extends TextField
 			__enterFrame(time - currentTime);
 		});
 		#end
+
+		width = 1280;
+		height = 720;
 	}
 
 	// Event Handlers

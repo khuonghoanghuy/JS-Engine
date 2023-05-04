@@ -51,16 +51,14 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		PlayerSettings.init();
 		BlackState.inTer = false;
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
 
-		super.create();
-
-		FlxG.save.bind('jsEngine', 'huy1234th');
+		PlayerSettings.init();
+        FlxG.save.bind('jsEngine', 'huy1234th');
 
 		Highscore.load();
 		FlxG.sound.cacheAll();
@@ -73,6 +71,8 @@ class TitleState extends MusicBeatState
 			sys.io.File.saveContent(Paths.json("info"), content);
 		}
 		#end
+
+		super.create();
 
 		if (FlxG.save.data.weekUnlocked != null)
 		{
