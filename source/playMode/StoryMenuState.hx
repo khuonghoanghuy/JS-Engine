@@ -157,11 +157,6 @@ class StoryMenuState extends MusicBeatState
 		{
 			var weekCharacterThing:MenuCharacter = new MenuCharacter((FlxG.width * 0.25) * (1 + char) - 150, weekCharacters[curWeek][char]);
 			weekCharacterThing.y += 70;
-			if (FlxG.save.data.quality){
-				weekCharacterThing.visible = true;
-			}else{
-				weekCharacterThing.visible = false;
-			}
 			weekCharacterThing.antialiasing = true;
 			switch (weekCharacterThing.character)
 			{

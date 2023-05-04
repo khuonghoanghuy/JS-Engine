@@ -2244,7 +2244,7 @@ class PlayState extends MusicBeatState
 			{
 				if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 				{
-					totalNotesHit += 1;
+					// totalNotesHit += 1;
 
 					switch (daNote.noteData)
 					{
@@ -2423,18 +2423,14 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
-				// maxCombo += 1;
-				
-				if (songAccuracy == 100)
-				{
-					totalNotesHit += 0;
-				}
-				else
-				{
-					totalNotesHit += 1;
-				}
-
-				// bool(true);
+			}
+			else if (songAccuracy == 100)
+			{
+				totalNotesHit += 0;
+			}
+			else
+			{
+				totalNotesHit += 1;
 			}
 
 			health += 0.023;
