@@ -808,7 +808,7 @@ class PlayState extends MusicBeatState
 		else
 		{
 			scoreTxt = new FlxText(healthBarBG.x + healthBarBG.width - 190, healthBarBG.y + 30, 0, "", 20);
-			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, RIGHT);
+			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, LEFT);
 			if (FlxG.save.data.accuracy)
 			{
 				scoreTxt.y -= 15;
@@ -1523,6 +1523,8 @@ class PlayState extends MusicBeatState
 					ranking = "SFC";
 				}else if (sicks <= 0 && goods <= 1 && bads <= 0 && shits <= 0 && songMiss == 0){
 					ranking = "GFC";
+				}else if (sicks <= 1 && goods <= 1 && bads <= 0 && shits <= 0 && songMiss == 0){
+					ranking = "GFC";
 				}else{
 					ranking = "FC";
 				}
@@ -1930,7 +1932,7 @@ class PlayState extends MusicBeatState
 				accuracy:songAccuracy
 			};
 			var content:String = haxe.Json.stringify(info);
-			sys.io.File.saveContent(Paths.json("info"), content);
+			sys.io.File.saveContent(Paths.json(SONG.song.toLowerCase() + "/info"), content);
 		}
 		#end
 
