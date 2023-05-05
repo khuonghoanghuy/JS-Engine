@@ -3,9 +3,9 @@ package;
 import openfl.Lib;
 import flixel.FlxG;
 import Conductor.BPMChangeEvent;
-import flixel.FlxSubState;
+import flixel.addons.ui.FlxUISubState;
 
-class MusicBeatSubstate extends FlxSubState
+class MusicBeatSubstate extends FlxUISubState
 {
 	public function new()
 	{
