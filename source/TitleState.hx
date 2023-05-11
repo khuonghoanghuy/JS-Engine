@@ -63,15 +63,6 @@ class TitleState extends MusicBeatState
 		Highscore.load();
 		FlxG.sound.cacheAll();
 
-		#if desktop
-		if (FlxG.save.data.allowWrite)
-		{
-			var info = {};
-			var content:String = haxe.Json.stringify(info);
-			sys.io.File.saveContent(Paths.json("info"), content);
-		}
-		#end
-
 		super.create();
 
 		if (FlxG.save.data.weekUnlocked != null)

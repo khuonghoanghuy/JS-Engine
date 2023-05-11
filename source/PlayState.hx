@@ -2488,10 +2488,38 @@ class PlayState extends MusicBeatState
 			{
 				if (Math.abs(note.noteData) == spr.ID)
 				{
-					if (!botplayShit && curBeat % 6 == 0)
-						spr.animation.play('static', true);
+					switch (spr.ID)
+					{
+						case 0:
+							if (spr.animation.curAnim.name != 'confirm')
+								spr.animation.play('pressed');
+							else
+								spr.animation.play('static');
+						case 1:
+							if (spr.animation.curAnim.name != 'confirm')
+								spr.animation.play('pressed');
+							else
+								spr.animation.play('static');
+						case 2:
+							if (spr.animation.curAnim.name != 'confirm')
+								spr.animation.play('pressed');
+							else
+								spr.animation.play('static');
+						case 3:
+							if (spr.animation.curAnim.name != 'confirm')
+								spr.animation.play('pressed');
+							else
+								spr.animation.play('static');
+					}
+		
+					if (spr.animation.curAnim.name == 'confirm' && !curStage.startsWith('school'))
+					{
+						spr.centerOffsets();
+						spr.offset.x -= 13;
+						spr.offset.y -= 13;
+					}
 					else
-						spr.animation.play('confirm', true);
+						spr.centerOffsets();
 				}
 			});
 
