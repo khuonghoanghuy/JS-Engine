@@ -2469,8 +2469,12 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime);
 				combo += 1;
-				health += 0.023;
 			}
+
+			if (note.noteData >= 0)
+				health += 0.023;
+			else
+				health += 0.004;
 
 			switch (note.noteData)
 			{
@@ -2492,23 +2496,23 @@ class PlayState extends MusicBeatState
 					{
 						case 0:
 							if (spr.animation.curAnim.name != 'confirm')
-								spr.animation.play('pressed');
-							else
+								spr.animation.play('confirm');
+							else if (curBeat % 4 == 0)
 								spr.animation.play('static');
 						case 1:
 							if (spr.animation.curAnim.name != 'confirm')
-								spr.animation.play('pressed');
-							else
+								spr.animation.play('confirm');
+							else if (curBeat % 4 == 0)
 								spr.animation.play('static');
 						case 2:
 							if (spr.animation.curAnim.name != 'confirm')
-								spr.animation.play('pressed');
-							else
+								spr.animation.play('confirm');
+							else if (curBeat % 4 == 0)
 								spr.animation.play('static');
 						case 3:
 							if (spr.animation.curAnim.name != 'confirm')
-								spr.animation.play('pressed');
-							else
+								spr.animation.play('confirm');
+							else if (curBeat % 4 == 0)
 								spr.animation.play('static');
 					}
 		
@@ -2557,7 +2561,10 @@ class PlayState extends MusicBeatState
 			else
 				totalNotesHit += 1; 
 
-			health += 0.023;
+			if (note.noteData >= 0)
+				health += 0.023;
+			else
+				health += 0.004;
 
 			switch (note.noteData)
 			{
