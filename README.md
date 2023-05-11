@@ -12,6 +12,8 @@ Check something here:
 
 - [Check my website!](https://khuonghoanghuy.github.io/JS-Engine/)
 
+- [Download From here](https://huy1234th.itch.io/fnf-js-engine)
+
 JS Engine is contains some custom:
 
 - Options Setting
