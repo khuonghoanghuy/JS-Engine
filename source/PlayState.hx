@@ -2499,20 +2499,28 @@ class PlayState extends MusicBeatState
 								spr.animation.play('confirm');
 							else if (curBeat % 4 == 0)
 								spr.animation.play('static');
+							else
+								spr.animation.play('static');
 						case 1:
 							if (spr.animation.curAnim.name != 'confirm')
 								spr.animation.play('confirm');
 							else if (curBeat % 4 == 0)
+								spr.animation.play('static');
+							else
 								spr.animation.play('static');
 						case 2:
 							if (spr.animation.curAnim.name != 'confirm')
 								spr.animation.play('confirm');
 							else if (curBeat % 4 == 0)
 								spr.animation.play('static');
+							else
+								spr.animation.play('static');
 						case 3:
 							if (spr.animation.curAnim.name != 'confirm')
 								spr.animation.play('confirm');
 							else if (curBeat % 4 == 0)
+								spr.animation.play('static');
+							else
 								spr.animation.play('static');
 					}
 		
