@@ -820,14 +820,14 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.botplay)
 		{
-			botplayTxt = new FlxText(0, healthBarBG.y + -36, FlxG.width, "BOTPLAY", 20);
+			botplayTxt = new FlxText(0, healthBarBG.y + -36, FlxG.width, "BOTPLAY", 22);
 			botplayTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			botplayTxt.scrollFactor.set();
 			add(botplayTxt);
 		}
 		else // i dont want to crash by this shit
 		{
-			botplayTxt = new FlxText(0, healthBarBG.y + -36, FlxG.width, "", 20);
+			botplayTxt = new FlxText(0, healthBarBG.y + -36, FlxG.width, "", 22);
 			botplayTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			botplayTxt.scrollFactor.set();
 			add(botplayTxt);
