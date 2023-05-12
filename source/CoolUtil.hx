@@ -13,6 +13,10 @@ class CoolUtil
 		return difficultyArray[PlayState.storyDifficulty];
 	}
 
+	/**
+	 * Loading text File
+	 * @param path current file want to load
+	 */
 	public static function coolTextFile(path:String):Array<String>
 	{
 		var daList:Array<String> = Assets.getText(path).trim().split('\n');

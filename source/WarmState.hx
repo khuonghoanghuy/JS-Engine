@@ -39,7 +39,7 @@ class WarmState extends MusicBeatState
         {
             if (FlxG.keys.justPressed.ENTER)
             {
-                if (FlxG.random.bool(50) && !FlxG.save.data.flashCamera)
+                if (FlxG.random.bool(30.9) && !FlxG.save.data.flashCamera)
                     FlxG.camera.flash(FlxColor.YELLOW, 1);
                 else if (!FlxG.save.data.flashCamera)
                     FlxG.camera.flash(FlxColor.WHITE, 1);

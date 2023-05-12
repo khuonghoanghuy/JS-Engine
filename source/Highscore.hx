@@ -10,6 +10,12 @@ class Highscore
 	public static var songScores:Map<String, Int> = new Map<String, Int>();
 	#end
 
+	/**
+	 * Save Score System
+	 * @param song current song name
+	 * @param score current score
+	 * @param diff current difficult
+	 */
 	public static function saveScore(song:String, score:Int = 0, ?diff:Int = 0):Void
 	{
 		var daSong:String = formatSong(song, diff);
@@ -23,6 +29,12 @@ class Highscore
 			setScore(daSong, score);
 	}
 
+	/**
+	 * Save Score System on Week
+	 * @param week current week number
+	 * @param score current score
+	 * @param diff current difficult
+	 */
 	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0):Void
 	{
 		var daWeek:String = formatSong('week' + week, diff);
@@ -38,6 +50,8 @@ class Highscore
 
 	/**
 	 * YOU SHOULD FORMAT SONG WITH formatSong() BEFORE TOSSING IN SONG VARIABLE
+	 * @param song current song name want to set
+	 * @param score current score want to set
 	 */
 	static function setScore(song:String, score:Int):Void
 	{
@@ -47,6 +61,11 @@ class Highscore
 		FlxG.save.flush();
 	}
 
+	/**
+	 * Using this function before tossing in song variable
+	 * @param song current song name want to format
+	 * @param diff current difficult want to format
+	 */
 	public static function formatSong(song:String, diff:Int):String
 	{
 		var daSong:String = song;
@@ -59,6 +78,11 @@ class Highscore
 		return daSong;
 	}
 
+	/**
+	 * Using function score on song want to get
+	 * @param song current song want to get
+	 * @param diff current difficult want to get
+	 */
 	public static function getScore(song:String, diff:Int):Int
 	{
 		if (!songScores.exists(formatSong(song, diff)))
@@ -67,6 +91,11 @@ class Highscore
 		return songScores.get(formatSong(song, diff));
 	}
 
+	/**
+	 * Using function score on any week want to get
+	 * @param week current week want to get
+	 * @param diff current difficult want to get
+	 */
 	public static function getWeekScore(week:Int, diff:Int):Int
 	{
 		if (!songScores.exists(formatSong('week' + week, diff)))
@@ -75,6 +104,9 @@ class Highscore
 		return songScores.get(formatSong('week' + week, diff));
 	}
 
+	/**
+	 * loading score
+	 */
 	public static function load():Void
 	{
 		if (FlxG.save.data.songScores != null)

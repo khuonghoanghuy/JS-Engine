@@ -240,6 +240,9 @@ class Alphabet extends FlxSpriteGroup
 	}
 }
 
+/**
+ * Some Characters Alphabet
+ */
 class AlphaCharacter extends FlxSprite
 {
 	public static var alphabet:String = "abcdefghijklmnopqrstuvwxyz";

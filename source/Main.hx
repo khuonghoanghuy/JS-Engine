@@ -1,8 +1,5 @@
 package;
 
-import lime.ui.WindowAttributes;
-import flixel.system.FlxPreloader;
-import lime.app.Application;
 import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Lib;

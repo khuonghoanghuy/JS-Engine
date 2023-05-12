@@ -1,6 +1,5 @@
 package;
 
-import openfl.Lib;
 import flixel.FlxG;
 import Conductor.BPMChangeEvent;
 import flixel.addons.ui.FlxUISubState;
@@ -19,6 +18,18 @@ class MusicBeatSubstate extends FlxUISubState
 	private var curBeat:Int = 0;
 	private var controls(get, never):Controls;
 
+	inline function loadData()
+	{
+		PlayerSettings.init();
+        FlxG.save.bind('jsEngine', 'huy1234th');
+
+		Highscore.load();
+		FlxG.sound.cacheAll();
+	}
+
+	/**
+	 * Get Controls on player 1
+	 */
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
@@ -26,6 +37,8 @@ class MusicBeatSubstate extends FlxUISubState
 	{
 		//everyStep();
 		var oldStep:Int = curStep;
+
+		loadData();
 
 		#if desktop
 		if (FlxG.save.data.directfpsCap)

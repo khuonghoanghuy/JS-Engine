@@ -6,7 +6,6 @@ import Song.SwagSong;
  * ...
  * @author
  */
-
 typedef BPMChangeEvent =
 {
 	var stepTime:Int;
@@ -32,6 +31,10 @@ class Conductor
 	{
 	}
 
+	/**
+	 * When the chart have a change BMP section
+	 * @param song current song
+	 */
 	public static function mapBPMChanges(song:SwagSong)
 	{
 		bpmChangeMap = [];
@@ -59,6 +62,10 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
+	/**
+	 * new bmp map when the chart have
+	 * @param newBpm current bmp want to change
+	 */
 	public static function changeBPM(newBpm:Int)
 	{
 		bpm = newBpm;

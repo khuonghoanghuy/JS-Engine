@@ -1,7 +1,6 @@
 package;
 
 import flixel.FlxG;
-import openfl.Lib;
 import Conductor.BPMChangeEvent;
 import flixel.addons.ui.FlxUIState;
 
@@ -14,8 +13,20 @@ class MusicBeatState extends FlxUIState
 	private var curBeat:Int = 0;
 	private var controls(get, never):Controls;
 
+	/**
+	 * Get Controls on player 1
+	 */
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
+
+	inline function loadData()
+	{
+		PlayerSettings.init();
+        FlxG.save.bind('jsEngine', 'huy1234th');
+
+		Highscore.load();
+		FlxG.sound.cacheAll();
+	}
 
 	override function create()
 	{
@@ -29,6 +40,8 @@ class MusicBeatState extends FlxUIState
 	{
 		//everyStep();
 		var oldStep:Int = curStep;
+
+		loadData();
 
 		#if desktop
 		if (FlxG.save.data.directfpsCap)
@@ -87,11 +100,17 @@ class MusicBeatState extends FlxUIState
 		}
 	}
 
+	/**
+	 * update beat in playstate
+	 */
 	private function updateBeat():Void
 	{
 		curBeat = Math.floor(curStep / 4);
 	}
 
+	/**
+	 * update cur step in playstate
+	 */
 	private function updateCurStep():Void
 	{
 		var lastChange:BPMChangeEvent = {

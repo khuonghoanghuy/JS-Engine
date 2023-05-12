@@ -55,14 +55,6 @@ class TitleState extends MusicBeatState
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
-		// DEBUG BULLSHIT
-
-		PlayerSettings.init();
-        FlxG.save.bind('jsEngine', 'huy1234th');
-
-		Highscore.load();
-		FlxG.sound.cacheAll();
-
 		super.create();
 
 		if (FlxG.save.data.weekUnlocked != null)
@@ -278,12 +270,12 @@ class TitleState extends MusicBeatState
 		{
 			titleText.animation.play('press');
 
-			if (FlxG.random.bool(50) && !FlxG.save.data.flashCamera)
+			if (FlxG.random.bool(45.1) && !FlxG.save.data.flashCamera)
 				FlxG.camera.flash(FlxColor.BLUE, 1);
 			else if (!FlxG.save.data.flashCamera)
 				FlxG.camera.flash(FlxColor.WHITE, 1);
 			else {}
-			
+
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
 			transitioning = true;
@@ -417,7 +409,11 @@ class TitleState extends MusicBeatState
 		{
 			remove(ngSpr);
 
-			FlxG.camera.flash(FlxColor.WHITE, 4);
+			if (FlxG.random.bool(20.5) && !FlxG.save.data.flashCamera)
+				FlxG.camera.flash(FlxColor.GREEN, 4);
+			else if (!FlxG.save.data.flashCamera)
+				FlxG.camera.flash(FlxColor.WHITE, 4);
+			else {}
 			remove(credGroup);
 			skippedIntro = true;
 		}

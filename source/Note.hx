@@ -22,7 +22,7 @@ class Note extends FlxSprite
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 
-	public var noteScore:Float = 1;
+	// public var noteScore:Float = 1;
 
 	public static var swagWidth:Float = 160 * 0.7;
 	public static var PURP_NOTE:Int = 0;
@@ -126,7 +126,7 @@ class Note extends FlxSprite
 
 		if (isSustainNote && prevNote != null)
 		{
-			noteScore * 0.2;
+			// noteScore * 0.2;
 			alpha = 0.6;
 
 			x += width / 2;
@@ -169,6 +169,9 @@ class Note extends FlxSprite
 					case 3:
 						prevNote.animation.play('redhold');
 				}
+
+				if (FlxG.save.data.downscroll)
+					y -= 30;
 
 				prevNote.scale.y *= Conductor.stepCrochet / 100 * 1.5 * PlayState.SONG.speed;
 				prevNote.updateHitbox();
