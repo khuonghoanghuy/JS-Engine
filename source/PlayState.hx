@@ -75,6 +75,9 @@ class PlayState extends MusicBeatState
 	private var healthBarBG:FlxSprite;
 	private var healthBar:FlxBar;
 
+	private var timeBarBG:FlxSprite;
+	private var timeBar:FlxBar;
+
 	private var generatedMusic:Bool = false;
 	private var startingSong:Bool = false;
 
@@ -129,6 +132,8 @@ class PlayState extends MusicBeatState
 	public static var daPixelZoom:Float = 6;
 
 	var inCutscene:Bool = false;
+
+	var songLong:Float = 0;
 
 	#if desktop
 	// Discord RPC variables
@@ -618,7 +623,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-
 		var gfVersion:String = 'gf';
 
 		switch (curStage)
@@ -749,11 +753,7 @@ class PlayState extends MusicBeatState
 
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 
-		// startCountdown();
-
 		generateSong(SONG.song);
-
-		// add(strumLine);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
 
@@ -790,6 +790,24 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(0xFFFF0000, 0xFF66FF33);
 		// healthBar
 		add(healthBar);
+
+		if (FlxG.save.data.timeBar)
+		{
+			timeBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+			timeBarBG.screenCenter(X);
+			if (!FlxG.save.data.downscroll){
+				timeBarBG.y = 50;
+			}
+			timeBarBG.scrollFactor.set();
+			add(timeBarBG);
+	
+			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
+				, 0, 90000);
+			timeBar.scrollFactor.set();
+			timeBar.createFilledBar(0xFF4E4E4E, 0xFF66FF33);
+			// healthBar
+			add(timeBar);
+		}
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -871,6 +889,12 @@ class PlayState extends MusicBeatState
 			add(judgenment);
 
 			judgenment.cameras = [camHUD];
+		}
+
+		if (FlxG.save.data.timeBar)
+		{
+			timeBar.cameras = [camHUD];
+			timeBarBG.cameras = [camHUD];
 		}
 
 		doof.cameras = [camHUD];
@@ -1152,6 +1176,32 @@ class PlayState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.inst(PlayState.SONG.song), 1, false);
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
+
+		// songLength = FlxG.sound.music.length;
+
+		if (FlxG.save.data.timeBar)
+		{
+			remove(timeBarBG);
+			remove(timeBar);
+
+			timeBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+			timeBarBG.screenCenter(X);
+			if (!FlxG.save.data.downscroll){
+				timeBarBG.y = 50;
+			}
+			timeBarBG.scrollFactor.set();
+			add(timeBarBG);
+	
+			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
+				, 0, 90000);
+			timeBar.scrollFactor.set();
+			timeBar.createFilledBar(0xFF4E4E4E, 0xFF66FF33);
+			// healthBar
+			add(timeBar);
+
+			timeBar.cameras = [camHUD];
+			timeBarBG.cameras = [camHUD];
+		}
 
 		#if desktop
 		// Song duration in a float, useful for the time left feature
@@ -1652,6 +1702,8 @@ class PlayState extends MusicBeatState
 		{
 			// Conductor.songPosition = FlxG.sound.music.time;
 			Conductor.songPosition += FlxG.elapsed * 1000;
+
+			songLong = Conductor.songPosition;
 
 			if (!paused)
 			{

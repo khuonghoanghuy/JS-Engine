@@ -29,6 +29,7 @@ class OptionsMenu extends MusicBeatState
 		"Botplay",
 		"Watermark",
 		"Judgement Counter",
+		"Time Bar",
 		#if desktop
 		"FPS Cap",
 		"Direct FPS Cap Key",
@@ -218,6 +219,11 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.judgenment ? "On" : "Off";
 					FlxG.save.data.judgenment = FlxG.save.data.judgenment;
 
+				case "Time Bar":
+					FlxG.save.data.timeBar = !FlxG.save.data.timeBar;
+					optionsCheck.text = FlxG.save.data.timeBar ? "On" : "Off";
+					FlxG.save.data.timeBar = FlxG.save.data.timeBar;
+
 				case "Disable Flash Camera":
 					FlxG.save.data.flashCamera = !FlxG.save.data.flashCamera;
 					optionsCheck.text = FlxG.save.data.flashCamera ? "On" : "Off";
@@ -332,6 +338,10 @@ class OptionsMenu extends MusicBeatState
 			case "Disable Flash Camera":
 				optionsDesc.text = "Turn off or on the flash camera light on the game";
 				optionsCheck.text = FlxG.save.data.flashCamera ? "On" : "Off";
+
+			case "Time Bar":
+				optionsDesc.text = "Show you the current time in the game";
+				optionsCheck.text = FlxG.save.data.timeBar ? "On" : "Off";
 
 			#if desktop
 			case "Allow Writing Info":
