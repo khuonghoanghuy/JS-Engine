@@ -193,11 +193,13 @@ class MainMenuState extends MusicBeatState
 						}
 						else
 						{
+							if (!FlxG.save.data.flashCamera)
+								FlxG.camera.flash(FlxColor.WHITE, 1);
+							else {}
+
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];
-
-								FlxG.camera.flash(FlxColor.WHITE, 1);
 
 								switch (daChoice)
 								{
@@ -209,7 +211,7 @@ class MainMenuState extends MusicBeatState
 
 									case 'options':
 										#if debug
-										FlxG.switchState(new options.OptionsMenu_DEBUG());
+										FlxG.switchState(new options.OptionsMenu());
 										#else
 										FlxG.switchState(new options.OptionsMenu());
 										#end
