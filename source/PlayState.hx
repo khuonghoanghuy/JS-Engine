@@ -1717,7 +1717,7 @@ class PlayState extends MusicBeatState
 					// trace('MISSED FRAME');
 				}
 
-				songLong = (FlxG.sound.music.time / Conductor.songPosition);
+				songLong = FlxG.sound.music.time / Conductor.songPosition;
 			}
 
 			// Conductor.lastSongPos = FlxG.sound.music.time;
