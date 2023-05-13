@@ -1725,11 +1725,6 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
 		{
-			if (curBeat % 4 == 0)
-			{
-				// trace(PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection);
-			}
-
 			if (camFollow.x != dad.getMidpoint().x + 150 && !PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
 			{
 				camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
@@ -1803,9 +1798,6 @@ class PlayState extends MusicBeatState
 					gfSpeed = 2;
 				case 112:
 					gfSpeed = 1;
-				case 163:
-					// FlxG.sound.music.stop();
-					// FlxG.switchState(new TitleState());
 			}
 		}
 
@@ -1954,12 +1946,6 @@ class PlayState extends MusicBeatState
 						noteMiss(daNote.noteData);
 					}
 					else {}
-					// else
-					// {
-					// 	health += 0.023;
-					// 	// bool(true);
-					// 	goodNoteHit(daNote);
-					// }
 
 					daNote.active = false;
 					daNote.visible = false;
@@ -2214,11 +2200,12 @@ class PlayState extends MusicBeatState
 
 			if (!curStage.startsWith('school'))
 			{
-				numScore.antialiasing = true;
+				numScore.antialiasing = false;
 				numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			}
 			else
 			{
+				numScore.antialiasing = true;
 				numScore.setGraphicSize(Std.int(numScore.width * daPixelZoom));
 			}
 			numScore.updateHitbox();
@@ -2226,27 +2213,20 @@ class PlayState extends MusicBeatState
 			numScore.acceleration.y = FlxG.random.int(200, 300);
 			numScore.velocity.y -= FlxG.random.int(140, 160);
 			numScore.velocity.x = FlxG.random.float(-5, 5);
-
-			if (combo >= 10 || combo == 0)
-				add(numScore);
+			add(numScore);
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
 				{
 					numScore.destroy();
 				},
-				startDelay: Conductor.crochet * 0.002
+				startDelay: Conductor.crochet * 0.004
 			});
 
 			daLoop++;
 		}
-		/* 
-			trace(combo);
-			trace(seperatedScore);
-		 */
 
 		coolText.text = Std.string(seperatedScore);
-		// add(coolText);
 
 		FlxTween.tween(rating, {alpha: 0}, 0.2, {
 			startDelay: Conductor.crochet * 0.001
@@ -2508,10 +2488,8 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				totalNotesHit -= 1;
+				totalNotesHit -= 3;
 			}
-
-			// bool(false);
 		}
 		
 		updateAcc();
@@ -2534,8 +2512,6 @@ class PlayState extends MusicBeatState
 			noteMiss(2);
 		if (rightP)
 			noteMiss(3);
-
-		// bool(false);
 	}
 
 	function noteCheck(keyP:Bool, note:Note):Void
@@ -2691,8 +2667,6 @@ class PlayState extends MusicBeatState
 				note.kill();
 				notes.remove(note, true);
 				note.destroy();
-
-				// bool(false);
 			}
 		}
 
@@ -2779,8 +2753,6 @@ class PlayState extends MusicBeatState
 		gf.playAnim('hairFall');
 		phillyTrain.x = FlxG.width + 200;
 		trainMoving = false;
-		// trainSound.stop();
-		// trainSound.time = 0;
 		trainCars = 8;
 		trainFinishing = false;
 		startedMoving = false;
@@ -2832,8 +2804,10 @@ class PlayState extends MusicBeatState
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 				dad.dance();
+			else
+				dad.dance();
 		}
-		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
+
 		wiggleShit.update(Conductor.crochet);
 
 		// HARDCODING FOR MILF ZOOMS!
@@ -2926,7 +2900,6 @@ class PlayState extends MusicBeatState
 					curLight = FlxG.random.int(0, phillyCityLights.length - 1);
 
 					phillyCityLights.members[curLight].visible = true;
-					// phillyCityLights.members[curLight].alpha = 1;
 				}
 
 				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
