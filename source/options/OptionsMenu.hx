@@ -39,8 +39,9 @@ class OptionsMenu extends MusicBeatState
 		"Quality",
 		"Disable Flash Camera",
 		#if desktop
-		"Allow Writing Info"
+		"Allow Writing Info",
 		#end
+		"Clear Up Memory"
 	];
 
 	var optionsCheck:FlxText;
@@ -235,6 +236,9 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.allowWrite ? "On" : "Off";
 					FlxG.save.data.allowWrite = FlxG.save.data.allowWrite;
 				#end
+
+				case "Clear Up Memory":
+					FlxG.save.destroy();
 			}
 		}
 
@@ -348,6 +352,10 @@ class OptionsMenu extends MusicBeatState
 				optionsDesc.text = "Game will write a json file about all your info when you win a song";
 				optionsCheck.text = FlxG.save.data.allowWrite ? "On" : "Off";
 			#end
+
+			case "Clear Up Memory":
+				optionsDesc.text = "(You can clear memory anywhere by press F1) Clear Some memory";
+				optionsCheck.text = "";
 		}
 
 		if (curSelected < 0)

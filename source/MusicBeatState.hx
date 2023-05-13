@@ -23,6 +23,7 @@ class MusicBeatState extends FlxUIState
 	{
 		PlayerSettings.init();
         FlxG.save.bind('jsEngine', 'huy1234th');
+		FlxG.save.close(0);
 
 		Highscore.load();
 		FlxG.sound.cacheAll();
@@ -59,6 +60,11 @@ class MusicBeatState extends FlxUIState
 			}
 		}
 		#end
+
+		if (FlxG.keys.justPressed.F1)
+		{
+			FlxG.save.destroy();
+		}
 
 		#if html5
 		FlxG.updateFramerate = 60;
