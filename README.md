@@ -2,6 +2,8 @@
 
 ![](https://raw.githubusercontent.com/khuonghoanghuy/JS-Engine/master/art/JS-Engine-Logo.png)
 
+`Dont download from Action Tab because this is only for Page`
+
 `THIS ENGINE IS CURRENT ON DELEVOPMENT!, ANYTHING IN THE GAME CAN BE CHANGE IN THE FUTURE!`
 
 `JS Engine is a custom FNF Engine Build`
