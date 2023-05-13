@@ -1,7 +1,7 @@
 package;
 
-import flixel.FlxG;
 import Conductor.BPMChangeEvent;
+import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
 
 class MusicBeatState extends FlxUIState
@@ -22,8 +22,8 @@ class MusicBeatState extends FlxUIState
 	inline function loadData()
 	{
 		PlayerSettings.init();
-        FlxG.save.bind('jsEngine', 'huy1234th');
-		FlxG.save.close(0);
+		FlxG.save.bind('jsEngine', 'huy1234th');
+		// FlxG.save.close(0);
 
 		Highscore.load();
 		FlxG.sound.cacheAll();
@@ -39,7 +39,7 @@ class MusicBeatState extends FlxUIState
 
 	override function update(elapsed:Float)
 	{
-		//everyStep();
+		// everyStep();
 		var oldStep:Int = curStep;
 
 		loadData();
@@ -75,7 +75,7 @@ class MusicBeatState extends FlxUIState
 			case 0:
 				FlxG.updateFramerate = 60;
 				FlxG.drawFramerate = 60;
-			
+
 			case 1:
 				FlxG.updateFramerate = 75;
 				FlxG.drawFramerate = 75;
@@ -141,11 +141,10 @@ class MusicBeatState extends FlxUIState
 
 	public function beatHit():Void
 	{
-		//do literally nothing dumbass
+		// do literally nothing dumbass
 	}
-
 	/*public function bool(bool:Bool = false)
-    {
-        return bool;
-    }*/
+		{
+			return bool;
+	}*/
 }
