@@ -793,7 +793,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.timeBar)
 		{
-			timeBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+			timeBarBG = new FlxSprite(0, FlxG.height * 1.4).loadGraphic(Paths.image('healthBar'));
 			timeBarBG.screenCenter(X);
 			if (!FlxG.save.data.downscroll){
 				timeBarBG.y = 50;
@@ -801,7 +801,7 @@ class PlayState extends MusicBeatState
 			timeBarBG.scrollFactor.set();
 			add(timeBarBG);
 	
-			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 9, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
+			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
 				, 0, 90000);
 			timeBar.scrollFactor.set();
 			timeBar.createFilledBar(0xFF4E4E4E, 0xFF66FF33);
@@ -1184,7 +1184,7 @@ class PlayState extends MusicBeatState
 			remove(timeBarBG);
 			remove(timeBar);
 
-			timeBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+			timeBarBG = new FlxSprite(0, FlxG.height * 1.4).loadGraphic(Paths.image('healthBar'));
 			timeBarBG.screenCenter(X);
 			if (!FlxG.save.data.downscroll){
 				timeBarBG.y = 50;
@@ -1192,7 +1192,7 @@ class PlayState extends MusicBeatState
 			timeBarBG.scrollFactor.set();
 			add(timeBarBG);
 	
-			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 9, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
+			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
 				, 0, 90000);
 			timeBar.scrollFactor.set();
 			timeBar.createFilledBar(0xFF4E4E4E, 0xFF66FF33);
@@ -1703,8 +1703,6 @@ class PlayState extends MusicBeatState
 			// Conductor.songPosition = FlxG.sound.music.time;
 			Conductor.songPosition += FlxG.elapsed * 1000;
 
-			songLong = Conductor.songPosition / songTime;
-
 			if (!paused)
 			{
 				songTime += FlxG.game.ticks - previousFrameTime;
@@ -1718,6 +1716,8 @@ class PlayState extends MusicBeatState
 					// Conductor.songPosition += FlxG.elapsed * 1000;
 					// trace('MISSED FRAME');
 				}
+
+				songLong = (FlxG.sound.music.time / Conductor.songPosition);
 			}
 
 			// Conductor.lastSongPos = FlxG.sound.music.time;
