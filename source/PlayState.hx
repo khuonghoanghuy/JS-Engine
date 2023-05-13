@@ -801,7 +801,7 @@ class PlayState extends MusicBeatState
 			timeBarBG.scrollFactor.set();
 			add(timeBarBG);
 	
-			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
+			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 9, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
 				, 0, 90000);
 			timeBar.scrollFactor.set();
 			timeBar.createFilledBar(0xFF4E4E4E, 0xFF66FF33);
@@ -1192,7 +1192,7 @@ class PlayState extends MusicBeatState
 			timeBarBG.scrollFactor.set();
 			add(timeBarBG);
 	
-			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
+			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 9, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songLong'
 				, 0, 90000);
 			timeBar.scrollFactor.set();
 			timeBar.createFilledBar(0xFF4E4E4E, 0xFF66FF33);
@@ -1703,7 +1703,7 @@ class PlayState extends MusicBeatState
 			// Conductor.songPosition = FlxG.sound.music.time;
 			Conductor.songPosition += FlxG.elapsed * 1000;
 
-			songLong = Conductor.songPosition;
+			songLong = Conductor.songPosition / songTime;
 
 			if (!paused)
 			{
