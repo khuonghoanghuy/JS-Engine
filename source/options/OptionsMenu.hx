@@ -1,11 +1,11 @@
 package options;
 
-import flixel.addons.transition.FlxTransitionableState;
 import Controls.Control;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
@@ -31,8 +31,7 @@ class OptionsMenu extends MusicBeatState
 		"Judgement Counter",
 		"Time Bar",
 		#if desktop
-		"FPS Cap",
-		"Direct FPS Cap Key",
+		"FPS Cap", "Direct FPS Cap Key",
 		#end
 		"Hide GF",
 		"Only One Stage",
@@ -117,12 +116,12 @@ class OptionsMenu extends MusicBeatState
 				else
 				{
 					optionsDesc.text = "Have bit harder than the simple one! (Beta stuff, may can be broken!)";
-				} 
+				}
 		}
 
 		if (controls.ACCEPT)
 		{
-			switch(controlsStrings[curSelected])
+			switch (controlsStrings[curSelected])
 			{
 				#if debug
 				case "Edit My Float":
@@ -183,7 +182,7 @@ class OptionsMenu extends MusicBeatState
 					{
 						case 0:
 							optionsCheck.text = "At 60";
-						
+
 						case 1:
 							optionsCheck.text = "At 75";
 
@@ -261,7 +260,7 @@ class OptionsMenu extends MusicBeatState
 
 		curSelected += change;
 
-		switch(controlsStrings[curSelected])
+		switch (controlsStrings[curSelected])
 		{
 			#if debug
 			case "Edit My Float":
@@ -307,7 +306,7 @@ class OptionsMenu extends MusicBeatState
 				{
 					case 0:
 						optionsCheck.text = "At 60";
-					
+
 					case 1:
 						optionsCheck.text = "At 75";
 
@@ -326,7 +325,7 @@ class OptionsMenu extends MusicBeatState
 			case "Hide GF":
 				optionsDesc.text = "Hide GF when playing a song, that can make the game load more faster";
 				optionsCheck.text = FlxG.save.data.hidegf ? "On" : "Off";
-		
+
 			case "Only One Stage":
 				optionsDesc.text = "Will be change only load first stage game, maybe can make the game load more faster";
 				optionsCheck.text = FlxG.save.data.oneStage ? "On" : "Off";
@@ -354,8 +353,8 @@ class OptionsMenu extends MusicBeatState
 			#end
 
 			case "Clear Up Memory":
-				optionsDesc.text = "(You can clear memory anywhere by press F1) Clear Some memory";
-				optionsCheck.text = "";
+				optionsDesc.text = "Clear Some memory";
+				optionsCheck.text = "This Options has no have save data!";
 		}
 
 		if (curSelected < 0)
