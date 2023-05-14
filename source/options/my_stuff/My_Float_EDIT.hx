@@ -1,30 +1,26 @@
 package options.my_stuff;
 
-import flixel.addons.transition.FlxTransitionableState;
 import Controls.Control;
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.display.FlxGridOverlay;
+import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
-
-import var_game.My_Float.RANDOM;
 import var_game.My_Float.GET_GITAROO;
+import var_game.My_Float.RANDOM;
 
 class My_Float_EDIT extends MusicBeatState
 {
 	var selector:FlxText;
 	var curSelected:Int = 0;
 
-	var controlsStrings:Array<String> = [
-        "Cant restart game",
-        "Get Gitaroo State"
-	];
+	var controlsStrings:Array<String> = ["Cant restart game", "Get Gitaroo State"];
 
 	var optionsCheck:FlxText;
 	var optionsDesc:FlxText;
@@ -67,9 +63,9 @@ class My_Float_EDIT extends MusicBeatState
 		add(optionsCheck);
 
 		/*earseOptions = new FlxText(10, 10, 0, "Press R to reset data!", 16);
-		earseOptions.scrollFactor.set();
-		earseOptions.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(earseOptions);*/
+			earseOptions.scrollFactor.set();
+			earseOptions.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(earseOptions); */
 
 		changeSelection();
 
@@ -81,63 +77,76 @@ class My_Float_EDIT extends MusicBeatState
 		super.update(elapsed);
 
 		/*if (FlxG.keys.justPressed.R)
-		{
-			FlxG.save.erase();
-			FlxTransitionableState.skipNextTransIn = true;
-			FlxTransitionableState.skipNextTransOut = true;
-			FlxG.switchState(new BlackState());
-			// FlxG.resetGame();
+			{
+				FlxG.save.erase();
+				FlxTransitionableState.skipNextTransIn = true;
+				FlxTransitionableState.skipNextTransOut = true;
+				FlxG.switchState(new BlackState());
+				// FlxG.resetGame();
 		}*/
-
 		/*if (controls.ACCEPT)
-		{
-			switch(controlsStrings[curSelected])
 			{
+				switch(controlsStrings[curSelected])
+				{
 
-			}
+				}
 		}*/
 
-        if (controls.LEFT){
-            switch(controlsStrings[curSelected])
+		if (controls.LEFT)
+		{
+			switch (controlsStrings[curSelected])
 			{
-                case "Cant restart game":
-                    if (RANDOM == -0.1){
-                        RANDOM -= 0;
-                    }else{
-                        RANDOM -= 0.1;
-                    }
-                    optionsCheck.text = "" + RANDOM;
-			
-                case "Get Gitaroo State":
-                    if (GET_GITAROO == -0.1){
-                        GET_GITAROO -= 0;
-                    }else{
-                        GET_GITAROO -= 0.1;
-                    }
-                    optionsCheck.text = "" + GET_GITAROO;
-            }
-        }
+				case "Cant restart game":
+					if (RANDOM == -0.1)
+					{
+						RANDOM -= 0;
+					}
+					else
+					{
+						RANDOM -= 0.1;
+					}
+					optionsCheck.text = "" + RANDOM;
 
-        if (controls.RIGHT){
-            switch(controlsStrings[curSelected])
+				case "Get Gitaroo State":
+					if (GET_GITAROO == -0.1)
+					{
+						GET_GITAROO -= 0;
+					}
+					else
+					{
+						GET_GITAROO -= 0.1;
+					}
+					optionsCheck.text = "" + GET_GITAROO;
+			}
+		}
+
+		if (controls.RIGHT)
+		{
+			switch (controlsStrings[curSelected])
 			{
-                case "Cant restart game":
-                    if (RANDOM == 100){
-                        RANDOM += 0;
-                    }else{
-                        RANDOM += 0.1;
-                    }
-                    optionsCheck.text = "" + RANDOM;
-			
-                case "Get Gitaroo State":
-                    if (GET_GITAROO == 100){
-                        GET_GITAROO += 0;
-                    }else{
-                        GET_GITAROO += 0.1;
-                    }
-                    optionsCheck.text = "" + GET_GITAROO;
-            }
-        }
+				case "Cant restart game":
+					if (RANDOM == 100)
+					{
+						RANDOM += 0;
+					}
+					else
+					{
+						RANDOM += 0.1;
+					}
+					optionsCheck.text = "" + RANDOM;
+
+				case "Get Gitaroo State":
+					if (GET_GITAROO == 100)
+					{
+						GET_GITAROO += 0;
+					}
+					else
+					{
+						GET_GITAROO += 0.1;
+					}
+					optionsCheck.text = "" + GET_GITAROO;
+			}
+		}
 
 		if (controls.BACK)
 		{
@@ -158,15 +167,15 @@ class My_Float_EDIT extends MusicBeatState
 
 		curSelected += change;
 
-		switch(controlsStrings[curSelected])
+		switch (controlsStrings[curSelected])
 		{
-            case "Cant restart game":
-                optionsDesc.text = "Change a float number for getting 'cant restart game'";
-                optionsCheck.text = "" + RANDOM;
-        
-            case "Get Gitaroo State":
-                optionsDesc.text = "Change a float number for getting 'get gitaroo state'";
-                optionsCheck.text = "" + GET_GITAROO;
+			case "Cant restart game":
+				optionsDesc.text = "Change a float number for getting 'cant restart game'";
+				optionsCheck.text = "" + RANDOM;
+
+			case "Get Gitaroo State":
+				optionsDesc.text = "Change a float number for getting 'get gitaroo state'";
+				optionsCheck.text = "" + GET_GITAROO;
 		}
 
 		if (curSelected < 0)
