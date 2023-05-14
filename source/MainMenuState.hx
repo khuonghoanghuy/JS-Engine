@@ -210,11 +210,7 @@ class MainMenuState extends MusicBeatState
 										FlxG.switchState(new playMode.FreeplayState());
 
 									case 'options':
-										#if debug
 										FlxG.switchState(new options.OptionsMenu());
-										#else
-										FlxG.switchState(new options.OptionsMenu());
-										#end
 								}
 							});
 						}
