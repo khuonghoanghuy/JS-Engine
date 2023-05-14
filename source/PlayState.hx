@@ -144,7 +144,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-		Paths.clearUP();
+		// Paths.clearUP();
 
 		songAccuracy = 100.0;
 
