@@ -38,7 +38,7 @@ JS Engine is contains some custom:
 
 `This Engine is working by me!`
 
-# Screen Shot
+# Screen Shot (This is old)
 
 Screen 1:
 ![screen_1](https://raw.githubusercontent.com/khuonghoanghuy/JS-Engine/master/art/screen_Shot/screen_1.png?token=GHSAT0AAAAAACAYZ2W7MA5FTSNGM3UTXS26ZB755VQ)
