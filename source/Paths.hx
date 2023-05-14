@@ -11,6 +11,11 @@ class Paths
 
 	static var currentLevel:String;
 
+	static public function clearUP()
+	{
+		FlxG.save.destroy();
+	}
+
 	static public function setCurrentLevel(name:String)
 	{
 		currentLevel = name.toLowerCase();

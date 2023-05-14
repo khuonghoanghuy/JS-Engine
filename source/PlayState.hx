@@ -144,6 +144,8 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		Paths.clearUP();
+
 		songAccuracy = 100.0;
 
 		shits = 0;
@@ -1836,7 +1838,7 @@ class PlayState extends MusicBeatState
 					// trace('MISSED FRAME');
 				}
 
-				songLong = FlxG.sound.music.time / Conductor.songPosition;
+				songLong = songTime;
 			}
 
 			// Conductor.lastSongPos = FlxG.sound.music.time;
