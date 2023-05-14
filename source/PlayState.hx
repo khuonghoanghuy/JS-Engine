@@ -1470,7 +1470,10 @@ class PlayState extends MusicBeatState
 			}
 
 			babyArrow.animation.play('static');
-			babyArrow.x += 75;
+			if (FlxG.save.data.middleScroll)
+				babyArrow.x += 20;
+			else
+				babyArrow.x += 75;
 			babyArrow.x += ((FlxG.width / 2) * player);
 
 			strumLineNotes.add(babyArrow);
