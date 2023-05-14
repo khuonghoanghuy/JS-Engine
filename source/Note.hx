@@ -39,10 +39,7 @@ class Note extends FlxSprite
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 
-		if (FlxG.save.data.middleScroll)
-			x += 20;
-		else
-			x += 75;
+		x += 75;
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
 		y -= 2000;
 		this.strumTime = strumTime;

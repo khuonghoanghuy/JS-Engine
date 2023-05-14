@@ -24,7 +24,6 @@ class OptionsMenu extends MusicBeatState
 		#end
 		"Ghost tap",
 		"Downscroll",
-		"MiddleScroll",
 		"Accuracy Display",
 		"Accuracy Type",
 		"Botplay",
@@ -155,11 +154,6 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.downscroll = !FlxG.save.data.downscroll;
 					optionsCheck.text = FlxG.save.data.downscroll ? "On" : "Off";
 					FlxG.save.data.downscroll = FlxG.save.data.downscroll;
-
-				case "MiddleScroll":
-					FlxG.save.data.middleScroll = !FlxG.save.data.middleScroll;
-					optionsCheck.text = FlxG.save.data.middleScroll ? "On" : "Off";
-					FlxG.save.data.middleScroll = FlxG.save.data.middleScroll;
 
 				case "Accuracy Display":
 					FlxG.save.data.accuracy = !FlxG.save.data.accuracy;
@@ -297,10 +291,6 @@ class OptionsMenu extends MusicBeatState
 			case "Downscroll":
 				optionsDesc.text = "Change layout from upscroll to downscroll";
 				optionsCheck.text = FlxG.save.data.downscroll ? "On" : "Off";
-
-			case "MiddleScroll":
-				optionsDesc.text = "Move to center screen scroll and hide the opponent note strum";
-				optionsCheck.text = FlxG.save.data.middleScroll ? "On" : "Off";
 
 			case "Accuracy Display":
 				optionsDesc.text = "Add alot info like Misses and Accuracy";

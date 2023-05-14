@@ -262,9 +262,9 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			switch (SONG.song.toLowerCase())
+			switch (SONG.stage)
 			{
-				case 'spookeez' | 'monster' | 'south':
+				case 'spooky':
 					{
 						curStage = 'spooky';
 						halloweenLevel = true;
@@ -281,7 +281,7 @@ class PlayState extends MusicBeatState
 
 						isHalloween = true;
 					}
-				case 'pico' | 'blammed' | 'philly':
+				case 'philly':
 					{
 						curStage = 'philly';
 
@@ -349,7 +349,7 @@ class PlayState extends MusicBeatState
 						var street:FlxSprite = new FlxSprite(-40, streetBehind.y).loadGraphic(Paths.image('philly/street'));
 						add(street);
 					}
-				case 'milf' | 'satin-panties' | 'high':
+				case 'limo':
 					{
 						curStage = 'limo';
 						defaultCamZoom = 0.90;
@@ -410,7 +410,7 @@ class PlayState extends MusicBeatState
 						fastCar = new FlxSprite(-300, 160).loadGraphic(Paths.image('limo/fastCarLol'));
 						// add(limo);
 					}
-				case 'cocoa' | 'eggnog':
+				case 'mall':
 					{
 						curStage = 'mall';
 
@@ -490,7 +490,7 @@ class PlayState extends MusicBeatState
 						santa.antialiasing = true;
 						add(santa);
 					}
-				case 'winter-horrorland':
+				case 'mallEvil':
 					{
 						curStage = 'mallEvil';
 						var bg:FlxSprite = new FlxSprite(-400, -500).loadGraphic(Paths.image('christmas/evilBG'));
@@ -510,7 +510,7 @@ class PlayState extends MusicBeatState
 						evilSnow.antialiasing = true;
 						add(evilSnow);
 					}
-				case 'senpai' | 'roses':
+				case 'school':
 					{
 						curStage = 'school';
 
@@ -609,7 +609,7 @@ class PlayState extends MusicBeatState
 						}
 						add(bgGirls);
 					}
-				case 'thorns':
+				case 'schoolEvil':
 					{
 						curStage = 'schoolEvil';
 
@@ -626,6 +626,42 @@ class PlayState extends MusicBeatState
 						bg.scrollFactor.set(0.8, 0.9);
 						bg.scale.set(6, 6);
 						add(bg);
+					}
+				case 'stage':
+					{
+						defaultCamZoom = 0.9;
+						curStage = 'stage';
+						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
+						bg.antialiasing = true;
+						bg.scrollFactor.set(0.9, 0.9);
+						bg.active = false;
+						add(bg);
+
+						var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
+						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+						stageFront.updateHitbox();
+						stageFront.antialiasing = true;
+						stageFront.scrollFactor.set(0.9, 0.9);
+						stageFront.active = false;
+						add(stageFront);
+
+						var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
+						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
+						stageCurtains.updateHitbox();
+						stageCurtains.antialiasing = true;
+						stageCurtains.scrollFactor.set(1.3, 1.3);
+						stageCurtains.active = false;
+
+						if (FlxG.save.data.quality)
+						{
+							stageCurtains.visible = false;
+						}
+						else
+						{
+							stageCurtains.visible = true;
+						}
+
+						add(stageCurtains);
 					}
 				default:
 					{
@@ -668,20 +704,20 @@ class PlayState extends MusicBeatState
 
 		var gfVersion:String = 'gf';
 
-		switch (curStage)
+		switch (SONG.gf)
 		{
-			case 'limo':
+			case 'gf-car':
 				gfVersion = 'gf-car';
-			case 'mall' | 'mallEvil':
+			case 'gf-christams':
 				gfVersion = 'gf-christmas';
-			case 'school':
+			case 'gf-pixel':
 				gfVersion = 'gf-pixel';
-			case 'schoolEvil':
-				gfVersion = 'gf-pixel';
+			default:
+				gfVersion = 'gf';
 		}
 
-		if (curStage == 'limo')
-			gfVersion = 'gf-car';
+		// if (curStage == 'limo')
+		// 	gfVersion = 'gf-car';
 
 		gf = new Character(400, 130, gfVersion);
 		gf.scrollFactor.set(0.95, 0.95);
@@ -1470,10 +1506,9 @@ class PlayState extends MusicBeatState
 			}
 
 			babyArrow.animation.play('static');
-			if (FlxG.save.data.middleScroll)
-				babyArrow.x += 20;
-			else
-				babyArrow.x += 75;
+
+			babyArrow.x += 75;
+
 			babyArrow.x += ((FlxG.width / 2) * player);
 
 			strumLineNotes.add(babyArrow);
