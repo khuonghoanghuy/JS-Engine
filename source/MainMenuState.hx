@@ -25,16 +25,9 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
-	var optionShit:Array<String> = [
-		'story mode', 
-		'freeplay', 
-		'options'
-	];
+	var optionShit:Array<String> = ['story mode', 'freeplay', 'options'];
 	#else
-	var optionShit:Array<String> = [
-		'story mode', 
-		'freeplay'
-	];
+	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
 
 	var magenta:FlxSprite;
@@ -113,7 +106,12 @@ class MainMenuState extends MusicBeatState
 		}
 		else
 		{
-			var versionShit:FlxText = new FlxText(5, FlxG.height - 66, 0, "Friday Night Funkin' v" + Application.current.meta.get('version') + "\n\nJS Engine v" + Options.ver, 18);
+			var versionShit:FlxText = new FlxText(5, FlxG.height
+				- 66, 0,
+				"Friday Night Funkin' v"
+				+ Application.current.meta.get('version')
+				+ "\n\nJS Engine v"
+				+ Options.ver, 18);
 			versionShit.scrollFactor.set();
 			versionShit.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit);
@@ -195,7 +193,9 @@ class MainMenuState extends MusicBeatState
 						{
 							if (!FlxG.save.data.flashCamera)
 								FlxG.camera.flash(FlxColor.WHITE, 1);
-							else {}
+							else
+							{
+							}
 
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
@@ -205,7 +205,7 @@ class MainMenuState extends MusicBeatState
 								{
 									case 'story mode':
 										FlxG.switchState(new playMode.StoryMenuState());
-										
+
 									case 'freeplay':
 										FlxG.switchState(new playMode.FreeplayState());
 

@@ -1,16 +1,16 @@
 package preloader;
 
-import flixel.FlxSprite;
-import openfl.display.BlendMode;
-import flixel.system.FlxAssets;
-import flixel.system.FlxBasePreloader;
-import flixel.FlxG;
 import flash.Lib;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 import flash.display.Sprite;
 import flash.text.TextField;
 import flash.text.TextFormat;
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.system.FlxAssets;
+import flixel.system.FlxBasePreloader;
+import openfl.display.BlendMode;
 
 class JSPreloader extends FlxBasePreloader
 {
@@ -106,38 +106,38 @@ class JSPreloader extends FlxBasePreloader
 		_text.text = Std.string(FlxG.VERSION) + " " + Std.int(Percent * 100) + "%" + " - JSE";
 
 		/*if (Percent < 0.1)
-		{
-			_logoGlow.alpha = 0;
-			_logo.alpha = 0;
-		}
-		else if (Percent < 0.15)
-		{
-			_logoGlow.alpha = Math.random();
-			_logo.alpha = 0;
-		}
-		else if (Percent < 0.2)
-		{
-			_logoGlow.alpha = 0;
-			_logo.alpha = 0;
-		}
-		else if (Percent < 0.25)
-		{
-			_logoGlow.alpha = 0;
-			_logo.alpha = Math.random();
-		}
-		else if (Percent < 0.7)
-		{
-			_logoGlow.alpha = (Percent - 0.45) / 0.45;
-			_logo.alpha = 1;
-		}
-		else if ((Percent > 0.8) && (Percent < 0.9))
-		{
-			_logoGlow.alpha = 1 - (Percent - 0.8) / 0.1;
-			_logo.alpha = 0;
-		}
-		else if (Percent > 0.9)
-		{
-			_buffer.alpha = 1 - (Percent - 0.9) / 0.1;
+			{
+				_logoGlow.alpha = 0;
+				_logo.alpha = 0;
+			}
+			else if (Percent < 0.15)
+			{
+				_logoGlow.alpha = Math.random();
+				_logo.alpha = 0;
+			}
+			else if (Percent < 0.2)
+			{
+				_logoGlow.alpha = 0;
+				_logo.alpha = 0;
+			}
+			else if (Percent < 0.25)
+			{
+				_logoGlow.alpha = 0;
+				_logo.alpha = Math.random();
+			}
+			else if (Percent < 0.7)
+			{
+				_logoGlow.alpha = (Percent - 0.45) / 0.45;
+				_logo.alpha = 1;
+			}
+			else if ((Percent > 0.8) && (Percent < 0.9))
+			{
+				_logoGlow.alpha = 1 - (Percent - 0.8) / 0.1;
+				_logo.alpha = 0;
+			}
+			else if (Percent > 0.9)
+			{
+				_buffer.alpha = 1 - (Percent - 0.9) / 0.1;
 		}*/
 	}
 }

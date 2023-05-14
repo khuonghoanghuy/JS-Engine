@@ -86,11 +86,13 @@ class FreeplayState extends MusicBeatState
 		for (i in 0...songs.length)
 		{
 			var songText:Alphabet = new Alphabet(0, (70 * i) + 30, songs[i].songName, true, false);
-			if (!FlxG.save.data.watermark){
+			if (!FlxG.save.data.watermark)
+			{
 				songText.isCenterItem = false;
 				songText.isMenuItem = true;
 			}
-			else{
+			else
+			{
 				songText.isCenterItem = true;
 				songText.isMenuItem = false;
 			}

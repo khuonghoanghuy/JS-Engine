@@ -1,10 +1,5 @@
 package;
 
-import openfl.display.Sprite;
-#if desktop
-import Discord.DiscordClient;
-import sys.thread.Thread;
-#end
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
@@ -19,22 +14,29 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import lime.utils.Assets;
 import lime.app.Application;
+import lime.utils.Assets;
+import openfl.display.Sprite;
 
 using StringTools;
 
+#if desktop
+import Discord.DiscordClient;
+import sys.thread.Thread;
+#end
+
 @:build(flixel.system.FlxAssets.buildFileReferences("assets", true))
-class AssetPaths {}
+class AssetPaths
+{
+}
 
 /*class Load extends Sprite
-{
+	{
 	public function new(name:String)
 	{
 
 	}
 }*/
-
 class TitleState extends MusicBeatState
 {
 	static var initialized:Bool = false;
@@ -80,10 +82,11 @@ class TitleState extends MusicBeatState
 
 		#if desktop
 		DiscordClient.initialize();
-		
-		Application.current.onExit.add (function (exitCode) {
+
+		Application.current.onExit.add(function(exitCode)
+		{
 			DiscordClient.shutdown();
-		 });
+		});
 		#end
 	}
 
@@ -147,10 +150,13 @@ class TitleState extends MusicBeatState
 		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
-		if (FlxG.save.data.watermark){
+		if (FlxG.save.data.watermark)
+		{
 			logoBl.screenCenter();
 		}
-		else{}
+		else
+		{
+		}
 		add(logoBl);
 		// logoBl.color = FlxColor.BLACK;
 
@@ -159,10 +165,12 @@ class TitleState extends MusicBeatState
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = true;
-		if (FlxG.save.data.watermark){
+		if (FlxG.save.data.watermark)
+		{
 			// add(gfDance);
 		}
-		else{
+		else
+		{
 			add(gfDance);
 		}
 
@@ -274,7 +282,9 @@ class TitleState extends MusicBeatState
 				FlxG.camera.flash(FlxColor.BLUE, 1);
 			else if (!FlxG.save.data.flashCamera)
 				FlxG.camera.flash(FlxColor.WHITE, 1);
-			else {}
+			else
+			{
+			}
 
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
 
@@ -344,7 +354,7 @@ class TitleState extends MusicBeatState
 		{
 			case 1:
 				if (FlxG.save.data.watermark)
-					createCoolText(['ThatPeople']);	
+					createCoolText(['ThatPeople']);
 				else
 					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 			// credTextShit.visible = true;
@@ -359,7 +369,7 @@ class TitleState extends MusicBeatState
 			// credTextShit.screenCenter();
 			case 5:
 				if (FlxG.save.data.watermark)
-					createCoolText(['Not association', 'with']);	
+					createCoolText(['Not association', 'with']);
 				else
 					createCoolText(['In association', 'with']);
 			case 7:
@@ -413,7 +423,9 @@ class TitleState extends MusicBeatState
 				FlxG.camera.flash(FlxColor.GREEN, 4);
 			else if (!FlxG.save.data.flashCamera)
 				FlxG.camera.flash(FlxColor.WHITE, 4);
-			else {}
+			else
+			{
+			}
 			remove(credGroup);
 			skippedIntro = true;
 		}

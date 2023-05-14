@@ -1,10 +1,10 @@
 package;
 
-import obj_game.Boyfriend;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
+import obj_game.Boyfriend;
 
 class GameOverSubstate extends MusicBeatSubstate
 {
