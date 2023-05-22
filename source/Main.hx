@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxGame;
 import flixel.FlxState;
+import flixel.addons.studio.FlxStudio;
 import openfl.Lib;
 import openfl.display.FPS;
 import openfl.display.Sprite;
@@ -72,5 +73,7 @@ class Main extends Sprite
 		#if !mobile
 		addChild(new FPS(10, 5, 0xFFFFFF));
 		#end
+
+		FlxStudio.create();
 	}
 }
