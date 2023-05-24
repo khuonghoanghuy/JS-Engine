@@ -41,6 +41,7 @@ class OptionsMenu extends MusicBeatState
 		#if desktop
 		"Allow Writing Info",
 		#end
+		"Run Shaders Unuse",
 		"Clear Up Memory"
 	];
 
@@ -258,9 +259,16 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.allowWrite = FlxG.save.data.allowWrite;
 				#end
 
+				case "Run Shaders Unuse":
+					FlxG.save.data.shadersUnuse = !FlxG.save.data.shadersUnuse;
+					optionsCheck.text = FlxG.save.data.shadersUnuse ? "On" : "Off";
+					FlxG.save.data.shadersUnuse = FlxG.save.data.shadersUnuse;
+
 				case "Clear Up Memory":
 					FlxG.save.destroy();
 			}
+
+			FlxG.save.flush();
 		}
 
 		if (controls.BACK)
@@ -377,6 +385,10 @@ class OptionsMenu extends MusicBeatState
 				optionsDesc.text = "Game will write a json file about all your info when you win a song";
 				optionsCheck.text = FlxG.save.data.allowWrite ? "On" : "Off";
 			#end
+
+			case "Run Shaders Unuse":
+				optionsDesc.text = "Enable run shaders background (only in Thorns Song!)";
+				optionsCheck.text = FlxG.save.data.shadersUnuse ? "On" : "Off";
 
 			case "Clear Up Memory":
 				optionsDesc.text = "Clear Some memory";
