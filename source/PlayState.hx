@@ -135,6 +135,7 @@ class PlayState extends MusicBeatState
 	var inCutscene:Bool = false;
 
 	var songLong:Float = 0;
+	var songLength2:Float = 0;
 
 	#if desktop
 	// Discord RPC variables
@@ -854,11 +855,11 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.timeBar)
 		{
-			timeBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+			timeBarBG = new FlxSprite(100, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
 			timeBarBG.screenCenter(X);
 			if (!FlxG.save.data.downscroll)
 			{
-				timeBarBG.y = 50;
+				timeBarBG.y = 30;
 			}
 			timeBarBG.scrollFactor.set();
 			add(timeBarBG);
@@ -1247,24 +1248,27 @@ class PlayState extends MusicBeatState
 		FlxG.sound.music.onComplete = endSong;
 		vocals.play();
 
-		// songLength = FlxG.sound.music.length;
+		songLength2 = FlxG.sound.music.length;
 
 		if (FlxG.save.data.timeBar)
 		{
 			remove(timeBarBG);
 			remove(timeBar);
 
-			timeBarBG = new FlxSprite(0, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
+			timeBarBG = new FlxSprite(100, FlxG.height * 0.9).loadGraphic(Paths.image('healthBar'));
 			timeBarBG.screenCenter(X);
 			if (!FlxG.save.data.downscroll)
 			{
-				timeBarBG.y = 50;
+				timeBarBG.y = 30;
 			}
 			timeBarBG.scrollFactor.set();
 			add(timeBarBG);
 
-			timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
-				'songLong', 0, 90000);
+			timeBar = new FlxBar(timeBarBG.x
+				+ 4, timeBarBG.y
+				+ 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
+				'songLong', 0, songLength2
+				- 1000);
 			timeBar.scrollFactor.set();
 			timeBar.createFilledBar(0xFF4E4E4E, 0xFF66FF33);
 			// healthBar
