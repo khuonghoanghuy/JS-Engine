@@ -2,8 +2,10 @@ package;
 
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
-import flixel.addons.studio.FlxStudio;
 import flixel.addons.ui.FlxUISubState;
+#if debug
+import flixel.addons.studio.FlxStudio;
+#end
 
 class MusicBeatSubstate extends FlxUISubState
 {
@@ -11,7 +13,9 @@ class MusicBeatSubstate extends FlxUISubState
 	{
 		super();
 
+		#if debug
 		FlxStudio.create();
+		#end
 	}
 
 	private var lastBeat:Float = 0;

@@ -12,7 +12,7 @@ Check something here:
 
 - [Check the Wiki now!](https://github.com/khuonghoanghuy/JS-Engine/wiki)
 
-- [Check my website!](https://khuonghoanghuy.github.io/JS-Engine/)
+- [Check my website! (That outdated now!)](https://khuonghoanghuy.github.io/JS-Engine/)
 
 - [Download From here](https://huy1234th.itch.io/fnf-js-engine)
 

@@ -1488,6 +1488,7 @@ class PlayState extends MusicBeatState
 						{
 							babyArrow.animation.play("static", true);
 							babyArrow.centerOffsets();
+							boyfriend.playAnim("idle");
 						}
 					}
 				}
@@ -1671,9 +1672,9 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: "
 				+ songScore
-				+ "\nMisses: "
+				+ "| Misses: "
 				+ songMiss
-				+ "\nAccuracy: "
+				+ "| Accuracy: "
 				+ truncateFloat(songAccuracy, 2)
 				+ "%"
 				+ " ("
@@ -1800,11 +1801,12 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.EIGHT)
 		{
-			persistentUpdate = false;
-			persistentDraw = true;
-			paused = true;
+			FlxG.switchState(new animationDEBUG.AnimationDebug(SONG.player2));
+		}
 
-			openSubState(new animationDEBUG.DebugSubState());
+		if (FlxG.keys.justPressed.NINE)
+		{
+			FlxG.switchState(new animationDEBUG.AnimationDebug(SONG.player1));
 		}
 
 		if (startingSong)

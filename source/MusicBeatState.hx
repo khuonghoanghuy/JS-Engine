@@ -2,8 +2,10 @@ package;
 
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
-import flixel.addons.studio.FlxStudio;
 import flixel.addons.ui.FlxUIState;
+#if debug
+import flixel.addons.studio.FlxStudio;
+#end
 
 class MusicBeatState extends FlxUIState
 {
@@ -37,7 +39,9 @@ class MusicBeatState extends FlxUIState
 
 		super.create();
 
+		#if debug
 		FlxStudio.create();
+		#end
 	}
 
 	override function update(elapsed:Float)
