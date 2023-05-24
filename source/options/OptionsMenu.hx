@@ -26,6 +26,7 @@ class OptionsMenu extends MusicBeatState
 		"Downscroll",
 		"Accuracy Display",
 		"Accuracy Type",
+		"Note Splash",
 		"Botplay",
 		"Watermark",
 		"Judgement Counter",
@@ -73,12 +74,12 @@ class OptionsMenu extends MusicBeatState
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
 
-		optionsDesc = new FlxText(10, FlxG.height - 44, 0, "", 18);
+		optionsDesc = new FlxText(10, FlxG.height - 22, 0, "", 18);
 		optionsDesc.scrollFactor.set();
 		optionsDesc.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(optionsDesc);
 
-		optionsCheck = new FlxText(10, FlxG.height - 22, 0, "", 18);
+		optionsCheck = new FlxText(10, FlxG.height - 44, 0, "", 18);
 		optionsCheck.scrollFactor.set();
 		optionsCheck.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(optionsCheck);
@@ -172,6 +173,11 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.accuracyType = !FlxG.save.data.accuracyType;
 					optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
 					FlxG.save.data.accuracyType = FlxG.save.data.accuracyType;
+
+				case "Note Splash":
+					FlxG.save.data.noteSplashes = !FlxG.save.data.noteSplashes;
+					optionsCheck.text = FlxG.save.data.noteSplashes ? "On" : "Off";
+					FlxG.save.data.noteSplashes = FlxG.save.data.noteSplashes;
 
 				case "Botplay":
 					FlxG.save.data.botplay = !FlxG.save.data.botplay;
@@ -306,6 +312,10 @@ class OptionsMenu extends MusicBeatState
 					optionsDesc.text = "Have bit harder than the simple one! (Beta stuff, may can be broken!)";
 				}
 				optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
+
+			case "Note Splash":
+				optionsDesc.text = "When hit sick combo, splash animation will be play";
+				optionsCheck.text = FlxG.save.data.noteSplashes ? "On" : "Off";
 
 			case "Botplay":
 				optionsDesc.text = "Can help you showcase the chart";

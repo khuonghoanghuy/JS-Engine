@@ -63,6 +63,8 @@ class PlayState extends MusicBeatState
 	private var playerStrums:FlxTypedGroup<FlxSprite>;
 	private var player2Strums:FlxTypedGroup<FlxSprite>;
 
+	var grpNoteSplashes:FlxTypedGroup<NoteSplash>;
+
 	private var camZooming:Bool = false;
 	private var curSong:String = "";
 
@@ -799,6 +801,14 @@ class PlayState extends MusicBeatState
 		strumLineNotes = new FlxTypedGroup<FlxSprite>();
 		add(strumLineNotes);
 
+		grpNoteSplashes = new FlxTypedGroup<NoteSplash>();
+
+		var noteSplash:NoteSplash = new NoteSplash(100, 100, 0);
+		grpNoteSplashes.add(noteSplash);
+		noteSplash.alpha = 0.1;
+
+		add(grpNoteSplashes);
+
 		playerStrums = new FlxTypedGroup<FlxSprite>();
 
 		player2Strums = new FlxTypedGroup<FlxSprite>();
@@ -901,6 +911,7 @@ class PlayState extends MusicBeatState
 			add(botplayTxt);
 		}
 
+		grpNoteSplashes.cameras = [camHUD];
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
@@ -1465,13 +1476,33 @@ class PlayState extends MusicBeatState
 
 			babyArrow.ID = i;
 
+			// fps plus code
 			if (player == 1)
 			{
 				playerStrums.add(babyArrow);
+				if (FlxG.save.data.botplay)
+				{
+					babyArrow.animation.finishCallback = function(name:String)
+					{
+						if (name == "confirm")
+						{
+							babyArrow.animation.play("static", true);
+							babyArrow.centerOffsets();
+						}
+					}
+				}
 			}
 			else
 			{
 				player2Strums.add(babyArrow);
+				babyArrow.animation.finishCallback = function(name:String)
+				{
+					if (name == "confirm")
+					{
+						babyArrow.animation.play("static", true);
+						babyArrow.centerOffsets();
+					}
+				}
 			}
 
 			babyArrow.animation.play('static');
@@ -2017,18 +2048,6 @@ class PlayState extends MusicBeatState
 							else
 								spr.centerOffsets();
 						}
-						else
-						{
-							spr.animation.play('static', true);
-							if (spr.animation.curAnim.name == 'static' && !curStage.startsWith('school'))
-							{
-								spr.centerOffsets();
-								spr.offset.x -= 13;
-								spr.offset.y -= 13;
-							}
-							else
-								spr.centerOffsets();
-						}
 					});
 
 					if (SONG.needsVoices)
@@ -2213,7 +2232,7 @@ class PlayState extends MusicBeatState
 
 	var endingSong:Bool = false;
 
-	private function popUpScore(strumtime:Float):Void
+	private function popUpScore(strumtime:Float, daNote:Note):Void
 	{
 		var noteDiff:Float = Math.abs(strumtime - Conductor.songPosition);
 		// boyfriend.playAnim('hey');
@@ -2237,7 +2256,7 @@ class PlayState extends MusicBeatState
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
 			else
-				totalNotesHit += 0.1;
+				totalNotesHit += 0.3;
 			score = 50;
 			shits++;
 		}
@@ -2247,7 +2266,7 @@ class PlayState extends MusicBeatState
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
 			else
-				totalNotesHit += 0.1;
+				totalNotesHit += 0.3;
 			score = 50;
 			shits++;
 		}
@@ -2258,7 +2277,7 @@ class PlayState extends MusicBeatState
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
 			else
-				totalNotesHit += 0.1;
+				totalNotesHit += 0.55;
 			bads++;
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
@@ -2267,7 +2286,7 @@ class PlayState extends MusicBeatState
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
 			else
-				totalNotesHit += 0.1;
+				totalNotesHit += 0.9;
 			score = 200;
 			goods++;
 		}
@@ -2276,6 +2295,14 @@ class PlayState extends MusicBeatState
 			totalNotesHit += 1;
 			score = 350;
 			sicks++;
+
+			if (FlxG.save.data.noteSplashes)
+			{
+				var noteSplash:NoteSplash = grpNoteSplashes.recycle(NoteSplash);
+				noteSplash.setupNoteSplash(daNote.x, daNote.y, daNote.noteData);
+				// new NoteSplash(daNote.x, daNote.y, daNote.noteData);
+				grpNoteSplashes.add(noteSplash);
+			}
 		}
 
 		songScore += score;
@@ -2500,7 +2527,7 @@ class PlayState extends MusicBeatState
 						}
 						else
 						{
-							totalNotesHit += 1;
+							totalNotesHit += 0.85;
 						}
 
 						switch (daNote.noteData)
@@ -2681,7 +2708,7 @@ class PlayState extends MusicBeatState
 		{
 			if (!note.isSustainNote)
 			{
-				popUpScore(note.strumTime);
+				popUpScore(note.strumTime, note);
 				combo += 1;
 			}
 
@@ -2769,7 +2796,7 @@ class PlayState extends MusicBeatState
 		{
 			if (!note.isSustainNote)
 			{
-				popUpScore(note.strumTime);
+				popUpScore(note.strumTime, note);
 				combo += 1;
 				if (songAccuracy == 100)
 				{
@@ -2956,7 +2983,9 @@ class PlayState extends MusicBeatState
 
 			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
+			{
 				dad.dance();
+			}
 		}
 		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
 		wiggleShit.update(Conductor.crochet);
