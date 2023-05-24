@@ -1671,9 +1671,9 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: "
 				+ songScore
-				+ " - Misses: "
+				+ "\nMisses: "
 				+ songMiss
-				+ " - Accuracy: "
+				+ "\nAccuracy: "
 				+ truncateFloat(songAccuracy, 2)
 				+ "%"
 				+ " ("
@@ -1798,13 +1798,14 @@ class PlayState extends MusicBeatState
 		else
 			iconP2.animation.curAnim.curFrame = 0;
 
-		/* if (FlxG.keys.justPressed.NINE)
-			FlxG.switchState(new Charting()); */
-
-		#if debug
 		if (FlxG.keys.justPressed.EIGHT)
-			FlxG.switchState(new AnimationDebug(SONG.player2));
-		#end
+		{
+			persistentUpdate = false;
+			persistentDraw = true;
+			paused = true;
+
+			openSubState(new animationDEBUG.DebugSubState());
+		}
 
 		if (startingSong)
 		{
