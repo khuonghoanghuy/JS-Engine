@@ -387,7 +387,7 @@ class OptionsMenu extends MusicBeatState
 			#end
 
 			case "Run Shaders Unuse":
-				optionsDesc.text = "Enable run shaders background (only in Thorns Song!)";
+				optionsDesc.text = "Enable run shaders background (only in Thorns Song!, Also dont enable this or you dont want to cringe about this!)";
 				optionsCheck.text = FlxG.save.data.shadersUnuse ? "On" : "Off";
 
 			case "Clear Up Memory":
