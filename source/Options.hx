@@ -7,5 +7,5 @@ class Options
 	/**
 	 * Version of JS Engine
 	 */
-	public static var ver:String = "0.5.0";
+	public static var ver:String = "0.1.0";
 }
