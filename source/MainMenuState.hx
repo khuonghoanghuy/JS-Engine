@@ -183,7 +183,7 @@ class MainMenuState extends MusicBeatState
 					{
 						if (curSelected != spr.ID)
 						{
-							FlxTween.tween(spr, {alpha: 0}, 0.4, {
+							FlxTween.tween(spr, {alpha: 0}, 0.6, {
 								ease: FlxEase.smoothStepInOut,
 								onComplete: function(twn:FlxTween)
 								{
@@ -199,7 +199,7 @@ class MainMenuState extends MusicBeatState
 							{
 							}
 
-							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
+							FlxFlicker.flicker(spr, 1, 0.08, false, false, function(flick:FlxFlicker)
 							{
 								var daChoice:String = optionShit[curSelected];
 

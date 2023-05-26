@@ -3,6 +3,7 @@ package openfl.display;
 import flixel.system.FlxAssets;
 import haxe.Timer;
 import openfl.events.Event;
+import openfl.system.System;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 #if gl_stats
@@ -31,6 +32,8 @@ class FPS extends TextField
 	@:noCompletion private var cacheCount:Int;
 	@:noCompletion private var currentTime:Float;
 	@:noCompletion private var times:Array<Float>;
+
+	private var memPeak:Float = 0;
 
 	public function new(x:Float = 10, y:Float = 10, color:Int = 0x000000)
 	{
@@ -76,14 +79,18 @@ class FPS extends TextField
 		var currentCount = times.length;
 		currentFPS = Math.round((currentCount + cacheCount) / 2);
 
+		var mem:Float = Math.round(System.totalMemory / 1024 / 1024 * 100) / 100;
+		if (mem > memPeak)
+			memPeak = mem;
+
 		if (currentCount != cacheCount /*&& visible*/)
 		{
 			if (BlackState.inTer)
 				text = "";
 			else if (!BlackState.inTer)
-				text = "FPS: " + currentFPS;
+				text = "FPS: " + currentFPS + "\nMemory: " + mem + "\nMemory Peak: " + memPeak;
 			else
-				text = "FPS: " + currentFPS;
+				text = "FPS: " + currentFPS + "\nMemory: " + mem + "\nMemory Peak: " + memPeak;
 
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))
 			text += "\ntotalDC: " + Context3DStats.totalDrawCalls();
