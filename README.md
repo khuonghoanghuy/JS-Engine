@@ -1,18 +1,12 @@
-# FNF JS Engine (ALPHA ENGINE)
+# FNF JS Engine
 
 ![](https://raw.githubusercontent.com/khuonghoanghuy/JS-Engine/master/art/JS-Engine-Logo.png)
 
 `Dont download from Action Tab because this is only for Page`
 
-`THIS ENGINE IS CURRENT ON DELEVOPMENT!, ANYTHING IN THE GAME CAN BE CHANGE IN THE FUTURE!`
-
 `JS Engine is a custom FNF Engine Build`
 
 Check something here:
-
-- [Check the Wiki now!](https://github.com/khuonghoanghuy/JS-Engine/wiki)
-
-- [Check my website! (That outdated now!)](https://khuonghoanghuy.github.io/JS-Engine/)
 
 - [Download From here](https://huy1234th.itch.io/fnf-js-engine)
 
