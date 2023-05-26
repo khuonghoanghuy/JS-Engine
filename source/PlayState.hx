@@ -759,8 +759,16 @@ class PlayState extends MusicBeatState
 				dad.y += 360;
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 			case 'spirit':
-				dad.x -= 150;
-				dad.y += 100;
+				if (FlxG.save.data.shadersUnuse)
+				{
+					dad.x = -137;
+					dad.y = 1;
+				}
+				else
+				{
+					dad.x -= 150;
+					dad.y += 100;
+				}
 				camPos.set(dad.getGraphicMidpoint().x + 300, dad.getGraphicMidpoint().y);
 		}
 
@@ -791,10 +799,20 @@ class PlayState extends MusicBeatState
 				var evilTrail = new FlxTrail(dad, null, 4, 24, 0.3, 0.069);
 				add(evilTrail);
 
-				boyfriend.x += 200;
-				boyfriend.y += 220;
-				gf.x += 180;
-				gf.y += 300;
+				if (FlxG.save.data.shadersUnuse)
+				{
+					boyfriend.x = 817;
+					boyfriend.y = 410;
+					gf.x = 451;
+					gf.y = 221;
+				}
+				else
+				{
+					boyfriend.x += 200;
+					boyfriend.y += 220;
+					gf.x += 180;
+					gf.y += 300;
+				}
 		}
 
 		add(gf);
@@ -912,7 +930,7 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			scoreTxt = new FlxText(566.5, 87, 103, "", 20);
+			scoreTxt = new FlxText(566.5, strumLine.y, 103, "", 20);
 			scoreTxt.setFormat(Paths.font("vcr.ttf"), 16, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			scoreTxt.scrollFactor.set();
 			scoreTxt.height = 19;

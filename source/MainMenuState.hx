@@ -99,7 +99,7 @@ class MainMenuState extends MusicBeatState
 
 		if (!FlxG.save.data.watermark)
 		{
-			var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "v" + Application.current.meta.get('version'), 12);
+			var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "FNF v" + Application.current.meta.get('version') + " - JSE v" + Options.ver, 12);
 			versionShit.scrollFactor.set();
 			versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit);
@@ -117,10 +117,10 @@ class MainMenuState extends MusicBeatState
 			add(versionShit);
 		}
 
-		changelog = new FlxText(10, 10, 0, "Press C to see changelog!", 16);
-		changelog.scrollFactor.set();
-		changelog.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		add(changelog);
+		/*changelog = new FlxText(10, 10, 0, "Press C to see changelog!", 16);
+			changelog.scrollFactor.set();
+			changelog.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			add(changelog); */
 
 		changeItem();
 
@@ -136,10 +136,10 @@ class MainMenuState extends MusicBeatState
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		if (FlxG.keys.justPressed.C)
-		{
-			FlxG.openURL("https://khuonghoanghuy.github.io/JS-Engine/changelog_onlyGame.html");
-		}
+		/*if (FlxG.keys.justPressed.C)
+			{
+				FlxG.openURL("https://khuonghoanghuy.github.io/JS-Engine/changelog_onlyGame.html");
+		}*/
 
 		if (!selectedSomethin)
 		{
@@ -182,7 +182,7 @@ class MainMenuState extends MusicBeatState
 						if (curSelected != spr.ID)
 						{
 							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.quadOut,
+								ease: FlxEase.sineIn,
 								onComplete: function(twn:FlxTween)
 								{
 									spr.kill();
