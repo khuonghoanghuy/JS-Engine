@@ -57,8 +57,6 @@ class TitleState extends MusicBeatState
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
-		JSEngineData.init();
-
 		super.create();
 
 		if (FlxG.save.data.weekUnlocked != null)

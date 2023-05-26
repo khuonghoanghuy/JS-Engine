@@ -33,6 +33,10 @@ class MusicBeatSubstate extends FlxUISubState
 
 		Highscore.load();
 		FlxG.sound.cacheAll();
+
+		JSEngineData.fpsCapInit();
+
+		JSEngineData.init();
 	}
 
 	/**
