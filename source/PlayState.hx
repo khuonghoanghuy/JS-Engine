@@ -970,10 +970,11 @@ class PlayState extends MusicBeatState
 			versionShit2.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit2);
 
-			var versionShit:FlxText = new FlxText(10, FlxG.height
+			var versionShit:FlxText = new FlxText(5, FlxG.height
 				- 66, 0,
 				"Friday Night Funkin' v"
 				+ Application.current.meta.get('version')
+				+ " (CUSTOM BUILD)"
 				+ "\n\nJS Engine v"
 				+ Options.ver, 18);
 			versionShit.scrollFactor.set();
@@ -1809,19 +1810,8 @@ class PlayState extends MusicBeatState
 		// FlxG.watch.addQuick('VOL', vocals.amplitudeLeft);
 		// FlxG.watch.addQuick('VOLRight', vocals.amplitudeRight);
 
-		var inBeat:Float = 0.85;
-
-		switch (FlxG.save.data.fpsCap)
-		{
-			case 0 | 1:
-				inBeat = 0.85;
-
-			case 2 | 3:
-				inBeat = 0.95;
-		}
-
-		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, inBeat)));
-		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, inBeat)));
+		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, 0.85)));
+		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, 0.85)));
 
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();

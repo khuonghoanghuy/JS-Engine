@@ -31,8 +31,6 @@ class MusicBeatState extends FlxUIState
 		Highscore.load();
 		FlxG.sound.cacheAll();
 
-		JSEngineData.fpsCapInit();
-
 		JSEngineData.init();
 	}
 
@@ -82,14 +80,6 @@ class MusicBeatState extends FlxUIState
 				}
 			}
 		}
-		#end
-
-		#if html5
-		FlxG.updateFramerate = 60;
-		FlxG.drawFramerate = 60;
-		#else
-		FlxG.updateFramerate = FlxG.save.data.fpsCap;
-		FlxG.drawFramerate = FlxG.save.data.fpsCap;
 		#end
 
 		updateCurStep();

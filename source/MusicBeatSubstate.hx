@@ -81,14 +81,6 @@ class MusicBeatSubstate extends FlxUISubState
 		}
 		#end
 
-		#if html5
-		FlxG.updateFramerate = 60;
-		FlxG.drawFramerate = 60;
-		#else
-		FlxG.updateFramerate = FlxG.save.data.fpsCap;
-		FlxG.drawFramerate = FlxG.save.data.fpsCap;
-		#end
-
 		updateCurStep();
 		curBeat = Math.floor(curStep / 4);
 

@@ -11,12 +11,15 @@ import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.util.FlxSave;
 import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
 	var selector:FlxText;
 	var curSelected:Int = 0;
+
+	var save = new FlxSave();
 
 	var controlsStrings:Array<String> = [
 		#if debug
@@ -31,9 +34,9 @@ class OptionsMenu extends MusicBeatState
 		"Watermark",
 		"Judgement Counter",
 		"Time Bar",
-		#if desktop
-		"FPS Cap", "Direct FPS Cap Key",
-		#end
+		/*#if desktop
+			"FPS Cap", "Direct FPS Cap Key",
+			#end */
 		"Hide GF",
 		"Only One Stage",
 		"Quality",
@@ -265,6 +268,7 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.shadersUnuse = FlxG.save.data.shadersUnuse;
 
 				case "Clear Up Memory":
+					save.bind('jsEngine', 'huy1234th');
 					FlxG.save.destroy();
 			}
 

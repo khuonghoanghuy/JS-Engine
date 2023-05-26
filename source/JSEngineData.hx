@@ -8,6 +8,9 @@ class JSEngineData
 	 * Do a init task, load all default setting for player
 	 * 
 	 * this function only for first play or was reset all data!
+	 * 
+	 * @param typeLoad type want to load, "default" will load all the data, "base" will load some main data, "limit" will load only 2 main data,
+	 * "none" will not load any data!
 	 */
 	public static function init(typeLoad:String = "default")
 	{

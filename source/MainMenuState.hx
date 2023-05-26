@@ -99,7 +99,8 @@ class MainMenuState extends MusicBeatState
 
 		if (!FlxG.save.data.watermark)
 		{
-			var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0, "FNF v" + Application.current.meta.get('version') + " - JSE v" + Options.ver, 12);
+			var versionShit:FlxText = new FlxText(5, FlxG.height - 18, 0,
+				"FNF v" + Application.current.meta.get('version') + " (CUSTOM BUILD) - JSE v" + Options.ver, 12);
 			versionShit.scrollFactor.set();
 			versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit);
@@ -110,6 +111,7 @@ class MainMenuState extends MusicBeatState
 				- 66, 0,
 				"Friday Night Funkin' v"
 				+ Application.current.meta.get('version')
+				+ " (CUSTOM BUILD)"
 				+ "\n\nJS Engine v"
 				+ Options.ver, 18);
 			versionShit.scrollFactor.set();
@@ -182,7 +184,7 @@ class MainMenuState extends MusicBeatState
 						if (curSelected != spr.ID)
 						{
 							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.sineIn,
+								ease: FlxEase.bounceIn,
 								onComplete: function(twn:FlxTween)
 								{
 									spr.kill();
