@@ -3,6 +3,7 @@ package;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUISubState;
+import polymod.Polymod;
 #if debug
 import flixel.addons.studio.FlxStudio;
 #end
@@ -16,6 +17,11 @@ class MusicBeatSubstate extends FlxUISubState
 		#if debug
 		FlxStudio.create();
 		#end
+
+		Polymod.init({
+			modRoot: "mods_folder/",
+			dirs: ["mods_folder"]
+		});
 
 		loadData();
 	}

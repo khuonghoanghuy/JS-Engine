@@ -87,6 +87,9 @@
 	<assets path="assets/week7"    library="week7"    exclude="*.mp3" unless="web"/>
 	
 	<assets path='art/readme.txt' rename='do NOT readme.txt' />
+
+	<assets path='mods_folder' rename='mods_folder' embed='false'/> <!-- For make sure that mods folder was path-->
+
 	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -102,6 +105,8 @@
 	<haxelib name="faxe" if='switch'/>
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxnodejs" if="electron" />
+
+	<haxelib name="polymod" />
 
 	<haxelib name="flixel-studio" if='debug'/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->

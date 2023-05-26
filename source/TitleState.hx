@@ -14,29 +14,16 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import lime.app.Application;
 import lime.utils.Assets;
-import openfl.display.Sprite;
 
 using StringTools;
 
 #if desktop
 import Discord.DiscordClient;
+import lime.app.Application;
 import sys.thread.Thread;
 #end
 
-@:build(flixel.system.FlxAssets.buildFileReferences("assets", true))
-class AssetPaths
-{
-}
-
-/*class Load extends Sprite
-	{
-	public function new(name:String)
-	{
-
-	}
-}*/
 class TitleState extends MusicBeatState
 {
 	static var initialized:Bool = false;
