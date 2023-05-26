@@ -1,12 +1,9 @@
-package;
+package obj_game;
 
-import Section.SwagSection;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.animation.FlxBaseAnimation;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxSort;
-import haxe.io.Path;
 
 using StringTools;
 
