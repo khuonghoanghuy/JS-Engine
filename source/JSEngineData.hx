@@ -116,7 +116,7 @@ class JSEngineData
 	public static function fpsCapInit()
 	{
 		if (FlxG.save.data.fpsCap == null)
-			FlxG.save.data.fpsCap = 0;
+			FlxG.save.data.fpsCap = 60;
 	}
 
 	public static function directfpsCapInit()

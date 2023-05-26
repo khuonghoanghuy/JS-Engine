@@ -108,23 +108,48 @@ class OptionsMenu extends MusicBeatState
 			// FlxG.resetGame();
 		}
 
+		#if desktop
+		if (controls.LEFT_P)
+		{
+			switch (controlsStrings[curSelected])
+			{
+				case "FPS Cap":
+					optionsCheck.text = "Using LEFT (A) or RIGHT (D) key to change: " + FlxG.save.data.fpsCap;
+					if (FlxG.save.data.fpsCap >= 60)
+					{
+						FlxG.save.data.fpsCap -= 0;
+					}
+					else
+					{
+						FlxG.save.data.fpsCap -= 10;
+					}
+			}
+		}
+
+		if (controls.RIGHT_P)
+		{
+			switch (controlsStrings[curSelected])
+			{
+				case "FPS Cap":
+					optionsCheck.text = "Using LEFT (A) or RIGHT (D) key to change: " + FlxG.save.data.fpsCap;
+					if (FlxG.save.data.fpsCap <= 240)
+					{
+						FlxG.save.data.fpsCap += 0;
+					}
+					else
+					{
+						FlxG.save.data.fpsCap += 10;
+					}
+			}
+		}
+		#end
+
 		switch (controlsStrings[curSelected])
 		{
+			#if desktop
 			case "FPS Cap":
-				switch (FlxG.save.data.fpsCap)
-				{
-					case 0:
-						optionsCheck.text = "At 60";
-
-					case 1:
-						optionsCheck.text = "At 75";
-
-					case 2:
-						optionsCheck.text = "At 120";
-
-					case 3:
-						optionsCheck.text = "At 140";
-				}
+				optionsCheck.text = "Using LEFT (A) or RIGHT (D) key to change: " + FlxG.save.data.fpsCap;
+			#end
 
 			case "Accuracy Type":
 				if (FlxG.save.data.accuracyType)
@@ -191,31 +216,6 @@ class OptionsMenu extends MusicBeatState
 					FlxG.save.data.watermark = FlxG.save.data.watermark;
 
 				#if desktop
-				case "FPS Cap":
-					if (FlxG.save.data.fpsCap >= 3)
-					{
-						FlxG.save.data.fpsCap -= 3;
-					}
-					else
-					{
-						FlxG.save.data.fpsCap += 1;
-					}
-
-					switch (FlxG.save.data.fpsCap)
-					{
-						case 0:
-							optionsCheck.text = "At 60";
-
-						case 1:
-							optionsCheck.text = "At 75";
-
-						case 2:
-							optionsCheck.text = "At 120";
-
-						case 3:
-							optionsCheck.text = "At 140";
-					}
-
 				case "Direct FPS Cap Key":
 					FlxG.save.data.directfpsCap = !FlxG.save.data.directfpsCap;
 					optionsCheck.text = FlxG.save.data.directfpsCap ? "On" : "Off";
@@ -336,20 +336,7 @@ class OptionsMenu extends MusicBeatState
 			#if desktop
 			case "FPS Cap":
 				optionsDesc.text = "Change FPS Cap, make the game more faster. But not recommended for Low Computer";
-				switch (FlxG.save.data.fpsCap)
-				{
-					case 0:
-						optionsCheck.text = "At 60";
-
-					case 1:
-						optionsCheck.text = "At 75";
-
-					case 2:
-						optionsCheck.text = "At 120";
-
-					case 3:
-						optionsCheck.text = "At 140";
-				}
+				optionsCheck.text = "Using LEFT (A) or RIGHT (D) key to change: " + FlxG.save.data.fpsCap;
 
 			case "Direct FPS Cap Key":
 				optionsDesc.text = "Allow or Dont Allow direct changing fps cap while playing!";

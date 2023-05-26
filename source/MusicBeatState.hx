@@ -54,47 +54,38 @@ class MusicBeatState extends FlxUIState
 		#if desktop
 		if (FlxG.save.data.directfpsCap)
 		{
-			if (FlxG.keys.justPressed.F10)
+			if (FlxG.keys.justPressed.F11)
 			{
-				if (FlxG.save.data.fpsCap >= 3)
+				if (FlxG.save.data.fpsCap <= 240)
 				{
-					FlxG.save.data.fpsCap -= 3;
+					FlxG.save.data.fpsCap += 0;
 				}
 				else
 				{
-					FlxG.save.data.fpsCap += 1;
+					FlxG.save.data.fpsCap += 10;
+				}
+			}
+
+			if (FlxG.keys.justPressed.F10)
+			{
+				if (FlxG.save.data.fpsCap >= 60)
+				{
+					FlxG.save.data.fpsCap -= 0;
+				}
+				else
+				{
+					FlxG.save.data.fpsCap -= 10;
 				}
 			}
 		}
 		#end
 
-		if (FlxG.keys.justPressed.F1)
-		{
-			FlxG.save.destroy();
-		}
-
 		#if html5
 		FlxG.updateFramerate = 60;
 		FlxG.drawFramerate = 60;
 		#else
-		switch (FlxG.save.data.fpsCap)
-		{
-			case 0:
-				FlxG.updateFramerate = 60;
-				FlxG.drawFramerate = 60;
-
-			case 1:
-				FlxG.updateFramerate = 75;
-				FlxG.drawFramerate = 75;
-
-			case 2:
-				FlxG.updateFramerate = 120;
-				FlxG.drawFramerate = 120;
-
-			case 3:
-				FlxG.updateFramerate = 140;
-				FlxG.drawFramerate = 140;
-		}
+		FlxG.updateFramerate = FlxG.save.data.fpsCap;
+		FlxG.drawFramerate = FlxG.save.data.fpsCap;
 		#end
 
 		updateCurStep();
