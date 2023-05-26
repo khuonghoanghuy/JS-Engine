@@ -41,6 +41,8 @@ class MusicBeatState extends FlxUIState
 
 		super.create();
 
+		loadData();
+
 		#if debug
 		FlxStudio.create();
 		#end
@@ -50,8 +52,6 @@ class MusicBeatState extends FlxUIState
 	{
 		// everyStep();
 		var oldStep:Int = curStep;
-
-		loadData();
 
 		#if desktop
 		if (FlxG.save.data.directfpsCap)

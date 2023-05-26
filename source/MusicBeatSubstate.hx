@@ -16,6 +16,8 @@ class MusicBeatSubstate extends FlxUISubState
 		#if debug
 		FlxStudio.create();
 		#end
+
+		loadData();
 	}
 
 	private var lastBeat:Float = 0;
@@ -49,8 +51,6 @@ class MusicBeatSubstate extends FlxUISubState
 	{
 		// everyStep();
 		var oldStep:Int = curStep;
-
-		loadData();
 
 		#if desktop
 		if (FlxG.save.data.directfpsCap)

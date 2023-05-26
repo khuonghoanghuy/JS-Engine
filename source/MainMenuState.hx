@@ -184,7 +184,7 @@ class MainMenuState extends MusicBeatState
 						if (curSelected != spr.ID)
 						{
 							FlxTween.tween(spr, {alpha: 0}, 0.4, {
-								ease: FlxEase.bounceIn,
+								ease: FlxEase.smoothStepInOut,
 								onComplete: function(twn:FlxTween)
 								{
 									spr.kill();
