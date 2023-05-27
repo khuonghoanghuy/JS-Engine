@@ -44,6 +44,17 @@ class CoolUtil
 	}
 
 	/**
+	 * For Icon Beat (or other stuff)
+	 * @param value current vaule want to add (must a number)
+	 * @param min current number want to be max
+	 * @param max current number want to be min
+	 */
+	inline public static function boundTo(value:Float, min:Float, max:Float):Float
+	{
+		return Math.max(min, Math.min(max, value));
+	}
+
+	/**
 	 * will run a random number
 	 * @param max current number want to be max
 	 * @param min current number want to be min
