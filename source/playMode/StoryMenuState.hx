@@ -36,16 +36,7 @@ class StoryMenuState extends MusicBeatState
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true];
 
-	var weekCharacters:Array<Dynamic> = [
-		['dad', 'bf', 'gf'],
-		['dad', 'bf', 'gf'],
-		['spooky', 'bf', 'gf'],
-		['pico', 'bf', 'gf'],
-		['mom', 'bf', 'gf'],
-		['parents-christmas', 'bf', 'gf'],
-		['senpai', 'bf', 'gf'],
-		['tankman', 'bf', 'gf']
-	];
+	var weekCharacters:Array<String>;
 
 	var weekNames:Array<String>;
 
@@ -68,6 +59,7 @@ class StoryMenuState extends MusicBeatState
 	override function create()
 	{
 		weekNames = CoolUtil.coolTextFile(Paths.txt("weekname"));
+		weekCharacters = CoolUtil.coolTextFile(Paths.txt("weekcharacters"));
 
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
@@ -142,7 +134,7 @@ class StoryMenuState extends MusicBeatState
 
 		for (char in 0...3)
 		{
-			var weekCharacterThing:MenuCharacter = new MenuCharacter((FlxG.width * 0.25) * (1 + char) - 150, weekCharacters[curWeek][char]);
+			var weekCharacterThing:MenuCharacter = new MenuCharacter((FlxG.width * 0.25) * (1 + char) - 150, weekCharacters[curWeek].split(',')[char]);
 			weekCharacterThing.y += 70;
 			weekCharacterThing.antialiasing = true;
 			switch (weekCharacterThing.character)
@@ -152,9 +144,10 @@ class StoryMenuState extends MusicBeatState
 					weekCharacterThing.updateHitbox();
 
 				case 'bf':
-					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.9));
+					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.8));
 					weekCharacterThing.updateHitbox();
-					weekCharacterThing.x -= 80;
+					weekCharacterThing.x -= 70;
+					weekCharacterThing.y += 20;
 				case 'gf':
 					weekCharacterThing.setGraphicSize(Std.int(weekCharacterThing.width * 0.5));
 					weekCharacterThing.updateHitbox();
@@ -394,9 +387,9 @@ class StoryMenuState extends MusicBeatState
 
 	function updateText()
 	{
-		grpWeekCharacters.members[0].animation.play(weekCharacters[curWeek][0]);
-		grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek][1]);
-		grpWeekCharacters.members[2].animation.play(weekCharacters[curWeek][2]);
+		grpWeekCharacters.members[0].animation.play(weekCharacters[curWeek].split(',')[0]);
+		grpWeekCharacters.members[1].animation.play(weekCharacters[curWeek].split(',')[1]);
+		grpWeekCharacters.members[2].animation.play(weekCharacters[curWeek].split(',')[2]);
 		txtTracklist.text = "Tracks\n";
 
 		switch (grpWeekCharacters.members[0].animation.curAnim.name)

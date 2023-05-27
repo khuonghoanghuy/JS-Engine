@@ -15,6 +15,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.utils.Assets;
+import polymod.Polymod;
 
 using StringTools;
 
@@ -41,6 +42,11 @@ class TitleState extends MusicBeatState
 	override public function create():Void
 	{
 		BlackState.inTer = false;
+
+		Polymod.init({
+			modRoot: "mods_folder/",
+			dirs: ["mods_folder"]
+		});
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 

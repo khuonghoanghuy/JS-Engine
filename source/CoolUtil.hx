@@ -29,6 +29,25 @@ class CoolUtil
 		return daList;
 	}
 
+	/**
+	 * Loading string File (or text file)
+	 * 
+	 * from XGen Engine
+	 * 
+	 * @param path current file want to load
+	 */
+	public static function coolStringFile(path:String):String
+	{
+		var daList:String = Assets.getText(path).trim();
+
+		return daList;
+	}
+
+	/**
+	 * will run a random number
+	 * @param max current number want to be max
+	 * @param min current number want to be min
+	 */
 	public static function numberArray(max:Int, ?min = 0):Array<Int>
 	{
 		var dumbArray:Array<Int> = [];
