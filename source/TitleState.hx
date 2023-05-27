@@ -44,7 +44,7 @@ class TitleState extends MusicBeatState
 		BlackState.inTer = false;
 
 		Polymod.init({
-			modRoot: "./mods_folder/",
+			modRoot: "mods_folder",
 			dirs: ["mods_folder"]
 		});
 

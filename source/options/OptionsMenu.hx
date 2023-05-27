@@ -30,6 +30,7 @@ class OptionsMenu extends MusicBeatState
 		"Accuracy Display",
 		"Accuracy Type",
 		"Note Splash",
+		"Note Splash Spin",
 		"Botplay",
 		"Watermark",
 		"Judgement Counter",
@@ -208,6 +209,11 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.noteSplashes ? "On" : "Off";
 					FlxG.save.data.noteSplashes = FlxG.save.data.noteSplashes;
 
+				case "Note Splash Spin":
+					FlxG.save.data.noteSplashesSpin = !FlxG.save.data.noteSplashesSpin;
+					optionsCheck.text = FlxG.save.data.noteSplashesSpin ? "On" : "Off";
+					FlxG.save.data.noteSplashesSpin = FlxG.save.data.noteSplashesSpin;
+
 				case "Botplay":
 					FlxG.save.data.botplay = !FlxG.save.data.botplay;
 					optionsCheck.text = FlxG.save.data.botplay ? "On" : "Off";
@@ -328,6 +334,10 @@ class OptionsMenu extends MusicBeatState
 			case "Note Splash":
 				optionsDesc.text = "When hit sick combo, splash animation will be play";
 				optionsCheck.text = FlxG.save.data.noteSplashes ? "On" : "Off";
+
+			case "Note Splash Spin":
+				optionsDesc.text = "Splash Note will spin like a wheel when you spin this wheel like the splash (dont enable this or you dont want to cringe about this!)";
+				optionsCheck.text = FlxG.save.data.noteSplashesSpin ? "On" : "Off";
 
 			case "Botplay":
 				optionsDesc.text = "Can help you showcase the chart";

@@ -2,7 +2,6 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import haxe.io.Path;
 
 class NoteSplash extends FlxSprite
 {
@@ -42,6 +41,9 @@ class NoteSplash extends FlxSprite
 	{
 		if (animation.curAnim.finished)
 			kill();
+
+		if (FlxG.save.data.noteSplashesSpin)
+			angle += elapsed * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("splashSpin")));
 
 		super.update(elapsed);
 	}
