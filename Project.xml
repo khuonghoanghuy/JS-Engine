@@ -161,4 +161,8 @@
 	<!-- <haxedef name="SKIP_TO_PLAYSTATE" if="debug" /> -->
 	<haxedef name="NG_LOGIN" if="newgrounds" />
 	
+	<!-- Polymod Stuff-->
+	<haxedef name="POLYMOD_ROOT_PATH" if="polymod" />
+	<haxedef name="POLYMOD_SCRIPT_LIBRARY" if="polymod" />
+	<haxedef name="POLYMOD_SCRIPT_EXT" if="polymod" />
 </project>
