@@ -243,8 +243,8 @@ class OptionsMenu extends MusicBeatState
 
 				case "Quality":
 					FlxG.save.data.quality = !FlxG.save.data.quality;
-					optionsCheck.text = FlxG.save.data.quality ? "As Low" : "As High";
-					FlxG.save.data.quality = FlxG.save.data.quality;
+					optionsCheck.text = "As: " + (FlxG.save.data.quality ? "Low" : "High");
+					FlxG.save.data.quality = !FlxG.save.data.quality;
 
 				case "Judgement Counter":
 					FlxG.save.data.judgenment = !FlxG.save.data.judgenment;
@@ -367,7 +367,7 @@ class OptionsMenu extends MusicBeatState
 
 			case "Quality":
 				optionsDesc.text = "Hide some PNG on the game, can make the game load more faster";
-				optionsCheck.text = FlxG.save.data.quality ? "As Low" : "As High";
+				optionsCheck.text = "As: " + (FlxG.save.data.quality ? "Low" : "High");
 
 			case "Judgement Counter":
 				optionsDesc.text = "Display 'Sick', 'Good', 'Bad', 'Shit' on the game";
