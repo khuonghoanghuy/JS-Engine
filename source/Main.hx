@@ -79,5 +79,7 @@ class Main extends Sprite
 		#if debug
 		FlxStudio.create();
 		#end
+
+		trace(CoolUtil.coolStringFile(Paths.txt("username")) + " play game");
 	}
 }

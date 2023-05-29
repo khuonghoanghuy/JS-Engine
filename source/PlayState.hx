@@ -2324,7 +2324,8 @@ class PlayState extends MusicBeatState
 				score: songScore,
 				miss: songMiss,
 				accuracy: songAccuracy,
-				botplayMode: FlxG.save.data.botplay
+				botplayMode: FlxG.save.data.botplay,
+				time_was_playing: Date.now()
 			};
 			var content:String = haxe.Json.stringify(info);
 			sys.io.File.saveContent(Paths.json(SONG.song.toLowerCase() + "/info"), content);
@@ -2691,14 +2692,15 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 					{
-						if (songAccuracy == 100)
-						{
-							totalNotesHit += 0;
-						}
-						else
-						{
-							totalNotesHit += 0.85;
-						}
+						/*if (songAccuracy == 100)
+							{
+								totalNotesHit += 0;
+							}
+							else
+							{
+								totalNotesHit += 1;
+								// updateAcc();
+						}*/
 
 						switch (daNote.noteData)
 						{
@@ -2834,9 +2836,9 @@ class PlayState extends MusicBeatState
 			}
 
 			// bool(false);
-		}
 
-		updateAcc();
+			updateAcc();
+		}
 	}
 
 	function badNoteCheck()
@@ -2968,14 +2970,6 @@ class PlayState extends MusicBeatState
 			{
 				popUpScore(note.strumTime, note);
 				combo += 1;
-				if (songAccuracy == 100)
-				{
-					totalNotesHit += 0;
-				}
-				else
-				{
-					totalNotesHit += 1;
-				}
 			}
 			else
 				totalNotesHit += 1;
@@ -3016,9 +3010,9 @@ class PlayState extends MusicBeatState
 
 				// bool(false);
 			}
-		}
 
-		updateAcc();
+			updateAcc();
+		}
 	}
 
 	function updateAcc()
@@ -3191,15 +3185,11 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		#if desktop
+		// #if desktop
 		if (FlxG.save.data.allowWrite)
 		{
-			var content:String = sys.io.File.getContent(Paths.txt("curBeat"));
-			var write:Array<String> = [''];
-
-			write = CoolUtil.coolTextFile(Paths.txt("curBeat"));
 		}
-		#end
+		// #end
 
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
 		iconP2.setGraphicSize(Std.int(iconP2.width + 30));

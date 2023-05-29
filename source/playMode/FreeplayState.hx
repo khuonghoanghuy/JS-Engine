@@ -25,6 +25,7 @@ class FreeplayState extends MusicBeatState
 	var diffText:FlxText;
 	var lerpScore:Int = 0;
 	var intendedScore:Int = 0;
+	var timeText:FlxText;
 
 	private var grpSongs:FlxTypedGroup<Alphabet>;
 	private var curPlaying:Bool = false;
@@ -34,11 +35,14 @@ class FreeplayState extends MusicBeatState
 	override function create()
 	{
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
+		var initSonglist_MOD = CoolUtil.coolTextFile("mods_folder/mods_folder/data/freeplaySonglist.txt");
 
 		for (i in 0...initSonglist.length)
 		{
 			var data:Array<String> = initSonglist[i].split(':');
+			// var data2:Array<String> = initSonglist_MOD[i].split(':');
 			songs.push(new SongMetadata(data[0], Std.parseInt(data[2]), data[1]));
+			// songs.push(new SongMetadata(data2[0], Std.parseInt(data2[2]), data2[1]));
 		}
 
 		#if desktop
@@ -96,6 +100,10 @@ class FreeplayState extends MusicBeatState
 		diffText = new FlxText(scoreText.x, scoreText.y + 36, 0, "", 24);
 		diffText.font = scoreText.font;
 		add(diffText);
+
+		timeText = new FlxText(scoreText.x, scoreText.y + 72, 0, "", 24);
+		timeText.font = scoreText.font;
+		add(timeText);
 
 		add(scoreText);
 
