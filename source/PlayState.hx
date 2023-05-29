@@ -1069,7 +1069,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.botplay)
 		{
-			botplayTxt = new FlxText(299, strumLine.y + 43, FlxG.width, "BOTPLAY", 22);
+			botplayTxt = new FlxText(299, strumLine.y + -10, FlxG.width, "BOTPLAY", 22);
 			botplayTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			botplayTxt.height = 22;
 			botplayTxt.scrollFactor.set();
@@ -1896,7 +1896,7 @@ class PlayState extends MusicBeatState
 						trainFrameTiming = 0;
 					}
 				}
-				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
+				phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
 		}
 
 		wiggleShit.update(Conductor.crochet / 5000);
