@@ -1069,7 +1069,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.botplay)
 		{
-			botplayTxt = new FlxText(299, 23, FlxG.width, "BOTPLAY", 22);
+			botplayTxt = new FlxText(299, strumLine.y + 43, FlxG.width, "BOTPLAY", 22);
 			botplayTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			botplayTxt.height = 22;
 			botplayTxt.scrollFactor.set();
@@ -1077,8 +1077,9 @@ class PlayState extends MusicBeatState
 		}
 		else // i dont want to crash by this shit
 		{
-			botplayTxt = new FlxText(0, healthBarBG.y + -36, FlxG.width, "", 22);
+			botplayTxt = new FlxText(299, strumLine.y + 43, FlxG.width, "", 22);
 			botplayTxt.setFormat(Paths.font("vcr.ttf"), 20, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			botplayTxt.height = 22;
 			botplayTxt.scrollFactor.set();
 			add(botplayTxt);
 		}
@@ -1095,7 +1096,7 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.watermark)
 		{
-			var versionShit2:FlxText = new FlxText(10, FlxG.height - 88, 0, "Song: " + SONG.song, 18);
+			var versionShit2:FlxText = new FlxText(5, FlxG.height - 88, 0, "Song: " + SONG.song, 18);
 			versionShit2.scrollFactor.set();
 			versionShit2.setFormat("VCR OSD Mono", 18, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			add(versionShit2);
@@ -1898,9 +1899,9 @@ class PlayState extends MusicBeatState
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
 		}
 
-		super.update(elapsed);
+		wiggleShit.update(Conductor.crochet / 1000);
 
-		wiggleShit.update(Conductor.crochet);
+		super.update(elapsed);
 
 		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore + " | Misses: " + songMiss + " | Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking
