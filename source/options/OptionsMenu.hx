@@ -45,8 +45,7 @@ class OptionsMenu extends MusicBeatState
 		#if desktop
 		"Allow Writing Info",
 		#end
-		"Run Shaders Unuse",
-		"Clear Up Memory"
+		"Run Shaders Unuse" // "Clear Up Memory"
 	];
 
 	var optionsCheck:FlxText;
@@ -108,6 +107,7 @@ class OptionsMenu extends MusicBeatState
 			FlxG.save.erase();
 			FlxTransitionableState.skipNextTransIn = true;
 			FlxTransitionableState.skipNextTransOut = true;
+			BlackState.inTer = true;
 			FlxG.switchState(new BlackState());
 			// FlxG.resetGame();
 		}
@@ -273,9 +273,9 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.shadersUnuse ? "On" : "Off";
 					FlxG.save.data.shadersUnuse = FlxG.save.data.shadersUnuse;
 
-				case "Clear Up Memory":
-					save.bind('jsEngine', 'huy1234th');
-					FlxG.save.destroy();
+					/*case "Clear Up Memory":
+						save.bind('jsEngine', 'huy1234th');
+						FlxG.save.destroy(); */
 			}
 
 			FlxG.save.flush();
@@ -391,9 +391,9 @@ class OptionsMenu extends MusicBeatState
 				optionsDesc.text = "Enable run shaders background (only in Thorns Song!, Also dont enable this or you dont want to cringe about this!)";
 				optionsCheck.text = FlxG.save.data.shadersUnuse ? "On" : "Off";
 
-			case "Clear Up Memory":
-				optionsDesc.text = "Clear Some memory";
-				optionsCheck.text = "This Options has no have save data!";
+				/*case "Clear Up Memory":
+					optionsDesc.text = "Clear Some memory";
+					optionsCheck.text = "This Options has no have save data!"; */
 		}
 
 		if (curSelected < 0)

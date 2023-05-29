@@ -151,6 +151,8 @@ class My_Float_EDIT extends MusicBeatState
 		if (controls.BACK)
 		{
 			FlxG.save.flush();
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
 			FlxG.save.bind('jsEngine', 'huy1234th');
 			FlxG.switchState(new options.OptionsMenu());
 		}
