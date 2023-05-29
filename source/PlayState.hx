@@ -122,7 +122,7 @@ class PlayState extends MusicBeatState
 	var scoreTxt:FlxText;
 	var botplayTxt:FlxText;
 	var ranking:String = "?";
-	var rating:String = "";
+	var rating:String = "Uh...";
 	var judgenment:FlxText;
 
 	private static var shits:Int = 0;
@@ -169,6 +169,7 @@ class PlayState extends MusicBeatState
 		sicks = 0;
 
 		ranking = "?";
+		rating = "Uh...";
 
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
@@ -1809,25 +1810,32 @@ class PlayState extends MusicBeatState
 				{
 					case 0:
 						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/s"));
+						rating = "Perfect!";
 					case 1:
 						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/a"));
+						rating = "Great!";
 					case 2:
 						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/b"));
+						rating = "Good!";
 					case 3:
 						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/c"));
+						rating = "Better";
 					case 4:
 						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/d"));
+						rating = "Okay";
 					case 5:
 						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/e"));
+						rating = "Bad";
 					case 6:
 						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/f"));
+						rating = "Awful";
 				}
 				break;
 			}
 		}
 
-		if (songAccuracy == 0)
-			rakng = defaultShit;
+		/*if (songAccuracy == 0)
+			rakng = defaultShit; */
 
 		return rakng;
 	}
@@ -1895,11 +1903,11 @@ class PlayState extends MusicBeatState
 		wiggleShit.update(Conductor.crochet);
 
 		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
-			scoreTxt.text = "Score: " + songScore + "| Misses: " + songMiss + "| Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")"
-				+ "\nRating: " + ratingInit();
+			scoreTxt.text = "Score: " + songScore + " | Misses: " + songMiss + " | Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking
+				+ ") - " + "Rating: " + ratingInit() + " (" + rating + ")";
 		else if (FlxG.save.data.accuracy && !FlxG.save.data.watermark)
-			scoreTxt.text = "Score: " + songScore + "\nMisses: " + songMiss + "\nAccuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")"
-				+ "\nRating: " + ratingInit();
+			scoreTxt.text = "Score: " + songScore + "\nMisses: " + songMiss + "\nAccuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking
+				+ ") - " + "Rating: " + ratingInit() + " (" + rating + ")";
 		else if (!FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore;
 		else
