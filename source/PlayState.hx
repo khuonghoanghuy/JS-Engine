@@ -1784,6 +1784,54 @@ class PlayState extends MusicBeatState
 	var startedCountdown:Bool = false;
 	var canPause:Bool = true;
 
+	function ratingInit()
+	{
+		var defaultShit = CoolUtil.coolStringFile(Paths.txtlang("rating/default"));
+		var rakng = defaultShit;
+
+		// rating by accuracy, kade engine code
+		var accuracy:Array<Bool> = [
+			songAccuracy >= 100,
+			songAccuracy >= 90,
+			songAccuracy >= 80,
+			songAccuracy >= 70,
+			songAccuracy >= 50,
+			songAccuracy >= 40,
+			songAccuracy >= 20
+		];
+
+		for (i in 0...accuracy.length)
+		{
+			var inAcc = accuracy[i];
+			if (inAcc)
+			{
+				switch (i)
+				{
+					case 0:
+						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/s"));
+					case 1:
+						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/a"));
+					case 2:
+						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/b"));
+					case 3:
+						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/c"));
+					case 4:
+						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/d"));
+					case 5:
+						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/e"));
+					case 6:
+						rakng += CoolUtil.coolStringFile(Paths.txtlang("rating/f"));
+				}
+				break;
+			}
+		}
+
+		if (songAccuracy == 0)
+			rakng = defaultShit;
+
+		return rakng;
+	}
+
 	function truncateFloat(number:Float, precision:Int):Float
 	{
 		var num = number;
@@ -1848,10 +1896,10 @@ class PlayState extends MusicBeatState
 
 		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore + "| Misses: " + songMiss + "| Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")"
-				+ "\nRating: " + rating;
+				+ "\nRating: " + ratingInit();
 		else if (FlxG.save.data.accuracy && !FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore + "\nMisses: " + songMiss + "\nAccuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")"
-				+ "\nRating: " + rating;
+				+ "\nRating: " + ratingInit();
 		else if (!FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore;
 		else
@@ -1860,42 +1908,6 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.judgenment)
 		{
 			judgenment.text = "Combo: " + combo + "\nSick: " + sicks + "\nGood: " + goods + "\nBad: " + bads + "\nShit: " + shits;
-		}
-
-		// rating by accuracy, kade engine code
-		var accuracy:Array<Bool> = [
-			songAccuracy >= 100,
-			songAccuracy >= 90,
-			songAccuracy >= 80,
-			songAccuracy >= 70,
-			songAccuracy >= 50,
-			songAccuracy >= 40,
-			songAccuracy >= 20
-		];
-
-		for (i in 0...accuracy.length)
-		{
-			var inAcc = accuracy[i];
-			if (inAcc)
-			{
-				switch (i)
-				{
-					case 0:
-						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/s"));
-					case 1:
-						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/a"));
-					case 2:
-						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/b"));
-					case 3:
-						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/c"));
-					case 4:
-						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/d"));
-					case 5:
-						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/e"));
-					case 6:
-						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/f"));
-				}
-			}
 		}
 
 		// ranking by misses
