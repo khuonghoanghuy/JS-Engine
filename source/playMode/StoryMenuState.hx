@@ -22,16 +22,7 @@ class StoryMenuState extends MusicBeatState
 {
 	var scoreText:FlxText;
 
-	var weekData:Array<Dynamic> = [
-		['Tutorial'],
-		['Bopeebo', 'Fresh', 'Dadbattle'],
-		['Spookeez', 'South', "Monster"],
-		['Pico', 'Philly', "Blammed"],
-		['Satin-Panties', "High", "Milf"],
-		['Cocoa', 'Eggnog', 'Winter-Horrorland'],
-		['Senpai', 'Roses', 'Thorns'],
-		['Ugh', 'Guns', 'Stress']
-	];
+	var weekData:Array<String>;
 	var curDifficulty:Int = 1;
 
 	public static var weekUnlocked:Array<Bool> = [true, true, true, true, true, true, true, true];
@@ -58,6 +49,7 @@ class StoryMenuState extends MusicBeatState
 
 	override function create()
 	{
+		weekData = CoolUtil.coolTextFile(Paths.txt("weektracks"));
 		weekNames = CoolUtil.coolTextFile(Paths.txt("weekname"));
 		weekCharacters = CoolUtil.coolTextFile(Paths.txt("weekcharacters"));
 
@@ -293,7 +285,7 @@ class StoryMenuState extends MusicBeatState
 				stopspamming = true;
 			}
 
-			PlayState.storyPlaylist = weekData[curWeek];
+			PlayState.storyPlaylist = weekData[curWeek].split(',');
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 
@@ -416,7 +408,7 @@ class StoryMenuState extends MusicBeatState
 				// grpWeekCharacters.members[0].updateHitbox();
 		}
 
-		var stringThing:Array<String> = weekData[curWeek];
+		var stringThing:Array<String> = weekData[curWeek].split(',');
 
 		for (i in stringThing)
 		{

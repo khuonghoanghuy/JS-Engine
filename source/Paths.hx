@@ -60,6 +60,11 @@ class Paths
 		return getPath(file, type, library);
 	}
 
+	inline static public function txtlang(key:String, ?library:String)
+	{
+		return getPath('language/$key.txt', TEXT, library);
+	}
+
 	inline static public function txt(key:String, ?library:String)
 	{
 		return getPath('data/$key.txt', TEXT, library);

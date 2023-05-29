@@ -122,6 +122,7 @@ class PlayState extends MusicBeatState
 	var scoreTxt:FlxText;
 	var botplayTxt:FlxText;
 	var ranking:String = "?";
+	var rating:String = "";
 	var judgenment:FlxText;
 
 	private static var shits:Int = 0;
@@ -1846,27 +1847,11 @@ class PlayState extends MusicBeatState
 		wiggleShit.update(Conductor.crochet);
 
 		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
-			scoreTxt.text = "Score: "
-				+ songScore
-				+ "| Misses: "
-				+ songMiss
-				+ "| Accuracy: "
-				+ truncateFloat(songAccuracy, 2)
-				+ "%"
-				+ " ("
-				+ ranking
-				+ ")";
+			scoreTxt.text = "Score: " + songScore + "| Misses: " + songMiss + "| Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")"
+				+ "\nRating: " + rating;
 		else if (FlxG.save.data.accuracy && !FlxG.save.data.watermark)
-			scoreTxt.text = "Score: "
-				+ songScore
-				+ "\nMisses: "
-				+ songMiss
-				+ "\nAccuracy: "
-				+ truncateFloat(songAccuracy, 2)
-				+ "%"
-				+ " ("
-				+ ranking
-				+ ")";
+			scoreTxt.text = "Score: " + songScore + "\nMisses: " + songMiss + "\nAccuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking + ")"
+				+ "\nRating: " + rating;
 		else if (!FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore;
 		else
@@ -1875,6 +1860,42 @@ class PlayState extends MusicBeatState
 		if (FlxG.save.data.judgenment)
 		{
 			judgenment.text = "Combo: " + combo + "\nSick: " + sicks + "\nGood: " + goods + "\nBad: " + bads + "\nShit: " + shits;
+		}
+
+		// rating by accuracy, kade engine code
+		var accuracy:Array<Bool> = [
+			songAccuracy >= 100,
+			songAccuracy >= 90,
+			songAccuracy >= 80,
+			songAccuracy >= 70,
+			songAccuracy >= 50,
+			songAccuracy >= 40,
+			songAccuracy >= 20
+		];
+
+		for (i in 0...accuracy.length)
+		{
+			var inAcc = accuracy[i];
+			if (inAcc)
+			{
+				switch (i)
+				{
+					case 0:
+						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/s"));
+					case 1:
+						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/a"));
+					case 2:
+						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/b"));
+					case 3:
+						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/c"));
+					case 4:
+						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/d"));
+					case 5:
+						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/e"));
+					case 6:
+						rating += CoolUtil.coolStringFile(Paths.txtlang("rating/f"));
+				}
+			}
 		}
 
 		// ranking by misses
@@ -2419,11 +2440,11 @@ class PlayState extends MusicBeatState
 		var rating:FlxSprite = new FlxSprite();
 		var score:Int = 350;
 
-		var daRating:String = "sick";
+		var darating:String = "sick";
 
 		if (noteDiff > Conductor.safeZoneOffset * 2)
 		{
-			daRating = 'shit';
+			darating += 'shit';
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
 			else
@@ -2433,7 +2454,7 @@ class PlayState extends MusicBeatState
 		}
 		else if (noteDiff < Conductor.safeZoneOffset * -2)
 		{
-			daRating = 'shit';
+			darating += 'shit';
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
 			else
@@ -2443,7 +2464,7 @@ class PlayState extends MusicBeatState
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.45)
 		{
-			daRating = 'bad';
+			darating += 'bad';
 			score = 100;
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
@@ -2453,7 +2474,7 @@ class PlayState extends MusicBeatState
 		}
 		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
 		{
-			daRating = 'good';
+			darating += 'good';
 			if (FlxG.save.data.accuracyType)
 				totalNotesHit += 1;
 			else
@@ -3114,8 +3135,6 @@ class PlayState extends MusicBeatState
 		gf.playAnim('hairFall');
 		phillyTrain.x = FlxG.width + 200;
 		trainMoving = false;
-		// trainSound.stop();
-		// trainSound.time = 0;
 		trainCars = 8;
 		trainFinishing = false;
 		startedMoving = false;
