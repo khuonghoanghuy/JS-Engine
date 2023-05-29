@@ -1899,7 +1899,7 @@ class PlayState extends MusicBeatState
 				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
 		}
 
-		wiggleShit.update(Conductor.crochet / 1000);
+		wiggleShit.update(Conductor.crochet / 5000);
 
 		super.update(elapsed);
 
