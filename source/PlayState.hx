@@ -2482,7 +2482,7 @@ class PlayState extends MusicBeatState
 			score = 200;
 			goods++;
 		}
-		if (daRating == 'sick')
+		if (darating == 'sick')
 		{
 			totalNotesHit += 1;
 			score = 350;
@@ -2508,7 +2508,7 @@ class PlayState extends MusicBeatState
 			pixelShitPart2 = '-pixel';
 		}
 
-		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
+		rating.loadGraphic(Paths.image(pixelShitPart1 + darating + pixelShitPart2));
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
