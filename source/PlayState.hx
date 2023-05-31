@@ -2375,7 +2375,7 @@ class PlayState extends MusicBeatState
 				miss: songMiss,
 				accuracy: songAccuracy,
 				botplayMode: FlxG.save.data.botplay,
-				time_was_playing: Date.now()
+				rank: [ranking: ratingInit(), rating: rating]
 			};
 			var content:String = haxe.Json.stringify(info);
 			sys.io.File.saveContent(Paths.json(SONG.song.toLowerCase() + "/info"), content);
@@ -2467,54 +2467,54 @@ class PlayState extends MusicBeatState
 		//
 
 		var rating:FlxSprite = new FlxSprite();
-		var score:Int = 350;
+		var score:Int = Std.parseInt(CoolUtil.coolStringFile(Paths.txt("defaultScore")));
 
-		var darating:String = "sick";
+		var daRating:String = "sick";
 
-		if (noteDiff > Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("shitZone_2"))))
+		if (noteDiff > Conductor.safeZoneOffset * Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("shitZone_2"))))
 		{
-			darating += 'shit';
+			daRating += 'shit';
 			if (FlxG.save.data.accuracyType)
-				totalNotesHit += 1;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("simpleNotesHit")));
 			else
-				totalNotesHit += 0.3;
-			score = 50;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("shitNotesHit")));
+			score = Std.parseInt(CoolUtil.coolStringFile(Paths.txt("shitScore")));
 			shits++;
 		}
-		else if (noteDiff < Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("shitZone_1"))))
+		else if (noteDiff < Conductor.safeZoneOffset * Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("shitZone_1"))))
 		{
-			darating += 'shit';
+			daRating += 'shit';
 			if (FlxG.save.data.accuracyType)
-				totalNotesHit += 1;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("simpleNotesHit")));
 			else
-				totalNotesHit += 0.3;
-			score = 50;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("shitNotesHit")));
+			score = Std.parseInt(CoolUtil.coolStringFile(Paths.txt("shitScore")));
 			shits++;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("badZone"))))
+		else if (noteDiff > Conductor.safeZoneOffset * Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("badZone"))))
 		{
-			darating += 'bad';
-			score = 100;
+			daRating += 'bad';
+			score = Std.parseInt(CoolUtil.coolStringFile(Paths.txt("badScore")));
 			if (FlxG.save.data.accuracyType)
-				totalNotesHit += 1;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("simpleNotesHit")));
 			else
-				totalNotesHit += 0.55;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("badNotesHit")));
 			bads++;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("goodZone"))))
+		else if (noteDiff > Conductor.safeZoneOffset * Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("goodZone"))))
 		{
-			darating += 'good';
+			daRating += 'good';
 			if (FlxG.save.data.accuracyType)
-				totalNotesHit += 1;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("simpleNotesHit")));
 			else
-				totalNotesHit += 0.9;
-			score = 200;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("goodNotesHit")));
+			score = Std.parseInt(CoolUtil.coolStringFile(Paths.txt("goodScore")));
 			goods++;
 		}
-		if (darating == 'sick')
+		if (daRating == 'sick')
 		{
-			totalNotesHit += 1;
-			score = 350;
+			totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("sickNotesHit")));
+			score = Std.parseInt(CoolUtil.coolStringFile(Paths.txt("sickScore")));
 			sicks++;
 
 			if (FlxG.save.data.noteSplashes)
@@ -2537,7 +2537,7 @@ class PlayState extends MusicBeatState
 			pixelShitPart2 = '-pixel';
 		}
 
-		rating.loadGraphic(Paths.image(pixelShitPart1 + darating + pixelShitPart2));
+		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating + pixelShitPart2));
 		rating.screenCenter();
 		rating.x = coolText.x - 40;
 		rating.y -= 60;
@@ -2599,8 +2599,8 @@ class PlayState extends MusicBeatState
 			numScore.velocity.y -= FlxG.random.int(140, 160);
 			numScore.velocity.x = FlxG.random.float(-5, 5);
 
-			if (combo >= 10 || combo == 0)
-				add(numScore);
+			// if (combo >= 10 || combo == 0)
+			add(numScore);
 
 			FlxTween.tween(numScore, {alpha: 0}, 0.2, {
 				onComplete: function(tween:FlxTween)
@@ -2612,10 +2612,6 @@ class PlayState extends MusicBeatState
 
 			daLoop++;
 		}
-		/* 
-			trace(combo);
-			trace(seperatedScore);
-		 */
 
 		coolText.text = Std.string(seperatedScore);
 		// add(coolText);
@@ -2933,6 +2929,8 @@ class PlayState extends MusicBeatState
 				popUpScore(note.strumTime, note);
 				combo += 1;
 			}
+			else
+				totalNotesHit += 1;
 
 			if (note.noteData >= 0)
 				health += 0.023;
