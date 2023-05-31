@@ -2375,7 +2375,8 @@ class PlayState extends MusicBeatState
 				miss: songMiss,
 				accuracy: songAccuracy,
 				botplayMode: FlxG.save.data.botplay,
-				rank: [ranking: ratingInit(), rating: rating]
+				ranking: ranking,
+				rating: rating
 			};
 			var content:String = haxe.Json.stringify(info);
 			sys.io.File.saveContent(Paths.json(SONG.song.toLowerCase() + "/info"), content);
