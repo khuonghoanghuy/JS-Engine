@@ -35,14 +35,11 @@ class FreeplayState extends MusicBeatState
 	override function create()
 	{
 		var initSonglist = CoolUtil.coolTextFile(Paths.txt('freeplaySonglist'));
-		var initSonglist_MOD = CoolUtil.coolTextFile("mods_folder/mods_folder/data/freeplaySonglist.txt");
 
 		for (i in 0...initSonglist.length)
 		{
 			var data:Array<String> = initSonglist[i].split(':');
-			// var data2:Array<String> = initSonglist_MOD[i].split(':');
 			songs.push(new SongMetadata(data[0], Std.parseInt(data[2]), data[1]));
-			// songs.push(new SongMetadata(data2[0], Std.parseInt(data2[2]), data2[1]));
 		}
 
 		#if desktop
