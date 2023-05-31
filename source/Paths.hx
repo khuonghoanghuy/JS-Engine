@@ -62,7 +62,7 @@ class Paths
 
 	inline static public function txtlang(key:String, ?library:String)
 	{
-		return getPath('language/$key.txt', TEXT, library);
+		return getPath('data_stuff/$key.txt', TEXT, library);
 	}
 
 	inline static public function txt(key:String, ?library:String)

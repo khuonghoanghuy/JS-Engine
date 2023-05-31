@@ -1,18 +1,12 @@
 package options;
 
-import Controls.Control;
-import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.input.keyboard.FlxKey;
-import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxSave;
-import lime.utils.Assets;
 
 class OptionsMenu extends MusicBeatState
 {
@@ -32,6 +26,7 @@ class OptionsMenu extends MusicBeatState
 		"Note Splash",
 		"Note Splash Spin",
 		"Botplay",
+		"Change Skin Note",
 		"Watermark",
 		"Judgement Counter",
 		"Time Bar",
@@ -224,6 +219,11 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
 					FlxG.save.data.watermark = FlxG.save.data.watermark;
 
+				case "Change Skin Note":
+					FlxG.save.data.noteSkin = !FlxG.save.data.noteSkin;
+					optionsCheck.text = "As: " + (FlxG.save.data.noteSkin ? "Blue" : "Normall");
+					FlxG.save.data.noteSkin = !FlxG.save.data.noteSkin;
+
 				#if desktop
 				case "Direct FPS Cap Key":
 					FlxG.save.data.directfpsCap = !FlxG.save.data.directfpsCap;
@@ -327,7 +327,7 @@ class OptionsMenu extends MusicBeatState
 				}
 				else
 				{
-					optionsDesc.text = "Have bit harder than the simple one! (Beta stuff, may can be broken!)";
+					optionsDesc.text = "Have bit harder than the simple one!";
 				}
 				optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
 
@@ -344,8 +344,12 @@ class OptionsMenu extends MusicBeatState
 				optionsCheck.text = FlxG.save.data.botplay ? "On" : "Off";
 
 			case "Watermark":
-				optionsDesc.text = "Display JS Engine Text on the screen";
+				optionsDesc.text = "Replace normall Gui with JS Engine Watermark";
 				optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
+
+			case "Change Skin Note":
+				optionsDesc.text = "(Beta Stuff, Pixel skin is not working!) - Change Skin Note for game";
+				optionsCheck.text = "As: " + (FlxG.save.data.noteSkin ? "Blue" : "Normall");
 
 			#if desktop
 			case "FPS Cap":

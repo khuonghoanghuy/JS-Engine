@@ -1607,7 +1607,15 @@ class PlayState extends MusicBeatState
 					}
 
 				default:
-					babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					if (FlxG.save.data.noteSkin)
+					{
+						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets_blue');
+					}
+					else
+					{
+						babyArrow.frames = Paths.getSparrowAtlas('NOTE_assets');
+					}
+
 					babyArrow.animation.addByPrefix('green', 'arrowUP');
 					babyArrow.animation.addByPrefix('blue', 'arrowDOWN');
 					babyArrow.animation.addByPrefix('purple', 'arrowLEFT');
@@ -2463,7 +2471,7 @@ class PlayState extends MusicBeatState
 
 		var darating:String = "sick";
 
-		if (noteDiff > Conductor.safeZoneOffset * 2)
+		if (noteDiff > Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("shitZone_2"))))
 		{
 			darating += 'shit';
 			if (FlxG.save.data.accuracyType)
@@ -2473,7 +2481,7 @@ class PlayState extends MusicBeatState
 			score = 50;
 			shits++;
 		}
-		else if (noteDiff < Conductor.safeZoneOffset * -2)
+		else if (noteDiff < Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("shitZone_1"))))
 		{
 			darating += 'shit';
 			if (FlxG.save.data.accuracyType)
@@ -2483,7 +2491,7 @@ class PlayState extends MusicBeatState
 			score = 50;
 			shits++;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * 0.45)
+		else if (noteDiff > Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("badZone"))))
 		{
 			darating += 'bad';
 			score = 100;
@@ -2493,7 +2501,7 @@ class PlayState extends MusicBeatState
 				totalNotesHit += 0.55;
 			bads++;
 		}
-		else if (noteDiff > Conductor.safeZoneOffset * 0.25)
+		else if (noteDiff > Conductor.safeZoneOffset * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("goodZone"))))
 		{
 			darating += 'good';
 			if (FlxG.save.data.accuracyType)

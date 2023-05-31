@@ -71,10 +71,7 @@ class Main extends Sprite
 		#end
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
-
-		#if !mobile
 		addChild(new FPS(10, 5, 0xFFFFFF));
-		#end
 
 		#if debug
 		FlxStudio.create();

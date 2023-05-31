@@ -2,9 +2,6 @@ package;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.math.FlxMath;
-import flixel.util.FlxColor;
 
 using StringTools;
 
@@ -77,7 +74,14 @@ class Note extends FlxSprite
 				updateHitbox();
 
 			default:
-				frames = Paths.getSparrowAtlas('NOTE_assets');
+				if (FlxG.save.data.noteSkin)
+				{
+					frames = Paths.getSparrowAtlas('NOTE_assets_blue');
+				}
+				else
+				{
+					frames = Paths.getSparrowAtlas('NOTE_assets');
+				}
 
 				animation.addByPrefix('greenScroll', 'green0');
 				animation.addByPrefix('redScroll', 'red0');
