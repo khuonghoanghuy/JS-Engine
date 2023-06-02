@@ -1549,9 +1549,6 @@ class PlayState extends MusicBeatState
 			daBeats += 1;
 		}
 
-		// trace(unspawnNotes.length);
-		// playerCounter += 1;
-
 		unspawnNotes.sort(sortByShit);
 
 		generatedMusic = true;
@@ -1692,7 +1689,7 @@ class PlayState extends MusicBeatState
 			}
 
 			babyArrow.animation.play('static');
-			babyArrow.x += 75;
+			babyArrow.x += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("babyArrow_x")));
 			babyArrow.x += ((FlxG.width / 2) * player);
 
 			strumLineNotes.add(babyArrow);
@@ -1843,17 +1840,14 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		/*if (songAccuracy == 0)
-			rakng = defaultShit; */
-
 		return rakng;
 	}
 
 	function truncateFloat(number:Float, precision:Int):Float
 	{
 		var num = number;
-		num = num * Math.pow(10, precision);
-		num = Math.round(num) / Math.pow(10, precision);
+		num = num * Math.pow(Std.parseFloat(CoolUtil.coolStringFile("math_pow_1")), precision);
+		num = Math.round(num) / Math.pow(Std.parseFloat(CoolUtil.coolStringFile("math_pow_2")), precision);
 		return num;
 	}
 
@@ -1905,19 +1899,21 @@ class PlayState extends MusicBeatState
 						trainFrameTiming = 0;
 					}
 				}
-				phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
+				// phillyCityLights.members[curLight].alpha -= (Conductor.crochet / 1000) * FlxG.elapsed;
 		}
 
 		wiggleShit.update(Conductor.crochet / Std.parseInt(CoolUtil.coolStringFile(Paths.txt("wiggleInt"))));
 
 		super.update(elapsed);
 
+		var score:String = CoolUtil.coolStringFile(Paths.txtlang("scoreTxt"));
+		var misses:String = CoolUtil.coolStringFile(Paths.txtlang("missesTxt"));
+		var accuracy:String = CoolUtil.coolStringFile(Paths.txtlang("accuracyTxt"));
+		var ratingtxt:String = CoolUtil.coolStringFile(Paths.txtlang("ratingTxt"));
+
 		if (FlxG.save.data.accuracy && FlxG.save.data.watermark)
-			scoreTxt.text = "Score: " + songScore + " | Misses: " + songMiss + " | Accuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking
-				+ ") - " + "Rating: " + ratingInit() + " (" + rating + ")";
-		else if (FlxG.save.data.accuracy && !FlxG.save.data.watermark)
-			scoreTxt.text = "Score: " + songScore + "\nMisses: " + songMiss + "\nAccuracy: " + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking
-				+ ") - " + "Rating: " + ratingInit() + " (" + rating + ")";
+			scoreTxt.text = score + songScore + " | " + misses + songMiss + " | " + accuracy + truncateFloat(songAccuracy, 2) + "%" + " (" + ranking
+				+ ") - " + ratingtxt + ratingInit() + " (" + rating + ")";
 		else if (!FlxG.save.data.accuracy && FlxG.save.data.watermark)
 			scoreTxt.text = "Score: " + songScore;
 		else
@@ -1934,26 +1930,26 @@ class PlayState extends MusicBeatState
 			case 0:
 				if (sicks <= 1 && goods <= 0 && bads <= 0 && shits <= 0 && songMiss == 0)
 				{
-					ranking = "SFC";
+					ranking = CoolUtil.coolStringFile(Paths.txtlang("ranking/sfc"));
 				}
 				else if (sicks <= 0 && goods <= 1 && bads <= 0 && shits <= 0 && songMiss == 0)
 				{
-					ranking = "GFC";
+					ranking = CoolUtil.coolStringFile(Paths.txtlang("ranking/gfc"));
 				}
 				else if (sicks <= 1 && goods <= 1 && bads <= 0 && shits <= 0 && songMiss == 0)
 				{
-					ranking = "GFC";
+					ranking = CoolUtil.coolStringFile(Paths.txtlang("ranking/gfc"));
 				}
 				else
 				{
-					ranking = "FC";
+					ranking = CoolUtil.coolStringFile(Paths.txtlang("ranking/fc"));
 				}
 
 			case 1:
-				ranking = "SBCD";
+				ranking = CoolUtil.coolStringFile(Paths.txtlang("ranking/sbcd"));
 
 			case 20:
-				ranking = "Clear";
+				ranking = CoolUtil.coolStringFile(Paths.txtlang("ranking/clear"));
 		}
 
 		if (FlxG.keys.justPressed.ENTER && startedCountdown && canPause)
@@ -2001,12 +1997,12 @@ class PlayState extends MusicBeatState
 		if (health > 2)
 			health = 2;
 
-		if (healthBar.percent < 20)
+		if (healthBar.percent < Std.parseInt(CoolUtil.coolStringFile(Paths.txt("health_percent_low"))))
 			iconP1.animation.curAnim.curFrame = 1;
 		else
 			iconP1.animation.curAnim.curFrame = 0;
 
-		if (healthBar.percent > 80)
+		if (healthBar.percent > Std.parseInt(CoolUtil.coolStringFile(Paths.txt("health_percent_high"))))
 			iconP2.animation.curAnim.curFrame = 1;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
@@ -2048,17 +2044,12 @@ class PlayState extends MusicBeatState
 				songTime += FlxG.game.ticks - previousFrameTime;
 				previousFrameTime = FlxG.game.ticks;
 
-				// Interpolation type beat
 				if (Conductor.lastSongPos != Conductor.songPosition)
 				{
 					songTime = (songTime + Conductor.songPosition) / 2;
 					Conductor.lastSongPos = Conductor.songPosition;
-					// Conductor.songPosition += FlxG.elapsed * 1000;
-					// trace('MISSED FRAME');
 				}
 			}
-
-			// Conductor.lastSongPos = FlxG.sound.music.time;
 		}
 
 		switch (curStage)
@@ -2069,11 +2060,6 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic && PlayState.SONG.notes[Std.int(curStep / 16)] != null)
 		{
-			if (curBeat % 4 == 0)
-			{
-				// trace(PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection);
-			}
-
 			if (camFollow.x != dad.getMidpoint().x + 150 && !PlayState.SONG.notes[Std.int(curStep / 16)].mustHitSection)
 			{
 				camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
@@ -2311,18 +2297,11 @@ class PlayState extends MusicBeatState
 					{
 						health -= 0.0475;
 						vocals.volume = 0;
-						// bool(false);
 						noteMiss(daNote.noteData);
 					}
 					else
 					{
 					}
-					// else
-					// {
-					// 	health += 0.023;
-					// 	// bool(true);
-					// 	goodNoteHit(daNote);
-					// }
 
 					daNote.active = false;
 					daNote.visible = false;
@@ -2555,7 +2534,6 @@ class PlayState extends MusicBeatState
 		comboSpr.x = coolText.x;
 		comboSpr.acceleration.y = 600;
 		comboSpr.velocity.y -= 150;
-
 		comboSpr.velocity.x += FlxG.random.int(1, 10);
 		add(rating);
 
@@ -2743,16 +2721,6 @@ class PlayState extends MusicBeatState
 				{
 					if (daNote.canBeHit && daNote.mustPress && daNote.isSustainNote)
 					{
-						/*if (songAccuracy == 100)
-							{
-								totalNotesHit += 0;
-							}
-							else
-							{
-								totalNotesHit += 1;
-								// updateAcc();
-						}*/
-
 						switch (daNote.noteData)
 						{
 							// NOTES YOU ARE HOLDING
@@ -2823,7 +2791,7 @@ class PlayState extends MusicBeatState
 	{
 		if (!boyfriend.stunned)
 		{
-			health -= 0.04;
+			health -= Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("health_drain")));
 
 			if (combo > 5 && gf.animOffsets.exists('sad'))
 			{
@@ -2832,12 +2800,10 @@ class PlayState extends MusicBeatState
 
 			combo = 0;
 
-			songScore -= 10;
+			songScore -= Std.parseInt(CoolUtil.coolStringFile(Paths.txt("songScore_miss")));
 			songMiss += 1;
 
 			FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
-			// FlxG.sound.play(Paths.sound('missnote1'), 1, false);
-			// FlxG.log.add('played imss note');
 
 			boyfriend.stunned = true;
 
@@ -2886,8 +2852,6 @@ class PlayState extends MusicBeatState
 				totalNotesHit -= 1;
 			}
 
-			// bool(false);
-
 			updateAcc();
 		}
 	}
@@ -2935,12 +2899,12 @@ class PlayState extends MusicBeatState
 				combo += 1;
 			}
 			else
-				totalNotesHit += 1;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("goodNoteHit_botplay")));
 
 			if (note.noteData >= 0)
-				health += 0.023;
+				health += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("health_gain_1")));
 			else
-				health += 0.004;
+				health += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("health_gain_2")));
 
 			switch (note.noteData)
 			{
@@ -3025,12 +2989,12 @@ class PlayState extends MusicBeatState
 				combo += 1;
 			}
 			else
-				totalNotesHit += 1;
+				totalNotesHit += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("goodNoteHit_acc")));
 
 			if (note.noteData >= 0)
-				health += 0.023;
+				health += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("health_gain_1")));
 			else
-				health += 0.004;
+				health += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("health_gain_2")));
 
 			switch (note.noteData)
 			{

@@ -36,9 +36,9 @@ class Note extends FlxSprite
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
 
-		x += 75;
+		x += Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("babyArrow_x")));
 		// MAKE SURE ITS DEFINITELY OFF SCREEN?
-		y -= 2000;
+		y -= Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("babyArrow_y")));
 		this.strumTime = strumTime;
 
 		this.noteData = noteData;
