@@ -3034,13 +3034,13 @@ class PlayState extends MusicBeatState
 
 	function updateAcc()
 	{
-		totalPlayed += 1;
-		songAccuracy = totalNotesHit / totalPlayed * 100;
+		totalPlayed += Std.parseInt(CoolUtil.coolStringFile(Paths.txt("totalPlayed")));
+		songAccuracy = totalNotesHit / totalPlayed * Std.parseInt(CoolUtil.coolStringFile(Paths.txt("maxAccuracy")));
 
-		if (songAccuracy >= 100)
-		{
-			songAccuracy = 100;
-		}
+		/*if (songAccuracy >= 100)
+			{
+				songAccuracy = 100;
+		}*/
 	}
 
 	var tankResetShit:Bool = false;
