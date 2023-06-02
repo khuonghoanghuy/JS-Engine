@@ -1862,19 +1862,20 @@ class PlayState extends MusicBeatState
 
 	var notesHitArray:Array<Date> = [];
 
+	var swapICON:Bool = false;
+
 	override public function update(elapsed:Float)
 	{
 		#if !debug
 		perfectMode = false;
 		#end
 
-		if (FlxG.keys.justPressed.NINE)
-		{
-			if (iconP1.animation.curAnim.name == 'bf-old')
-				iconP1.animation.play(SONG.player1);
-			else
-				iconP1.animation.play('bf-old');
-		}
+		swapICON = FlxG.save.data.swapICON;
+
+		if (swapICON == false)
+			iconP1.animation.play(SONG.player1);
+		else if (swapICON == true)
+			iconP1.animation.play('bf-old');
 
 		// kade engine code
 		var balls = notesHitArray.length - 1;

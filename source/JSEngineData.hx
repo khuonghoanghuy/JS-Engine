@@ -34,6 +34,8 @@ class JSEngineData
 				timeBarInit();
 				allowWriteInit();
 				shadersUnuseInit();
+				swapIconInit();
+				noteSkinInit();
 
 			case "base":
 				ghosttapInit();
@@ -138,6 +140,18 @@ class JSEngineData
 	{
 		if (FlxG.save.data.oneStage == null)
 			FlxG.save.data.oneStage = false;
+	}
+
+	public static function swapIconInit()
+	{
+		if (FlxG.save.data.swapICON == null)
+			FlxG.save.data.swapICON = false;
+	}
+
+	public static function noteSkinInit()
+	{
+		if (FlxG.save.data.noteSkin == null)
+			FlxG.save.data.noteSkin = false;
 	}
 
 	public static function qualityInit()

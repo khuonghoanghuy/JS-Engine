@@ -30,6 +30,7 @@ class OptionsMenu extends MusicBeatState
 		"Watermark",
 		"Judgement Counter",
 		"Time Bar",
+		"Swap Icon Player",
 		/*#if desktop
 			"FPS Cap", "Direct FPS Cap Key",
 			#end */
@@ -221,7 +222,7 @@ class OptionsMenu extends MusicBeatState
 
 				case "Change Skin Note":
 					FlxG.save.data.noteSkin = !FlxG.save.data.noteSkin;
-					optionsCheck.text = "As: " + (FlxG.save.data.noteSkin ? "Blue" : "Normall");
+					optionsCheck.text = FlxG.save.data.noteSkin ? "As: Blue" : "As: Normall";
 					FlxG.save.data.noteSkin = !FlxG.save.data.noteSkin;
 
 				#if desktop
@@ -230,6 +231,11 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.directfpsCap ? "On" : "Off";
 					FlxG.save.data.directfpsCap = FlxG.save.data.directfpsCap;
 				#end
+
+				case "Swap Icon Player":
+					FlxG.save.data.directfpsCap = !FlxG.save.data.directfpsCap;
+					optionsCheck.text = FlxG.save.data.directfpsCap ? "As: Old Icon" : "As: Characters";
+					FlxG.save.data.directfpsCap = FlxG.save.data.directfpsCap;
 
 				case "Hide GF":
 					FlxG.save.data.hidegf = !FlxG.save.data.hidegf;
@@ -243,7 +249,7 @@ class OptionsMenu extends MusicBeatState
 
 				case "Quality":
 					FlxG.save.data.quality = !FlxG.save.data.quality;
-					optionsCheck.text = "As: " + (FlxG.save.data.quality ? "Low" : "High");
+					optionsCheck.text = FlxG.save.data.quality ? "As: Low" : "As: High";
 					FlxG.save.data.quality = !FlxG.save.data.quality;
 
 				case "Judgement Counter":
@@ -331,6 +337,10 @@ class OptionsMenu extends MusicBeatState
 				}
 				optionsCheck.text = FlxG.save.data.accuracyType ? "As Simple" : "As Complex";
 
+			case "Swap Icon Player":
+				optionsDesc.text = "Will be play a old icon or other characters";
+				optionsCheck.text = FlxG.save.data.swapICON ? "As: Old Icon" : "As: Characters";
+
 			case "Note Splash":
 				optionsDesc.text = "When hit sick combo, splash animation will be play";
 				optionsCheck.text = FlxG.save.data.noteSplashes ? "On" : "Off";
@@ -348,8 +358,8 @@ class OptionsMenu extends MusicBeatState
 				optionsCheck.text = FlxG.save.data.watermark ? "On" : "Off";
 
 			case "Change Skin Note":
-				optionsDesc.text = "(Beta Stuff, Pixel skin is not working!) - Change Skin Note for game";
-				optionsCheck.text = "As: " + (FlxG.save.data.noteSkin ? "Blue" : "Normall");
+				optionsDesc.text = "(Beta Stuff, Pixel skin is not done!) - Change Skin Note for game";
+				optionsCheck.text = FlxG.save.data.noteSkin ? "As: Blue" : "As: Normall";
 
 			#if desktop
 			case "FPS Cap":
@@ -371,7 +381,7 @@ class OptionsMenu extends MusicBeatState
 
 			case "Quality":
 				optionsDesc.text = "Hide some PNG on the game, can make the game load more faster";
-				optionsCheck.text = "As: " + (FlxG.save.data.quality ? "Low" : "High");
+				optionsCheck.text = FlxG.save.data.quality ? "As: Low" : "As: High";
 
 			case "Judgement Counter":
 				optionsDesc.text = "Display 'Sick', 'Good', 'Bad', 'Shit' on the game";
