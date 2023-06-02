@@ -1846,8 +1846,8 @@ class PlayState extends MusicBeatState
 	function truncateFloat(number:Float, precision:Int):Float
 	{
 		var num = number;
-		num = num * Math.pow(Std.parseFloat(CoolUtil.coolStringFile("math_pow_1")), precision);
-		num = Math.round(num) / Math.pow(Std.parseFloat(CoolUtil.coolStringFile("math_pow_2")), precision);
+		num = num * Math.pow(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("math_pow_1"))), precision);
+		num = Math.round(num) / Math.pow(Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("math_pow_2"))), precision);
 		return num;
 	}
 
