@@ -2011,11 +2011,17 @@ class PlayState extends MusicBeatState
 		else
 			iconP2.animation.curAnim.curFrame = 0;
 
+		/**
+		 * Offset for player 2
+		 */
 		if (FlxG.keys.justPressed.EIGHT)
 		{
 			FlxG.switchState(new animationDEBUG.AnimationDebug(SONG.player2));
 		}
 
+		/**
+		 * Offser for player 1
+		 */
 		if (FlxG.keys.justPressed.NINE)
 		{
 			FlxG.switchState(new animationDEBUG.AnimationDebug(SONG.player1));
@@ -2141,9 +2147,6 @@ class PlayState extends MusicBeatState
 					gfSpeed = 2;
 				case 112:
 					gfSpeed = 1;
-				case 163:
-					// FlxG.sound.music.stop();
-					// FlxG.switchState(new TitleState());
 			}
 		}
 
@@ -3199,7 +3202,7 @@ class PlayState extends MusicBeatState
 
 		if (generatedMusic)
 		{
-			notes.sort(FlxSort.byY, FlxSort.DESCENDING);
+			notes.sort(FlxSort.byY, FlxSort.ASCENDING);
 		}
 
 		if (SONG.notes[Math.floor(curStep / 16)] != null)
@@ -3209,10 +3212,7 @@ class PlayState extends MusicBeatState
 				Conductor.changeBPM(SONG.notes[Math.floor(curStep / 16)].bpm);
 				FlxG.log.add('CHANGED BPM!');
 			}
-			// else
-			// Conductor.changeBPM(SONG.bpm);
 
-			// Dad doesnt interupt his own notes
 			if (SONG.notes[Math.floor(curStep / 16)].mustHitSection)
 			{
 				dad.dance();
