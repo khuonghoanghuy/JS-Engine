@@ -3233,12 +3233,6 @@ class PlayState extends MusicBeatState
 			camHUD.zoom += 0.03;
 		}
 
-		// #if desktop
-		if (FlxG.save.data.allowWrite)
-		{
-		}
-		// #end
-
 		iconP1.setGraphicSize(Std.int(iconP1.width + 30));
 		iconP2.setGraphicSize(Std.int(iconP2.width + 30));
 
