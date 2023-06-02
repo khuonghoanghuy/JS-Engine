@@ -161,7 +161,7 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
-		songAccuracy = 100.0;
+		songAccuracy = Std.parseFloat(CoolUtil.coolStringFile(Paths.txt("defaultAccuracy")));
 
 		shits = 0;
 		bads = 0;
