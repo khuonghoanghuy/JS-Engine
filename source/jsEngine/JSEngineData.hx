@@ -1,4 +1,4 @@
-package;
+package jsEngine;
 
 import flixel.FlxG;
 
@@ -36,6 +36,7 @@ class JSEngineData
 				shadersUnuseInit();
 				swapIconInit();
 				noteSkinInit();
+				camZoomInit();
 
 			case "base":
 				ghosttapInit();
@@ -188,5 +189,11 @@ class JSEngineData
 	{
 		if (FlxG.save.data.shadersUnuse == null)
 			FlxG.save.data.shadersUnuse = false;
+	}
+
+	public static function camZoomInit()
+	{
+		if (FlxG.save.data.camZoom == null)
+			FlxG.save.data.camZoom = true;
 	}
 }

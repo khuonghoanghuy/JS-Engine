@@ -41,7 +41,8 @@ class OptionsMenu extends MusicBeatState
 		#if desktop
 		"Allow Writing Info",
 		#end
-		"Run Shaders Unuse" // "Clear Up Memory"
+		"Run Shaders Unuse", // "Clear Up Memory"
+		"Cam Zoom"
 	];
 
 	var optionsCheck:FlxText;
@@ -279,6 +280,11 @@ class OptionsMenu extends MusicBeatState
 					optionsCheck.text = FlxG.save.data.shadersUnuse ? "On" : "Off";
 					FlxG.save.data.shadersUnuse = FlxG.save.data.shadersUnuse;
 
+				case "Cam Zoom":
+					FlxG.save.data.camZoom = !FlxG.save.data.camZoom;
+					optionsCheck.text = FlxG.save.data.camZoom ? "On" : "Off";
+					FlxG.save.data.camZoom = FlxG.save.data.camZoom;
+
 					/*case "Clear Up Memory":
 						save.bind('jsEngine', 'huy1234th');
 						FlxG.save.destroy(); */
@@ -404,6 +410,10 @@ class OptionsMenu extends MusicBeatState
 			case "Run Shaders Unuse":
 				optionsDesc.text = "Enable run shaders background (only in Thorns Song!, Also dont enable this or you dont want to cringe about this!)";
 				optionsCheck.text = FlxG.save.data.shadersUnuse ? "On" : "Off";
+
+			case "Cam Zoom":
+				optionsDesc.text = "Enable Cam Zoom or Disable Cam Zoom (Recommended to disable if you have some dizzy about this!)";
+				optionsCheck.text = FlxG.save.data.camZoom ? "On" : "Off";
 
 				/*case "Clear Up Memory":
 					optionsDesc.text = "Clear Some memory";

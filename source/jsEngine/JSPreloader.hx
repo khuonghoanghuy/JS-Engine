@@ -1,4 +1,4 @@
-package preloader;
+package jsEngine;
 
 import flash.Lib;
 import flash.display.Bitmap;

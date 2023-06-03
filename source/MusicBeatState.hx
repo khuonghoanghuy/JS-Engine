@@ -3,6 +3,7 @@ package;
 import Conductor.BPMChangeEvent;
 import flixel.FlxG;
 import flixel.addons.ui.FlxUIState;
+import jsEngine.JSEngineData;
 #if debug
 import flixel.addons.studio.FlxStudio;
 #end
