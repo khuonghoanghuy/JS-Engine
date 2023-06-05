@@ -1297,8 +1297,15 @@ class PlayState extends MusicBeatState
 		else
 			canPress = true;
 
-		generateStaticArrows(0);
-		generateStaticArrows(1);
+		if (Std.parseInt(CoolUtil.coolStringFile(Paths.txt("babyArrow_x"))) == -215)
+		{
+			generateStaticArrows(1);
+		}
+		else
+		{
+			generateStaticArrows(0);
+			generateStaticArrows(1);
+		}
 
 		talking = false;
 		startedCountdown = true;
