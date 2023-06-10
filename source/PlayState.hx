@@ -947,6 +947,12 @@ class PlayState extends MusicBeatState
 
 		add(gf);
 
+		gfCutsceneLayer = new FlxGroup();
+		add(gfCutsceneLayer);
+
+		bfTankCutsceneLayer = new FlxGroup();
+		add(bfTankCutsceneLayer);
+
 		// Shitty layering but whatev it works LOL
 		if (curStage == 'limo')
 			add(limo);
@@ -1185,6 +1191,12 @@ class PlayState extends MusicBeatState
 					schoolIntro(doof);
 				case 'thorns':
 					schoolIntro(doof);
+				case 'ugh':
+					ughIntro();
+				case 'stress':
+					stressIntro();
+				case 'guns':
+					gunsIntro();
 				default:
 					startCountdown();
 			}
@@ -1285,8 +1297,71 @@ class PlayState extends MusicBeatState
 		});
 	}
 
+	function ughIntro()
+	{
+		inCutscene = true;
+
+		var blackShit:FlxSprite = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		blackShit.scrollFactor.set();
+		add(blackShit);
+
+		var vid:FlxVideo = new FlxVideo('videos/ughCutscene.mp4');
+		vid.finishCallback = function()
+		{
+			remove(blackShit);
+			FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, (Conductor.crochet / 1000) * 5, {ease: FlxEase.quadInOut});
+			startCountdown();
+			cameraMovement();
+		};
+
+		FlxG.camera.zoom = defaultCamZoom * 1.2;
+
+		camFollow.x += 100;
+		camFollow.y += 100;
+	}
+
+	function gunsIntro()
+	{
+		inCutscene = true;
+
+		var blackShit:FlxSprite = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		blackShit.scrollFactor.set();
+		add(blackShit);
+
+		var vid:FlxVideo = new FlxVideo('videos/gunsCutscene.mp4');
+		vid.finishCallback = function()
+		{
+			remove(blackShit);
+
+			FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, (Conductor.crochet / 1000) * 5, {ease: FlxEase.quadInOut});
+			startCountdown();
+			cameraMovement();
+		};
+	}
+
+	function stressIntro()
+	{
+		inCutscene = true;
+
+		var blackShit:FlxSprite = new FlxSprite(-200, -200).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		blackShit.scrollFactor.set();
+		add(blackShit);
+
+		var vid:FlxVideo = new FlxVideo('videos/stressCutscene.mp4');
+		vid.finishCallback = function()
+		{
+			remove(blackShit);
+
+			FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, (Conductor.crochet / 1000) * 5, {ease: FlxEase.quadInOut});
+			startCountdown();
+			cameraMovement();
+		};
+	}
+
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
+
+	var cameraRightSide:Bool = false;
 
 	function startCountdown():Void
 	{
@@ -1297,7 +1372,7 @@ class PlayState extends MusicBeatState
 		else
 			canPress = true;
 
-		if (Std.parseInt(CoolUtil.coolStringFile(Paths.txt("babyArrow_x"))) == -215)
+		if (Std.parseInt(CoolUtil.coolStringFile(Paths.txt("babyArrow_x"))) <= -215)
 		{
 			generateStaticArrows(1);
 		}
@@ -1401,6 +1476,49 @@ class PlayState extends MusicBeatState
 
 			swagCounter += 1;
 		}, 5);
+	}
+
+	function cameraMovement()
+	{
+		if (camFollow.x != dad.getMidpoint().x + 150 && !cameraRightSide)
+		{
+			camFollow.setPosition(dad.getMidpoint().x + 150, dad.getMidpoint().y - 100);
+			// camFollow.setPosition(lucky.getMidpoint().x - 120, lucky.getMidpoint().y + 210);
+
+			switch (dad.curCharacter)
+			{
+				case 'mom':
+					camFollow.y = dad.getMidpoint().y;
+				case 'senpai' | 'senpai-angry':
+					camFollow.y = dad.getMidpoint().y - 430;
+					camFollow.x = dad.getMidpoint().x - 100;
+			}
+
+			if (dad.curCharacter == 'mom')
+				vocals.volume = 1;
+
+			if (SONG.song.toLowerCase() == 'tutorial')
+				tweenCamIn();
+		}
+
+		if (cameraRightSide && camFollow.x != boyfriend.getMidpoint().x - 100)
+		{
+			camFollow.setPosition(boyfriend.getMidpoint().x - 100, boyfriend.getMidpoint().y - 100);
+
+			switch (curStage)
+			{
+				case 'limo':
+					camFollow.x = boyfriend.getMidpoint().x - 300;
+				case 'mall':
+					camFollow.y = boyfriend.getMidpoint().y - 200;
+				case 'school' | 'schoolEvil':
+					camFollow.x = boyfriend.getMidpoint().x - 200;
+					camFollow.y = boyfriend.getMidpoint().y - 200;
+			}
+
+			if (SONG.song.toLowerCase() == 'tutorial')
+				FlxTween.tween(FlxG.camera, {zoom: 1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.elasticInOut});
+		}
 	}
 
 	var previousFrameTime:Int = 0;
@@ -2012,6 +2130,13 @@ class PlayState extends MusicBeatState
 			iconP2.animation.curAnim.curFrame = 1;
 		else
 			iconP2.animation.curAnim.curFrame = 0;
+
+		if (generatedMusic && SONG.notes[Std.int(curStep / 16)] != null)
+		{
+			cameraRightSide = SONG.notes[Std.int(curStep / 16)].mustHitSection;
+
+			cameraMovement();
+		}
 
 		/**
 		 * Offset for player 2

@@ -105,9 +105,8 @@
 	<haxelib name="discord_rpc" if="desktop"/>
 	<haxelib name="hxnodejs" if="electron" />
 
-	<haxelib name="polymod" />
-
 	<haxelib name="flixel-studio" if='debug'/>
+	<haxelib name="hxcpp-debug-server" if="desktop debug"/>
 	<!-- <haxelib name="hxcpp-debug-server" if="desktop"/> -->
 
 	<!-- <haxelib name="markdown" /> -->
