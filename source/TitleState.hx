@@ -38,6 +38,21 @@ class TitleState extends MusicBeatState
 
 	var wackyImage:FlxSprite;
 
+#if android
+FlxG.android.preventDefaultKeys = [BACK];
+#end
+#if android || FlxG.android.justReleased.BACK #end
+#if mobile
+var justTouched:Bool = false;
+
+for (touch in FlxG.touches.list)
+	if (touch.justPressed)
+		justTouched = true;
+
+if (justTouched)
+	//Your code
+#end
+
 	override public function create():Void
 	{
 		BlackState.inTer = false;
